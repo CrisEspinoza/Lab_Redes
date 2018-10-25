@@ -6,6 +6,7 @@ class Audio:
     duration = 0
     dimension = 0
     nameAudio = ""
+    informationNumpyFourier = []
 
     def __init__(self,info1,info2,dimension,data,time,nameAudio):
         self.frequency = info1

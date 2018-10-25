@@ -25,11 +25,13 @@ def main():
     time = len(data)/info1
 
     grafic = Graphic()
-    audio = Audio(info1, info2, dimension, data, time,nameAudio)
+    originalAudio = Audio(info1, info2, dimension, data, time,nameAudio)
 
-    grafic.timeGraphic(audio.informationNumpy,audio.duration,audio.nameAudio)
-    grafic.frequencyGraphic(audio.informationNumpy,audio.frequency,audio.nameAudio)
+    grafic.timeGraphic(originalAudio.informationNumpy,originalAudio.duration,originalAudio.nameAudio)
+    originalAudio.informationNumpyFourier = grafic.frequencyGraphic(originalAudio.informationNumpy,originalAudio.frequency,originalAudio.nameAudio)
 
+    #Se muestra la nueva matriz de datos que se tiene al aplicar la tranformada de fourier al audio
+    #print(newData)
 
 if __name__ == '__main__':
     main()
