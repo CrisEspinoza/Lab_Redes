@@ -8,8 +8,8 @@ warnings.filterwarnings('ignore')
 def main():
     print(" Avanze numero 1")
 
-    nameText = input("Introduzca el nombre del archivo: ")
-    nameText = os.getcwd() + '/Audios/' + nameText + '.wav'
+    nameAudio = input("Introduzca el nombre del archivo: ")
+    nameText = os.getcwd() + '/Audios/' + nameAudio + '.wav'
 
     info1, info2 = read(nameText)
 
@@ -25,9 +25,10 @@ def main():
     time = len(data)/info1
 
     grafic = Graphic()
-    audio = Audio(info1, info2, dimension, data, time)
+    audio = Audio(info1, info2, dimension, data, time,nameAudio)
 
-    grafic.timeGraphic(audio.informationNumpy,audio.duration)
+    grafic.timeGraphic(audio.informationNumpy,audio.duration,audio.nameAudio)
+    grafic.frequencyGraphic(audio.informationNumpy,audio.frequency,audio.nameAudio)
 
 
 if __name__ == '__main__':
