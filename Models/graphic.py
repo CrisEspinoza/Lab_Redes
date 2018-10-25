@@ -1,5 +1,6 @@
 from numpy import linspace
 import matplotlib.pyplot as plt
+import os
 
     #Clase que se encarga de tener los distintos graficos necesarios
 class Graphic:
@@ -12,7 +13,7 @@ class Graphic:
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.plot(xdata, ydata)
-        plt.savefig(title + ".png")
+        plt.savefig( os.getcwd()+ "/Salida/" + title + ".png")
         return
 
     def timeGraphic(self,data, duration):
