@@ -8,7 +8,7 @@ class Audio:
     nameAudio = ""
     informationNumpyFourier = []
 
-    def __init__(self,info1,info2,dimension,data,time,nameAudio):
+    def __init__(self, info1, info2, dimension, data, time, nameAudio):
         self.frequency = info1
         self.information = info2
         self.informationNumpy = data

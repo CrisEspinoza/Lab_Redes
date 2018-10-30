@@ -29,6 +29,7 @@ def main():
 
     grafic.timeGraphic(originalAudio.informationNumpy,originalAudio.duration,originalAudio.nameAudio)
     originalAudio.informationNumpyFourier = grafic.frequencyGraphic(originalAudio.informationNumpy,originalAudio.frequency,originalAudio.nameAudio)
+    grafic.spectrogramGraphic(originalAudio.informationNumpy,originalAudio.frequency,originalAudio.nameAudio)
 
     #Se muestra la nueva matriz de datos que se tiene al aplicar la tranformada de fourier al audio
     #print(newData)
