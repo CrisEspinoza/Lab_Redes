@@ -38,7 +38,7 @@ class Graphic:
         plt.xlabel('Tiempo[s]')
         plt.ylabel('Frecuencia[Hz]')
         plt.title(nameAudio, fontsize=16, color='blue')
-        plt.savefig(os.getcwd() + "/Salida/" + nameAudio + ".png")
+        plt.savefig(os.getcwd() + "/Salida/" + nameAudio + "-spectrogram.png")
         plt.show()
         return
 
