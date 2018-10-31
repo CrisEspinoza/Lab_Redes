@@ -2,6 +2,6 @@
 > **Integrantes**
 - [X] Luis Felipe Abello
 - [X] Cristian ÈspÌnozÀ
-- [] Carlos ~~Perez~~
+- [ ] Carlos ~~Perez~~
 
 1. Introduccion
