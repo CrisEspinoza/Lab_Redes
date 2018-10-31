@@ -1,5 +1,5 @@
 # Lab_Redes
-# Integrantes
+Integrantes
 # - Luis Felipe Abello
 # - Cristian Espinoza
 # - Carlos Perez
