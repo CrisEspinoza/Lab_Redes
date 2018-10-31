@@ -1,6 +1,6 @@
 # Lab_Redes
 > **Integrantes**
-- Luis Felipe Abello
+- [X] Luis Felipe Abello
 - Cristian ÈspÌnozÀ
 - Carlos ~~Perez~~
 
