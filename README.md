@@ -1,7 +1,7 @@
 # Lab_Redes
 > **Integrantes**
-- [X] Luis Felipe Abello
-- [X] Cristian ÈspÌnozÀ
-- [ ] Carlos ~~Perez~~
+-  Luis Felipe Abello
+-  Cristian Espinoza
+-  Carlos Pèrez
 
 1. Introduccion
