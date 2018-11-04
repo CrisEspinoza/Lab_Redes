@@ -1,17 +1,21 @@
     # Clase que se encarga de guardar los datos de un audio
 class Audio:
-    frequency = 0
-    information = 0
-    informationNumpy = 0
+
+## - ATTRIBUTES - ##
+    sampling_rate = 0
+    data_array = 0
     duration = 0
     dimension = 0
-    nameAudio = ""
-    informationNumpyFourier = []
+    audio_name = ""
+    information_numpy_fourier = []
 
-    def __init__(self, info1, info2, dimension, data, time, nameAudio):
-        self.frequency = info1
-        self.information = info2
-        self.informationNumpy = data
+## - FUNCTIONS - ##
+
+    #CONSTRUCTOR////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    def __init__(self, samplingRate, dimension, data, time, audioName):
+        self.sampling_rate = samplingRate
+        self.data_array = data
         self.duration = time
         self.dimension = dimension
-        self.nameAudio = nameAudio
+        self.audio_name = audioName
