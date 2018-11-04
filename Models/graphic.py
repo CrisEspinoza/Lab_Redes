@@ -1,5 +1,5 @@
 from numpy import linspace
-from scipy import fft
+from scipy import fft, ifft
 import matplotlib.pyplot as plt
 import os
 import numpy as np
@@ -32,13 +32,20 @@ class Graphic:
         fftFrequency = np.fft.fftfreq(sampleLength, 1 / frequency)
         self.makeGraphic("Sonido: " + nameAudio + " aplicando T.Fourier", "Frecuencia [Hz]", fftFrequency, "Amplitud [dB]", abs(newData))
         plt.show()
-        return newData
+        return newData, fft(data)
     def spectrogramGraphic(self, data, frequency, nameAudio):
         plt.specgram(data, NFFT=1024, Fs=frequency)
         plt.xlabel('Tiempo[s]')
         plt.ylabel('Frecuencia[Hz]')
         plt.title(nameAudio, fontsize=16, color='blue')
         plt.savefig(os.getcwd() + "/Salida/" + nameAudio + "-spectrogram.png")
+        plt.show()
+        return
+    def inverseGraphic(self,data,fourierT,nameAudio):
+        timp = len(fourierT)/data
+        iFourier = ifft(fourierT)
+        newtime = linspace(0,timp,len(iFourier))
+        self.makeGraphic("Sonido: "+nameAudio+" aplicando TF. Inversa","Tiempo [s]",newtime,"Amplitud [dB]", iFourier)
         plt.show()
         return
 
