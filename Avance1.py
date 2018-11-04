@@ -11,25 +11,25 @@ def main():
     nameAudio = input("Introduzca el nombre del archivo: ")
     nameText = os.getcwd() + '/Audios/' + nameAudio + '.wav'
 
-    info1, info2 = read(nameText)
+    sampling_rate, data_array = read(nameText)
 
-    dimension = info2[0].size
+    dimension = data_array[0].size
     #print(dimension)
 
     #data: datos del audio(arreglo de numpy)
     if dimension == 1:
-        data = info2
+        data = data_array
     else:
-        data = info2[:,dimension-1]
+        data = data_array[:,dimension-1]
 
-    time = len(data)/info1
+    time = len(data)/sampling_rate
 
     grafic = Graphic()
-    originalAudio = Audio(info1, info2, dimension, data, time,nameAudio)
+    originalAudio = Audio(sampling_rate, dimension, data, time,nameAudio)
 
-    grafic.timeGraphic(originalAudio.informationNumpy,originalAudio.duration,originalAudio.nameAudio)
-    originalAudio.informationNumpyFourier = grafic.frequencyGraphic(originalAudio.informationNumpy,originalAudio.frequency,originalAudio.nameAudio)
-    grafic.spectrogramGraphic(originalAudio.informationNumpy,originalAudio.frequency,originalAudio.nameAudio)
+    grafic.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
+    originalAudio.information_numpy_fourier = grafic.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
+    grafic.spectrogramGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
 
     #Se muestra la nueva matriz de datos que se tiene al aplicar la tranformada de fourier al audio
     #print(newData)
