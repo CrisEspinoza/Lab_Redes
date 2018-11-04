@@ -4,11 +4,22 @@ import matplotlib.pyplot as plt
 import os
 import numpy as np
 
-    #Clase que se encarga de tener los distintos graficos necesarios
+#Clase que se encarga de tener los distintos graficos necesarios
+
 class Graphic:
+
+#FUNCTIONS//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    #CONSTRUCTOR////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     def __init__(self):
         super(Graphic, self).__init__()
+
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME:
+    # - DESCRIPTION:
+    # - PARAMS:
+    # - OUT:
 
     def makeGraphic(self, title, xlabel, xdata, ylabel, ydata):
         plt.title(title, fontsize = 16, color = 'blue')
@@ -18,11 +29,23 @@ class Graphic:
         plt.savefig( os.getcwd()+ "/Salida/" + title + ".png")
         return
 
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME:
+    # - DESCRIPTION:
+    # - PARAMS:
+    # - OUT:
+
     def timeGraphic(self, data, duration,nameAudio):
         t = linspace(0, duration, len(data))
         self.makeGraphic("Sonido: " + nameAudio + " original", "Tiempo [s]", t, "Amplitud [dB]", data)
         plt.show()
         return
+
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME:
+    # - DESCRIPTION:
+    # - PARAMS:
+    # - OUT:
 
     def frequencyGraphic(self, data, frequency, nameAudio):
         sampleLength = len(data)
@@ -33,6 +56,13 @@ class Graphic:
         self.makeGraphic("Sonido: " + nameAudio + " aplicando T.Fourier", "Frecuencia [Hz]", fftFrequency, "Amplitud [dB]", abs(newData))
         plt.show()
         return newData
+
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME:
+    # - DESCRIPTION:
+    # - PARAMS:
+    # - OUT:
+
     def spectrogramGraphic(self, data, frequency, nameAudio):
         plt.specgram(data, NFFT=1024, Fs=frequency)
         plt.xlabel('Tiempo[s]')
