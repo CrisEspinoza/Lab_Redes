@@ -103,10 +103,17 @@ class Graphic:
         return
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: inverseGraphic
+    # - NAME: createGraphics
     # - DESCRIPTION:
     # - OUT:
     # - PARAMS:
 
+    def createGraphics(self, originalAudio, low_cutoff, order):
+        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
+        originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
+        self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
+        self.spectrogramGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
+        self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name)
+        return
 
-
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

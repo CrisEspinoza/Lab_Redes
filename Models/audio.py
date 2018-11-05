@@ -9,7 +9,7 @@ class Audio:
 ## - ATTRIBUTES - ##
     sampling_rate = 0
     data_array = 0
-    low_pass_data = 0
+    lowpass_data = 0
     duration = 0
     dimension = 0
     audio_name = ""
@@ -25,7 +25,7 @@ class Audio:
         self.duration = time
         self.dimension = dimension
         self.audio_name = audioName
-        self.low_pass_data = self.butterLowpassFilter(data, cutoff, samplingRate, order)
+        self.lowpass_data = self.butterLowpassFilter(data, cutoff, samplingRate, order)
 
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: butterLowpass

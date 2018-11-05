@@ -24,14 +24,9 @@ def main():
         data = data_array[:,dimension-1]
 
     time = len(data)/sampling_rate
-    grafic = Graphic()
     originalAudio = Audio(sampling_rate, dimension, data, time, audio_name, low_cutoff, order)
-
-    grafic.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
-    originalAudio.informationNumpyFourier, fourierT = grafic.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
-    grafic.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
-    grafic.spectrogramGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
-    grafic.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name)
+    grafic = Graphic()
+    grafic.createGraphics(originalAudio, low_cutoff, order)
 
     #Se muestra la nueva matriz de datos que se tiene al aplicar la tranformada de fourier al audio
     #print(newData)
