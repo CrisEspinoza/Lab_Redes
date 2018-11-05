@@ -59,7 +59,7 @@ class Graphic:
         return newData, fft(data)
 
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: spectrogramGraphic
+    # - NAME: lowpassFilteredGraphic
     # - DESCRIPTION:
     # - OUT:
     # - PARAMS:🤡
@@ -89,7 +89,7 @@ class Graphic:
         return
 
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: spectrogramGraphic
+    # - NAME: inverseGraphic
     # - DESCRIPTION:
     # - OUT:
     # - PARAMS:

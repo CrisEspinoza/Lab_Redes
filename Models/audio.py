@@ -27,9 +27,9 @@ class Audio:
 
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: butterLowpass
-    # - DESCRIPTION:
-    # - PARAMS:
-    # - OUT:
+    # - DESCRIPTION: Genera los coeficientes para el filtrado de frecuencias a partir de determiados parametros de entrada
+    # - PARAMS: - cutoff: Frecuencia de corte, que atenua las frecuencias superiores a esta
+    # - OUT: Coeficientes
 
     def butterLowpass(self, cutoff, samplingRate, order):
         nyq_rate = samplingRate * 0.5    #La tasa Nyquist de la señal
