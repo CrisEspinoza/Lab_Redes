@@ -6,13 +6,13 @@ import warnings
 warnings.filterwarnings('ignore')
 
 def main():
-    print(" Avanze numero 1")
+    print(" Avance numero 1")
 
-    nameAudio = input("Introduzca el nombre del archivo: ")
+    audio_name = input("Introduzca el nombre del archivo: ")
     low_cutoff = float (input ("Introduzca la frecuencia de filtro paso bajo (Hz): ") )
     order = float ( input ("Introduzca el orden deseado para el filtro (N): ") )
 
-    nameText = os.getcwd() + '/Audios/' + nameAudio + '.wav'
+    nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
     sampling_rate, data_array = read(nameText)
     dimension = data_array[0].size
     #print(dimension)
@@ -24,9 +24,8 @@ def main():
         data = data_array[:,dimension-1]
 
     time = len(data)/sampling_rate
-
     grafic = Graphic()
-    originalAudio = Audio(sampling_rate, dimension, data, time,nameAudio)
+    originalAudio = Audio(sampling_rate, dimension, data, time, audio_name, low_cutoff, order)
 
     grafic.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
     originalAudio.informationNumpyFourier, fourierT = grafic.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
