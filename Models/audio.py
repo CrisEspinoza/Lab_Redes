@@ -1,3 +1,8 @@
+import numpy as np
+from scipy.signal import butter, lfilter, freqz
+import matplotlib.pyplot as plt
+
+
     # Clase que se encarga de guardar los datos de un audio
 class Audio:
 
@@ -19,3 +24,26 @@ class Audio:
         self.duration = time
         self.dimension = dimension
         self.audio_name = audioName
+
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: butterLowpass
+    # - DESCRIPTION:
+    # - PARAMS:
+    # - OUT:
+
+    def butterLowpass(self, cutoff, samplingRate, order):
+        nyq_rate = samplingRate * 0.5    #La tasa Nyquist de la señal
+        normalized_cutoff = cutoff / nyq_rate
+        b, a = butter(order, normalized_cutoff, btype='low', analog=False)
+        return b, a
+
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: butterLowpassFilter
+    # - DESCRIPTION:
+    # - PARAMS:
+    # - OUT:
+
+    def butterLowpassFilter(self, data, cutoff, samplingRate, order):
+        b, a = self.butterLowpass(cutoff, samplingRate, order)
+        y = lfilter(b, a, data)
+        return y

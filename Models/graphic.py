@@ -36,7 +36,7 @@ class Graphic:
     # - PARAMS:
     # - OUT:
 
-    def timeGraphic(self, data, duration,nameAudio):
+    def timeGraphic(self, data, duration, nameAudio):
         t = linspace(0, duration, len(data))
         self.makeGraphic("Sonido: " + nameAudio + " original", "Tiempo [s]", t, "Amplitud [dB]", data)
         plt.show()
@@ -58,6 +58,21 @@ class Graphic:
         plt.show()
         return newData, fft(data)
 
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: spectrogramGraphic
+    # - DESCRIPTION:
+    # - OUT:
+    # - PARAMS:🤡
+
+    def lowpassFilteredGraphic(self, audio, cutoff, order):
+        y = audio.butterLowpassFilter(audio.data_array, cutoff, audio.sampling_rate, order)
+        sample_length = len(y)
+        new_data = fft(y) / sample_length
+        fftFrequency = np.fft.fftfreq(sample_length, 1 / audio.sampling_rate)
+        self.makeGraphic("Sonido: " + audio.audio_name + " aplicando T.Fourier (Paso Bajo)", "Frecuencia [Hz]", abs(fftFrequency), "Amplitud [dB]", abs(new_data))
+        plt.show()
+        return new_data, fft(y)
+
     #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: spectrogramGraphic
     # - DESCRIPTION:
@@ -72,11 +87,18 @@ class Graphic:
         plt.savefig(os.getcwd() + "/Salida/" + nameAudio + "-spectrogram.png")
         plt.show()
         return
-    def inverseGraphic(self,data,fourierT,nameAudio):
+
+    # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: spectrogramGraphic
+    # - DESCRIPTION:
+    # - OUT:
+    # - PARAMS:
+
+    def inverseGraphic(self, data, fourierT, audioName):
         timp = len(fourierT)/data
         iFourier = ifft(fourierT)
         newtime = linspace(0,timp,len(iFourier))
-        self.makeGraphic("Sonido: "+nameAudio+" aplicando TF. Inversa","Tiempo [s]",newtime,"Amplitud [dB]", iFourier)
+        self.makeGraphic("Sonido: "+audioName+" aplicando TF. Inversa","Tiempo [s]",newtime,"Amplitud [dB]", iFourier)
         plt.show()
         return
 
