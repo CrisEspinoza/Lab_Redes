@@ -9,4 +9,4 @@
 
 > La documentacion del proyecto completo se encuentra disponible en el siguiente link: 
 
-  * https://github.com/CrisEspinoza/Lab_Redes/wiki/PROYECTO-DE-REDES-DE-COMPUTADORES 
+  * https://github.com/CrisEspinoza/Lab_Redes/wiki
