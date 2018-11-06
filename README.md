@@ -1,8 +1,6 @@
-# Laboratorio Grupal de Redes de Computador de la Universidad de Santiago de Chile 2-2018.
+# Redes de Computador de la Universidad de Santiago de Chile 2-2018.
 
-
-* PROYECTO DE REDES DE COMPUTADORES
-
+> **PROYECTO DE REDES DE COMPUTADORES**
 
 > **Integrantes**
 -  Luis Abello
