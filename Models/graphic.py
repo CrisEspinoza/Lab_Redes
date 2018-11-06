@@ -64,20 +64,21 @@ class Graphic:
     # - OUT:
     # - PARAMS:🤡
 
-    def lowpassFilteredGraphic(self, audio, cutoff, order):
-        y = audio.butterLowpassFilter(audio.data_array, cutoff, audio.sampling_rate, order)
+    def bandpassFilteredGraphic(self, audio, low_cutoff, high_cutoff, order):
+        y = audio.butterBandpassFilter(audio.data_array, low_cutoff, high_cutoff, audio.sampling_rate, order)
         sample_length = len(y)
         new_data = fft(y) / sample_length
         fftFrequency = np.fft.fftfreq(sample_length, 1 / audio.sampling_rate)
-        self.makeGraphic("Sonido: " + audio.audio_name + " aplicando T.Fourier (Paso Bajo)", "Frecuencia [Hz]", abs(fftFrequency), "Amplitud [dB]", abs(new_data))
+        self.makeGraphic("Sonido: " + audio.audio_name + " aplicando T.Fourier (Paso Banda)", "Frecuencia [Hz]", abs(fftFrequency), "Amplitud [dB]", abs(new_data))
         plt.show()
         return new_data, fft(y)
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: spectrogramGraphic
     # - DESCRIPTION:
-    # - OUT:
     # - PARAMS:
+    # - OUT:
+
 
     def spectrogramGraphic(self, data, frequency, nameAudio):
         plt.specgram(data, NFFT=1024, Fs=frequency)
@@ -91,8 +92,9 @@ class Graphic:
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: inverseGraphic
     # - DESCRIPTION:
-    # - OUT:
     # - PARAMS:
+    # - OUT:
+
 
     def inverseGraphic(self, data, fourierT, audioName):
         timp = len(fourierT)/data
@@ -104,14 +106,15 @@ class Graphic:
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: createGraphics
-    # - DESCRIPTION:
-    # - OUT:
+    # - DESCRIPTION: Genera todos los graficos de manera conjunta
     # - PARAMS:
+    # - OUT:
+    
 
-    def createGraphics(self, originalAudio, low_cutoff, order):
+    def createGraphics(self, originalAudio, low_cutoff, high_cutoff, order):
         self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
         originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
-        self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
+        self.bandpassFilteredGraphic(originalAudio, low_cutoff, high_cutoff, order)
         self.spectrogramGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
         self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name)
         return
