@@ -1,10 +1,10 @@
-# Laboratorio Grupal de Redes de computador de la Universidad de Santiago de Chile
+# Laboratorio Grupal de Redes de Computador de la Universidad de Santiago de Chile 2-2018.
 
 > **Integrantes**
--  Luis Felipe Abello
+-  Luis Abello
 -  Cristian Espinoza
 -  Carlos Pèrez
 
-> La documentacion del proecyto completo se encuentra disponible en el siguiente link: 
+> La documentacion del proyecto completo se encuentra disponible en el siguiente link: 
 
-  * 
+  * https://github.com/CrisEspinoza/Lab_Redes/wiki/PROYECTO-DE-REDES-DE-COMPUTADORES 
