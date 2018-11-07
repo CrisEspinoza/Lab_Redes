@@ -8,7 +8,7 @@ warnings.filterwarnings('ignore')
 
 def main():
     print(" Avance numero 1")
-    app = Menu()
+    #app = Menu()
     audio_name = input("Introduzca el nombre del archivo: ")
     low_cutoff = float (input ("Introduzca la frecuencia de filtro bajo (Hz): ") )
     high_cutoff = float (input ("Introduzca la frecuencia de filtro alto (Hz): ") )
