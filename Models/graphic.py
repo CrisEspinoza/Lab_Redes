@@ -94,12 +94,28 @@ class Graphic:
     # - PARAMS:
     # - OUT:
 
-    def spectrogramGraphic(self, data, frequency, nameAudio):
-        plt.specgram(data, NFFT=1024, Fs=frequency)
+    def spectrogramGraphic(self, audio):
+        plt.specgram(audio.data_array, NFFT=1024, Fs=audio.sampling_rate)
         plt.xlabel('Tiempo[s]')
         plt.ylabel('Frecuencia[Hz]')
-        plt.title(nameAudio, fontsize=16, color='blue')
-        plt.savefig(os.getcwd() + "/Salida/" + nameAudio + "-spectrogram.png")
+        plt.title(audio.audio_name, fontsize=16, color='blue')
+        plt.savefig(os.getcwd() + "/Salida/" + audio.audio_name + "-spectrogram.png")
+        plt.show()
+        return
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: spectrogramGraphic
+    # - DESCRIPTION:
+    # - PARAMS:
+    # - OUT:
+
+    def filteredSpectrogramGraphic(self, audio, cutoff, order):
+        y = audio.butterLowpassFilter(audio.data_array, cutoff, audio.sampling_rate, order)
+        plt.specgram(y, NFFT=1024, Fs=audio.sampling_rate)
+        plt.xlabel('Tiempo[s]')
+        plt.ylabel('Frecuencia[Hz]')
+        plt.title(audio.audio_name, fontsize=16, color='blue')
+        plt.savefig(os.getcwd() + "/Salida/" + audio.audio_name + "-spectrogram.png")
         plt.show()
         return
 
@@ -128,7 +144,8 @@ class Graphic:
         originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
         self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
         #self.bandpassFilteredGraphic(originalAudio, low_cutoff, high_cutoff, order)
-        self.spectrogramGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
+        self.spectrogramGraphic(originalAudio)
+        self.filteredSpectrogramGraphic(originalAudio, low_cutoff, order)
         self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name)
         return
 

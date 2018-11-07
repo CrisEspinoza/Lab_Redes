@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d10813e7-5702-4880-b1ce-6aad1af0aa2a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/audio.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/graphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/graphic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier (Paso Bajo).png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier (Paso Bajo).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier (Paso Banda).png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier (Paso Banda).png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogram.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/ook-spectrogram.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,13 +44,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Avance1" value="679" />
-          <entry key="py" value="4550" />
+          <entry key="Avance1" value="735" />
+          <entry key="py" value="4752" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="5229" />
+          <entry key="Python" value="5487" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -97,12 +95,12 @@
         <entry file="file://$PROJECT_DIR$/Models/graphic.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="218">
-              <caret line="82" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="85" selection-end-column="77" />
+              <caret line="146" column="45" lean-forward="true" selection-start-line="146" selection-start-column="45" selection-end-line="146" selection-end-column="45" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <marker date="1541558124358" expanded="true" signature="2406:2412" ph="..." />
-                <marker date="1541558124358" expanded="true" signature="2862:4026" ph="..." />
-                <marker date="1541558124358" expanded="true" signature="5596:5605" ph="..." />
+                <marker date="1541562715671" expanded="true" signature="2406:2412" ph="..." />
+                <marker date="1541562715671" expanded="true" signature="2862:4026" ph="..." />
+                <marker date="1541562715671" expanded="true" signature="6340:6349" ph="..." />
               </folding>
             </state>
           </provider>
@@ -127,8 +125,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Avance1.py" />
-        <option value="$PROJECT_DIR$/Models/graphic.py" />
         <option value="$PROJECT_DIR$/Models/audio.py" />
+        <option value="$PROJECT_DIR$/Models/graphic.py" />
       </list>
     </option>
   </component>
@@ -148,7 +146,20 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Lab_Redes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lab_Redes" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -232,7 +243,7 @@
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16742425" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -247,14 +258,14 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32952693" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.29200652" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.29200652" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.47926268" weight="0.40984848" />
-      <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.52073735" side_tool="true" weight="0.40984848" />
-      <window_info anchor="right" id="Database" order="5" sideWeight="0.48617512" weight="0.32954547" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4769585" weight="0.32954547" />
+      <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.51843315" side_tool="true" weight="0.32954547" />
+      <window_info anchor="right" id="Database" order="5" sideWeight="0.48156682" visible="true" weight="0.32954547" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" weight="0.4" />
@@ -326,12 +337,12 @@
     <entry file="file://$PROJECT_DIR$/Models/graphic.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
-          <caret line="82" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="85" selection-end-column="77" />
+          <caret line="146" column="45" lean-forward="true" selection-start-line="146" selection-start-column="45" selection-end-line="146" selection-end-column="45" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-            <marker date="1541558124358" expanded="true" signature="2406:2412" ph="..." />
-            <marker date="1541558124358" expanded="true" signature="2862:4026" ph="..." />
-            <marker date="1541558124358" expanded="true" signature="5596:5605" ph="..." />
+            <marker date="1541562715671" expanded="true" signature="2406:2412" ph="..." />
+            <marker date="1541562715671" expanded="true" signature="2862:4026" ph="..." />
+            <marker date="1541562715671" expanded="true" signature="6340:6349" ph="..." />
           </folding>
         </state>
       </provider>
