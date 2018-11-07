@@ -189,6 +189,28 @@ class Graphic:
     # - PARAMS:
     # - OUT:
 
+    def SingleGraphics(self, originalAudio, low_cutoff, high_cutoff, order):
+        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
+        plt.show()
+        originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
+        plt.show()
+        self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
+        plt.show()
+        #self.bandpassFilteredGraphic(originalAudio, low_cutoff, high_cutoff, order)
+        #plt.show()
+        self.spectrogramGraphic(originalAudio)
+        plt.show()
+        self.filteredSpectrogramGraphic(originalAudio, low_cutoff, order)
+        plt.show()
+        self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name)
+        plt.show()
+
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: createGraphics
+    # - DESCRIPTION: Genera todos los graficos de manera conjunta
+    # - PARAMS:
+    # - OUT:
+
     def createGraphics(self, originalAudio, low_cutoff, high_cutoff, order):
 
         self.generateGraphics1(originalAudio,low_cutoff,order,"Conjunto_1")
@@ -196,5 +218,7 @@ class Graphic:
         fourierT = self.generateGraphics2(originalAudio,"Conjunto_2")
 
         self.generateGraphics3(originalAudio,low_cutoff,order,fourierT,"Conjunto_3")
+
+        self.SingleGraphics(originalAudio,low_cutoff,high_cutoff,order)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
