@@ -59,7 +59,7 @@ class Graphic:
         return new_data, fft(data)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: lowpassFilteredGraphic
+    # - NAME: bandpassFilteredGraphic
     # - DESCRIPTION:
     # - OUT:
     # - PARAMS:🤡
@@ -73,12 +73,26 @@ class Graphic:
         plt.show()
         return new_data, fft(y)
 
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: lowpassFilteredGraphic
+    # - DESCRIPTION:
+    # - OUT:
+    # - PARAMS:🤡
+
+    def lowpassFilteredGraphic(self, audio, low_cutoff, order):
+        y = audio.butterLowpassFilter(audio.data_array, low_cutoff, audio.sampling_rate, order)
+        sample_length = len(y)
+        new_data = fft(y) / sample_length
+        fftFrequency = np.fft.fftfreq(sample_length, 1 / audio.sampling_rate)
+        self.makeGraphic("Sonido: " + audio.audio_name + " aplicando T.Fourier (Paso Bajo)", "Frecuencia [Hz]", abs(fftFrequency), "Amplitud [dB]", abs(new_data))
+        plt.show()
+        return new_data, fft(y)
+
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: spectrogramGraphic
     # - DESCRIPTION:
     # - PARAMS:
     # - OUT:
-
 
     def spectrogramGraphic(self, data, frequency, nameAudio):
         plt.specgram(data, NFFT=1024, Fs=frequency)
@@ -95,7 +109,6 @@ class Graphic:
     # - PARAMS:
     # - OUT:
 
-
     def inverseGraphic(self, data, fourierT, audioName):
         timp = len(fourierT)/data
         iFourier = ifft(fourierT)
@@ -109,12 +122,12 @@ class Graphic:
     # - DESCRIPTION: Genera todos los graficos de manera conjunta
     # - PARAMS:
     # - OUT:
-    
 
     def createGraphics(self, originalAudio, low_cutoff, high_cutoff, order):
         self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
         originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
-        self.bandpassFilteredGraphic(originalAudio, low_cutoff, high_cutoff, order)
+        self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
+        #self.bandpassFilteredGraphic(originalAudio, low_cutoff, high_cutoff, order)
         self.spectrogramGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
         self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name)
         return
