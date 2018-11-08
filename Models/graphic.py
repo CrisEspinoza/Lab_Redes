@@ -249,8 +249,6 @@ class Graphic:
 
     def createGraphics(self, originalAudio, low_cutoff, high_cutoff, order):
 
-        self.SingleGraphics(originalAudio, low_cutoff, high_cutoff, order)
-
 
         print("\n")
         print("Empezando la generaciones de los graficos en conjunto........ ")
@@ -261,6 +259,8 @@ class Graphic:
         fourierT = self.generateGraphics2(originalAudio,"Conjunto_2")
 
         self.generateGraphics3(originalAudio,low_cutoff,order,fourierT,"Conjunto_3")
+
+        self.SingleGraphics(originalAudio, low_cutoff, high_cutoff, order)
 
 
 
