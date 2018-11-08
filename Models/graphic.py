@@ -18,9 +18,9 @@ class Graphic:
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: makeGraphic
-    # - DESCRIPTION:
-    # - PARAMS:
-    # - OUT:
+    # - DESCRIPTION: Funcion que crea un gráficoz, según parametros de entrada y utilizando la biblioteca matplotlib
+    # - PARAMS: Titulo del gráfico, nombre del eje x, datos del eje x, nombre del eje y, datos del eje y
+    # - OUT: Void
 
     def makeGraphic(self, title, xlabel, xdata, ylabel, ydata):
         plt.title(title, fontsize = 12, color = 'blue')
@@ -31,9 +31,9 @@ class Graphic:
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: timeGraphic
-    # - DESCRIPTION:
-    # - PARAMS:
-    # - OUT:
+    # - DESCRIPTION: procesa el audio para generar un gráfico, que muestra la amplitud v/s el tiempo
+    # - PARAMS: Datos del audio, la duración del audio y el nombre del audio
+    # - OUT: Void
 
     def timeGraphic(self, data, duration, audioName):
         print("\n")
@@ -44,9 +44,9 @@ class Graphic:
 
     #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: frequencyGraphic
-    # - DESCRIPTION:
-    # - PARAMS:
-    # - OUT:
+    # - DESCRIPTION: Procesa el audio, se le aplica la tranformada de fourier y se crea el gráfico de amplitud v/s frecuencia
+    # - PARAMS: Datos del audio, frecuencia de la muestra y nombre del audio
+    # - OUT: Transformada de Fourier arreglada y la transformada de fourier
 
     def frequencyGraphic(self, data, samplingRate, audioName):
         print("\n")
@@ -62,9 +62,9 @@ class Graphic:
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: bandpassFilteredGraphic
-    # - DESCRIPTION:
-    # - OUT:
-    # - PARAMS:🤡
+    # - DESCRIPTION: Crea el gráfico amplitud v/s frecuencia utilizando el filtro paso banda
+    # - PARAMS: La clase audio, Frecuencia de corte de frecuencias bajas, Frecuencia de corte de frecuencias altas, orden del polinomio
+    # - OUT:transformada de Fourier arreglada y la transformada de fourier, con el filtro aplicado
 
     def bandpassFilteredGraphic(self, audio, low_cutoff, high_cutoff, order):
         print("\n")
@@ -79,9 +79,9 @@ class Graphic:
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: lowpassFilteredGraphic
-    # - DESCRIPTION:
-    # - OUT:
-    # - PARAMS:🤡
+    # - DESCRIPTION: Crea el gráfico amplitud v/s frecuencia utilizando el filtro paso bajo
+    # - PARAMS: La clase audio, Frecuencia de corte de frecuencias bajas, orden del polinomio
+    # - OUT:transformada de Fourier arreglada y la transformada de fourier, con el filtro aplicado
 
     def lowpassFilteredGraphic(self, audio, low_cutoff, order):
         print("\n")
@@ -96,9 +96,9 @@ class Graphic:
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: spectrogramGraphic
-    # - DESCRIPTION:
-    # - PARAMS:
-    # - OUT:
+    # - DESCRIPTION: Crea un espectrograma, el cual muestra la frecuencia v/s tiempo v/s eamplitud
+    # - PARAMS: La clase audio
+    # - OUT: Void
 
     def spectrogramGraphic(self, audio):
         print("\n")
@@ -111,10 +111,10 @@ class Graphic:
         plt.savefig(os.getcwd() + "/Salida/" + audio.audio_name + "-spectrogram.png")
 
     # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: spectrogramGraphic
-    # - DESCRIPTION:
-    # - PARAMS:
-    # - OUT:
+    # - NAME: filteredSpectrogramGraphic
+    # - DESCRIPTION: Crea un espectrograma, el cual muestra la frecuencia v/s tiempo v/s eamplitud utilizando el filtro paso bajo
+    # - PARAMS: La clase audio
+    # - OUT: Void
 
     def filteredSpectrogramGraphic(self, audio, cutoff, order):
         print("\n")
@@ -129,9 +129,9 @@ class Graphic:
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: inverseGraphic
-    # - DESCRIPTION:
-    # - PARAMS:
-    # - OUT:
+    # - DESCRIPTION: Crea un gráfico utilizanod la transformada inversa
+    # - PARAMS: Datos del audio, la transformada de fourier, nombre del audio
+    # - OUT: void
 
     def inverseGraphic(self, data, fourierT, audioName):
         print("\n")
@@ -144,10 +144,10 @@ class Graphic:
         plt.savefig(os.getcwd() + "/Salida/" + audioName + "-AudioRetornado.png")
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: createGraphics
-    # - DESCRIPTION: Genera todos los graficos de manera conjunta
-    # - PARAMS:
-    # - OUT:
+    # - NAME: generateGraphics1
+    # - DESCRIPTION: Genera todos los graficos de manera conjunta (audio completo, de frecuencia y filtro aplicado)
+    # - PARAMS: La clase audio, Frecuencia de corte de frecuencias bajas, orden del polinomio, titulo del gráfico
+    # - OUT: void
 
     def generateGraphics1 (self, originalAudio, low_cutoff, order,title):
         print("\n")
@@ -167,9 +167,9 @@ class Graphic:
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: createGraphics
-    # - DESCRIPTION: Genera todos los graficos de manera conjunta
-    # - PARAMS:
-    # - OUT:
+    # - DESCRIPTION: Genera todos los graficos de manera conjunta (audio completo, de frecuencia y espectograma)
+    # - PARAMS: Clase audio, titulo del gráfico
+    # - OUT: Trasformada de Fourier
 
     def generateGraphics2 (self, originalAudio,title):
         print("\n")
@@ -192,10 +192,10 @@ class Graphic:
         return fourierT
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: createGraphics
-    # - DESCRIPTION: Genera todos los graficos de manera conjunta
-    # - PARAMS:
-    # - OUT:
+    # - NAME: createGraphics3
+    # - DESCRIPTION: Genera todos los graficos de manera conjunta (audio completo, espectrograma (aplicado el filtro) y audio regenerado)
+    # - PARAMS: La clase audio, Frecuencia de corte de frecuencias bajas, orden del polinomio, transformada de Fourier, titulo del gráfico
+    # - OUT:Void
 
     def generateGraphics3 (self, originalAudio, low_cutoff, order,fourierT,title):
         print("\n")
@@ -217,10 +217,10 @@ class Graphic:
         plt.show()
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: createGraphics
-    # - DESCRIPTION: Genera todos los graficos de manera conjunta
-    # - PARAMS:
-    # - OUT:
+    # - NAME: SingleGraphics
+    # - DESCRIPTION: Genera todos los graficos de manera separada
+    # - PARAMS: Clase audio, Frecuencia de corte de frecuencias bajas, Frecuencia de corte de frecuencias altas, Orden del polinomio
+    # - OUT: Void
 
     def SingleGraphics(self, originalAudio, low_cutoff, high_cutoff, order):
         print("\n")
@@ -244,8 +244,8 @@ class Graphic:
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: createGraphics
     # - DESCRIPTION: Genera todos los graficos de manera conjunta
-    # - PARAMS:
-    # - OUT:
+    # - PARAMS: Clase audio, Frecuencia de corte de frecuencias bajas, Frecuencia de corte de frecuencias altas, orden del polinomio
+    # - OUT: Void
 
     def createGraphics(self, originalAudio, low_cutoff, high_cutoff, order):
 
