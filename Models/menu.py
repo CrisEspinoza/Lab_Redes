@@ -12,7 +12,6 @@ class Menu:
         self.variable = StringVar()
         self.row = Frame(self.raiz)
         self.row2 = Frame(self.raiz)
-        #self.raiz.geometry('300x200')
         self.raiz.resizable(width=False, height=False)
         self.raiz.title('avance 1')
 
@@ -27,13 +26,14 @@ class Menu:
 
         self.aceptar = Button(self.raiz, text='Aceptar',command=self.readAudio)
         self.aceptar.pack(side=LEFT, padx=200, pady=5)
-        self.raiz.mainloop()
+        #self.raiz.mainloop()
 
     # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: readAudio
     # - DESCRIPTION:
     # - PARAMS:
     # - OUT:
+
     def readAudio(self):
         self.variable.set("")
         if (self.en.get() == ""):
@@ -49,40 +49,41 @@ class Menu:
                 self.variable.set("*Archivo no encontrado")
 
     def otherWindows(self):
-        self.raiz2 = Tk()
+        self.raiz.withdraw()
+        raiz2 = Toplevel(self.raiz)
+        #self.raiz.iconify()
         self.variable2 = StringVar()
-        self.raiz2.title('avance 1')
-        self.raiz2.resizable(width=False, height=False)
+        raiz2.title('avance 1')
+        raiz2.resizable(width=False, height=False)
 
-        row = Frame(self.raiz2)
+        row = Frame(raiz2)
         lab = Label(row, width=35, text="Introduzca la frecuencia de filtro bajo (Hz):", anchor='w')
         self.low_cutoff = Entry(row)
         row.pack(side=TOP, fill=X, padx=5, pady=5)
         lab.pack(side=LEFT)
         self.low_cutoff.pack(side=RIGHT, expand=YES, fill=X)
 
-        row2 = Frame(self.raiz2)
+        row2 = Frame(raiz2)
         lab2 = Label(row2, width=35, text="Introduzca la frecuencia de filtro alto (Hz):", anchor='w')
         self.high_cutoff = Entry(row2)
         row2.pack(side=TOP, fill=X, padx=5, pady=5)
         lab2.pack(side=LEFT)
         self.high_cutoff.pack(side=RIGHT, expand=YES, fill=X)
 
-        row3 = Frame(self.raiz2)
+        row3 = Frame(raiz2)
         lab3 = Label(row3, width=35, text="Introduzca el orden deseado para el filtro (N):", anchor='w')
         self.order = Entry(row3)
         row3.pack(side=TOP, fill=X, padx=5, pady=5)
         lab3.pack(side=LEFT)
         self.order.pack(side=RIGHT, expand=YES, fill=X)
 
-        row4 = Frame(self.raiz2)
+        row4 = Frame(raiz2)
         lab4 = Label(row4, width=18, textvariable=self.variable2,fg="red", anchor='w')
         row4.pack(side=TOP, fill=X, padx=180, pady=5)
         lab4.pack(side=LEFT)
 
-        self.mostrar = Button(self.raiz2, text='Aceptar', command=self.showgraphic())
-        self.mostrar.pack(side=LEFT, padx=180, pady=5)
-        #self.raiz2.mainloop()
+        mostrar = Button(raiz2, text='Aceptar', command=self.showgraphic())
+        mostrar.pack(side=LEFT, padx=180, pady=5)
 
     def showgraphic(self):
         print("Funciona")

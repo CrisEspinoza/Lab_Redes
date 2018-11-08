@@ -8,15 +8,23 @@ warnings.filterwarnings('ignore')
 
 def main():
     print(" Avance numero 1")
-    #app = Menu()
-    audio_name = input("Introduzca el nombre del archivo: ")
-    low_cutoff = float (input ("Introduzca la frecuencia de filtro bajo (Hz): ") )
-    high_cutoff = float (input ("Introduzca la frecuencia de filtro alto (Hz): ") )
-    order = float ( input ("Introduzca el orden deseado para el filtro (N): ") )
+    aux = 1
+    while (aux == 1):
+        audio_name = input("Introduzca el nombre del archivo: ")
+        try:
+            nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
+            sampling_rate, data_array = read(nameText)
+            dimension = data_array[0].size
+            aux = 0
 
-    nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
-    sampling_rate, data_array = read(nameText)
-    dimension = data_array[0].size
+        except FileNotFoundError:
+            print("No se pudo abrir el audio intentelo nuevamente\n")
+
+    low_cutoff = float(input("Introduzca la frecuencia de filtro bajo (Hz): "))
+    high_cutoff = float(input("Introduzca la frecuencia de filtro alto (Hz): "))
+    order = float(input("Introduzca el orden deseado para el filtro (N): "))
+
+
     #print(dimension)
 
     #data: datos del audio(arreglo de numpy)
