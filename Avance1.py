@@ -7,39 +7,72 @@ import warnings
 warnings.filterwarnings('ignore')
 
 def main():
-    print(" Avance numero 1")
+
     aux = 1
-    while (aux == 1):
-        audio_name = input("Introduzca el nombre del archivo: ")
-        try:
-            nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
-            sampling_rate, data_array = read(nameText)
-            dimension = data_array[0].size
-            aux = 0
+    choice = '0'
 
-        except FileNotFoundError:
-            print("No se pudo abrir el audio intentelo nuevamente\n")
+    while choice != '-1':
+        print("\n")
+        print("******** Les mostramos las distintas opciones que contiene nuestro programa*******")
+        print("1. Leer el archivo de audio")
+        print("2. Realizamos analisis completo del audio")
+        print("3. Creditos")
+        print("4. Salir")
+        print("\n")
 
-    low_cutoff = float(input("Introduzca la frecuencia de filtro bajo (Hz): "))
-    high_cutoff = float(input("Introduzca la frecuencia de filtro alto (Hz): "))
-    order = float(input("Introduzca el orden deseado para el filtro (N): "))
+        choice = input("Ingrese opcion a realizar: ")
 
+        if choice == "1":
+            print("\n")
+            while (aux == 1):
+                audio_name = input("Introduzca el nombre del archivo: ")
+                try:
+                    nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
+                    sampling_rate, data_array = read(nameText)
+                    dimension = data_array[0].size
+                    aux = 0
 
-    #print(dimension)
+                except FileNotFoundError:
+                    print("No se pudo abrir el audio intentelo nuevamente\n")
+            print("\n")
 
-    #data: datos del audio(arreglo de numpy)
-    if dimension == 1:
-        data = data_array
-    else:
-        data = data_array[:,dimension-1]
+        elif choice == "2":
+            print("\n")
+            low_cutoff = float(input("Introduzca la frecuencia de filtro bajo (Hz): "))
+            high_cutoff = float(input("Introduzca la frecuencia de filtro alto (Hz): "))
+            order = float(input("Introduzca el orden deseado para el filtro (N): "))
+            # print(dimension)
 
-    time = len(data)/sampling_rate
-    originalAudio = Audio(sampling_rate, dimension, data, time, audio_name, low_cutoff, high_cutoff, order)
-    grafic = Graphic()
-    grafic.createGraphics(originalAudio, low_cutoff, high_cutoff, order)
+            # data: datos del audio(arreglo de numpy)
+            if dimension == 1:
+                data = data_array
+            else:
+                data = data_array[:, dimension - 1]
 
-    #Se muestra la nueva matriz de datos que se tiene al aplicar la tranformada de fourier al audio
-    #print(newData)
+            time = len(data) / sampling_rate
+            originalAudio = Audio(sampling_rate, dimension, data, time, audio_name, low_cutoff, high_cutoff, order)
+            grafic = Graphic()
+            grafic.createGraphics(originalAudio, low_cutoff, high_cutoff, order)
+            print("\n")
+
+        elif choice == "3":
+            print("\n")
+            print("\n")
+            print("********************************")
+            print("Universidad de Santiago de Chile")
+            print("Nombres: * Luis Abello")
+            print("         * Cristian Espinoza")
+            print("         * Carlos Perez")
+            print("********************************")
+            print("\n")
+            print("\n")
+
+        else:
+            choice = "-1"
+            print("\n")
+            input(" Hasta una nueva oportunidad ")
+            print("\n")
+
 
 if __name__ == '__main__':
     main()
