@@ -22,12 +22,12 @@ class Graphic:
     # - PARAMS: Titulo del gráfico, nombre del eje x, datos del eje x, nombre del eje y, datos del eje y
     # - OUT: Void
 
-    def makeGraphic(self, title, xlabel, xdata, ylabel, ydata):
+    def makeGraphic(self, title, xlabel, xdata, ylabel, ydata, low_cutoff, order):
         plt.title(title, fontsize = 12, color = 'blue')
         plt.xlabel(xlabel, color = 'red')
         plt.ylabel(ylabel, color = 'orange')
         plt.plot(xdata, ydata)
-        plt.savefig( os.getcwd()+ "/Salida/" + title + ".png")
+        plt.savefig( os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) + ".png")
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: timeGraphic
@@ -35,12 +35,12 @@ class Graphic:
     # - PARAMS: Datos del audio, la duración del audio y el nombre del audio
     # - OUT: Void
 
-    def timeGraphic(self, data, duration, audioName):
+    def timeGraphic(self, data, duration, audioName, low_cutoff, order):
         print("\n")
         print("Realizando el grafico del audio completo")
         print("\n")
         t = linspace(0, duration, len(data))
-        self.makeGraphic("Sonido: " + audioName + " original", "Tiempo [s]", t, "Amplitud [dB]", data)
+        self.makeGraphic("Sonido: " + audioName + " original", "Tiempo [s]", t, "Amplitud [dB]", data,low_cutoff,order)
 
     #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: frequencyGraphic
@@ -48,7 +48,7 @@ class Graphic:
     # - PARAMS: Datos del audio, frecuencia de la muestra y nombre del audio
     # - OUT: Transformada de Fourier arreglada y la transformada de fourier
 
-    def frequencyGraphic(self, data, samplingRate, audioName):
+    def frequencyGraphic(self, data, samplingRate, audioName, low_cutoff, order):
         print("\n")
         print("Realizando el grafico de frecuencia de audio")
         print("\n")
@@ -57,7 +57,7 @@ class Graphic:
         new_data = fft(data) / sample_length
         # Funcion que retorna los resultados aplicando fourier y crea una matriz con el resultado
         fftFrequency = np.fft.fftfreq(sample_length, 1 / samplingRate)
-        self.makeGraphic("Sonido: " + audioName + " aplicando T.Fourier", "Frecuencia [Hz]", fftFrequency, "Amplitud [dB]", abs(new_data))
+        self.makeGraphic("Sonido: " + audioName + " aplicando T.Fourier", "Frecuencia [Hz]", fftFrequency, "Amplitud [dB]", abs(new_data),low_cutoff,order)
         return new_data, fft(data)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ class Graphic:
         sample_length = len(y)
         new_data = fft(y) / sample_length
         fftFrequency = np.fft.fftfreq(sample_length, 1 / audio.sampling_rate)
-        self.makeGraphic("Sonido: " + audio.audio_name + " aplicando T.Fourier (Paso Banda)", "Frecuencia [Hz]", abs(fftFrequency), "Amplitud [dB]", abs(new_data))
+        self.makeGraphic("Sonido: " + audio.audio_name + " aplicando T.Fourier (Paso Banda)", "Frecuencia [Hz]", abs(fftFrequency), "Amplitud [dB]", abs(new_data),low_cutoff,order)
         return new_data, fft(y)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ class Graphic:
         sample_length = len(y)
         new_data = fft(y) / sample_length
         fftFrequency = np.fft.fftfreq(sample_length, 1 / audio.sampling_rate)
-        self.makeGraphic("Sonido: " + audio.audio_name + " aplicando T.Fourier (Paso Bajo)", "Frecuencia [Hz]", abs(fftFrequency), "Amplitud [dB]", abs(new_data))
+        self.makeGraphic("Sonido: " + audio.audio_name + " aplicando T.Fourier (Paso Bajo)", "Frecuencia [Hz]", abs(fftFrequency), "Amplitud [dB]", abs(new_data),low_cutoff,order)
         return new_data, fft(y)
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ class Graphic:
     # - PARAMS: La clase audio
     # - OUT: Void
 
-    def spectrogramGraphic(self, audio):
+    def spectrogramGraphic(self, audio, low_cutoff, order):
         print("\n")
         print("Realizando el grafico de espectograma")
         print("\n")
@@ -108,7 +108,7 @@ class Graphic:
         plt.xlabel('Tiempo[s]',color = 'red')
         plt.ylabel('Frecuencia[Hz]',color = 'orange')
         plt.title("Espectograma de audio "+audio.audio_name, fontsize=12, color='blue')
-        plt.savefig(os.getcwd() + "/Salida/" + audio.audio_name + "-spectrogram.png")
+        plt.savefig(os.getcwd() + "/Salida/" + audio.audio_name + "-spectrogram" + str(low_cutoff) + "_" + str(order) + ".png")
 
     # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: filteredSpectrogramGraphic
@@ -125,7 +125,7 @@ class Graphic:
         plt.xlabel('Tiempo[s]',color = 'red')
         plt.ylabel('Frecuencia[Hz]',color = 'orange')
         plt.title("Espectograma aplicando tranformada de audio: "+ audio.audio_name, fontsize=12, color='blue')
-        plt.savefig(os.getcwd() + "/Salida/" + audio.audio_name + "-spectrogramFiltrado.png")
+        plt.savefig(os.getcwd() + "/Salida/" + audio.audio_name + "-spectrogramFiltrado_" + str(cutoff) + "_" + str(order) + ".png")
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: inverseGraphic
@@ -133,15 +133,14 @@ class Graphic:
     # - PARAMS: Datos del audio, la transformada de fourier, nombre del audio
     # - OUT: void
 
-    def inverseGraphic(self, data, fourierT, audioName):
+    def inverseGraphic(self, data, fourierT, audioName, low_cutoff, order):
         print("\n")
         print("Realizando el grafico de regenracion de audio al aplicar el filtro")
         print("\n")
         timp = len(fourierT)/data
         iFourier = ifft(fourierT)
         newtime = linspace(0,timp,len(iFourier))
-        self.makeGraphic("Sonido: "+audioName+" aplicando TF. Inversa","Tiempo [s]",newtime,"Amplitud [dB]", iFourier)
-        plt.savefig(os.getcwd() + "/Salida/" + audioName + "-AudioRetornado.png")
+        self.makeGraphic("Sonido: "+audioName+" aplicando TF. Inversa","Tiempo [s]",newtime,"Amplitud [dB]", iFourier,low_cutoff,order)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: generateGraphics1
@@ -156,13 +155,13 @@ class Graphic:
         print("\n")
         plt.figure(1)
         plt.subplot(311)
-        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
+        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name,low_cutoff,order)
         plt.subplot(312)
-        originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array,originalAudio.sampling_rate,originalAudio.audio_name)
+        originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array,originalAudio.sampling_rate,originalAudio.audio_name,low_cutoff,order)
         plt.subplot(313)
         self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/" + title + ".png")
+        plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) + ".png")
         plt.show()
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -171,7 +170,7 @@ class Graphic:
     # - PARAMS: Clase audio, titulo del gráfico
     # - OUT: Trasformada de Fourier
 
-    def generateGraphics2 (self, originalAudio,title):
+    def generateGraphics2 (self, originalAudio,title, low_cutoff,order):
         print("\n")
         print("Realizando el grafico de conjunto numero 2")
         print("El cual contiene los grafico del audio completo, de frecuencia y espectograma")
@@ -179,15 +178,15 @@ class Graphic:
         plt.figure(1)
         plt.subplot(311)
         #plt.title("Sonido Original")
-        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
+        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name,low_cutoff,order)
         plt.subplot(312)
         #plt.title("Sonido aplicadando transformada")
-        originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array,originalAudio.sampling_rate,originalAudio.audio_name)
+        originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array,originalAudio.sampling_rate,originalAudio.audio_name,low_cutoff,order)
         plt.subplot(313)
         #plt.title("Espectograma")
-        self.spectrogramGraphic(originalAudio)
+        self.spectrogramGraphic(originalAudio,low_cutoff,order)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/" + title + ".png")
+        plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) + ".png")
         plt.show()
         return fourierT
 
@@ -205,15 +204,15 @@ class Graphic:
         plt.figure(1)
         plt.subplot(311)
         p1 = plt.plot(linewidth = 2)
-        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
+        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name,low_cutoff,order)
         plt.subplot(312)
         p2 = plt.plot(linewidth = 2)
         self.filteredSpectrogramGraphic(originalAudio, low_cutoff, order)
         plt.subplot(313)
         p3 = plt.plot(linewidth = 2)
-        self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name)
+        self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name,low_cutoff,order)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/" + title + ".png")
+        plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
         plt.show()
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -226,19 +225,19 @@ class Graphic:
         print("\n")
         print("Empezando la generaciones de los graficos singles........ ")
         print("\n")
-        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name)
+        self.timeGraphic(originalAudio.data_array, originalAudio.duration, originalAudio.audio_name,low_cutoff,order)
         plt.show()
-        originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name)
+        originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, originalAudio.audio_name,low_cutoff,order)
         plt.show()
         self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
         plt.show()
         #self.bandpassFilteredGraphic(originalAudio, low_cutoff, high_cutoff, order)
         #plt.show()
-        self.spectrogramGraphic(originalAudio)
+        self.spectrogramGraphic(originalAudio,low_cutoff,order)
         plt.show()
         self.filteredSpectrogramGraphic(originalAudio, low_cutoff, order)
         plt.show()
-        self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name)
+        self.inverseGraphic(originalAudio.sampling_rate, fourierT, originalAudio.audio_name,low_cutoff,order)
         plt.show()
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -256,7 +255,7 @@ class Graphic:
 
         self.generateGraphics1(originalAudio,low_cutoff,order,"Conjunto_1")
 
-        fourierT = self.generateGraphics2(originalAudio,"Conjunto_2")
+        fourierT = self.generateGraphics2(originalAudio,"Conjunto_2",low_cutoff,order)
 
         self.generateGraphics3(originalAudio,low_cutoff,order,fourierT,"Conjunto_3")
 
