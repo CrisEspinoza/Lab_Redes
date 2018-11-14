@@ -26,8 +26,10 @@ class Graphic:
         plt.title(title, fontsize = 12, color = 'blue')
         plt.xlabel(xlabel, color = 'red')
         plt.ylabel(ylabel, color = 'orange')
-        plt.plot(xdata, ydata)
+        plt.plot(xdata, ydata)#, "*-")
         plt.savefig( os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) + ".png")
+        #plt.show()
+
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: timeGraphic
@@ -58,6 +60,7 @@ class Graphic:
         # Funcion que retorna los resultados aplicando fourier y crea una matriz con el resultado
         fftFrequency = np.fft.fftfreq(sample_length, 1 / samplingRate)
         self.makeGraphic("Sonido: " + audioName + " aplicando T.Fourier", "Frecuencia [Hz]", fftFrequency, "Amplitud [dB]", abs(new_data),low_cutoff,order)
+        #plt.show()
         return new_data, fft(data)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,6 +218,44 @@ class Graphic:
         plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
         plt.show()
 
+    def generateGraphics4 (self, cos,cos2,result,time):
+        print("\n")
+        print("Realizando el grafico de conjunto numero 3")
+        print("El cual contiene los grafico del audio completo, espectrograma (aplicado el filtro) y audio regenerado")
+        print("\n")
+        plt.figure(1)
+        plt.subplot(311)
+        p1 = plt.plot(linewidth = 2)
+        self.makeGraphic("Coseno 1","Tiempo",time,"Coseno",cos,5,5)
+        plt.subplot(312)
+        p2 = plt.plot(linewidth = 2)
+        self.makeGraphic("Coseno 2","Tiempo",time,"Coseno",cos2,3,3)
+        plt.subplot(313)
+        p3 = plt.plot(linewidth = 2)
+        self.makeGraphic("Resultado","Tiempo",time,"Resultado",result,7,7)
+        plt.tight_layout()
+        #plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
+        plt.show()
+
+    def generateGraphics5 (self, cos, f, cos2, fc, result, time):
+        print("\n")
+        print("Realizando el grafico de conjunto numero 3")
+        print("El cual contiene los grafico del audio completo, espectrograma (aplicado el filtro) y audio regenerado")
+        print("\n")
+        plt.figure(1)
+        plt.subplot(311)
+        p1 = plt.plot(linewidth = 2)
+        trans1 = self.frequencyGraphic(cos, (18*f), "Coseno 1", 4, 3)
+        plt.subplot(312)
+        p2 = plt.plot(linewidth = 2)
+        trans2 = self.frequencyGraphic(cos2, (18*fc), "Coseno 2", 4, 3)
+        plt.subplot(313)
+        p3 = plt.plot(linewidth = 2)
+        self.frequencyGraphic(result, (18*fc), "Result", 4, 3)
+        plt.tight_layout()
+        #plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
+        plt.show()
+
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: SingleGraphics
     # - DESCRIPTION: Genera todos los graficos de manera separada
@@ -262,5 +303,23 @@ class Graphic:
         self.SingleGraphics(originalAudio, low_cutoff, high_cutoff, order)
 
 
+    def amModulation (self, f,fc):
+
+        fs_c = 18*fc
+        fs = 18*f
+
+        time = np.arange(0,2,1/fs_c)
+
+        cos = np.cos(2*np.pi*f*time)
+        cos2 = np.cos(2*np.pi*fc*time)
+        result = cos*cos2
+        print(time)
+        print(cos)
+
+        #trans1,transOriginal1 = self.generateGraphics4(cos,cos2,result,time)
+        #trans2,transOriginal2 = self.generateGraphics5(cos,f,cos2,fc,result,time)
+
+        self.generateGraphics4(cos, cos2, result, time)
+        self.generateGraphics5(cos, fs_c, cos2, fs_c, result, time)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

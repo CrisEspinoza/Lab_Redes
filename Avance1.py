@@ -18,6 +18,7 @@ def main():
         print("2. Realizamos analisis completo del audio")
         print("3. Creditos")
         print("4. Salir")
+        print("5. parte 2")
         print("\n")
 
         choice = input("Ingrese opcion a realizar: ")
@@ -66,6 +67,10 @@ def main():
             print("********************************")
             print("\n")
             print("\n")
+
+        elif choice == "5":
+            grafic = Graphic()
+            grafic.amModulation(2,100)
 
         else:
             choice = "-1"
