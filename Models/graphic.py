@@ -3,6 +3,7 @@ from scipy import fft, ifft
 import matplotlib.pyplot as plt
 import os
 import numpy as np
+from Models.filter import Filter
 
     #Clase que se encarga de tener los distintos graficos necesarios
 
@@ -42,7 +43,7 @@ class Graphic:
         print("Realizando el grafico del audio completo")
         print("\n")
         t = linspace(0, duration, len(data))
-        self.makeGraphic("Sonido: " + audioName + " original", "Tiempo [s]", t, "Amplitud [dB]", data,low_cutoff,order)
+        self.makeGraphic("Sonido: " + audioName + " original", "Tiempo [s]", t, "Amplitud [dB]", data, low_cutoff, order)
 
     #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: frequencyGraphic
@@ -73,7 +74,8 @@ class Graphic:
         print("\n")
         print("Realizando el filtro de paso de banda")
         print("\n")
-        y = audio.butterBandpassFilter(audio.data_array, low_cutoff, high_cutoff, audio.sampling_rate, order)
+        filter = Filter(audio.filter.low_cutoff,audio.filter.high_cutoff,audio.filter.order)
+        y = filter.butterBandpassFilter(audio.data_array, low_cutoff, high_cutoff, audio.sampling_rate, order)
         sample_length = len(y)
         new_data = fft(y) / sample_length
         fftFrequency = np.fft.fftfreq(sample_length, 1 / audio.sampling_rate)
@@ -90,7 +92,8 @@ class Graphic:
         print("\n")
         print("Realizando el filtro de paso de bajo")
         print("\n")
-        y = audio.butterLowpassFilter(audio.data_array, low_cutoff, audio.sampling_rate, order)
+        filter = Filter(audio.filter.low_cutoff,audio.filter.high_cutoff,audio.filter.order)
+        y = filter.butterLowpassFilter(audio.data_array, low_cutoff, audio.sampling_rate, order)
         sample_length = len(y)
         new_data = fft(y) / sample_length
         fftFrequency = np.fft.fftfreq(sample_length, 1 / audio.sampling_rate)
@@ -123,7 +126,8 @@ class Graphic:
         print("\n")
         print("Realizando el grafico de espectograma aplicado el filtro")
         print("\n")
-        y = audio.butterLowpassFilter(audio.data_array, cutoff, audio.sampling_rate, order)
+        filter = Filter(audio.filter.low_cutoff,audio.filter.high_cutoff,audio.filter.order)
+        y = filter.butterLowpassFilter(audio.data_array, cutoff, audio.sampling_rate, order)
         plt.specgram(y, NFFT=1024, Fs=audio.sampling_rate)
         plt.xlabel('Tiempo[s]',color = 'red')
         plt.ylabel('Frecuencia[Hz]',color = 'orange')
@@ -234,7 +238,7 @@ class Graphic:
         p3 = plt.plot(linewidth = 2)
         self.makeGraphic("Resultado","Tiempo",time,"Resultado",result,7,7)
         plt.tight_layout()
-        #plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
+        #plt.savefig(os.getcwd() + "/Salida_" + str(low_cutoff) + "_" + str(order) +".png")
         plt.show()
 
     def generateGraphics5 (self, cos, f, cos2, fc, result, time):
@@ -287,39 +291,21 @@ class Graphic:
     # - PARAMS: Clase audio, Frecuencia de corte de frecuencias bajas, Frecuencia de corte de frecuencias altas, orden del polinomio
     # - OUT: Void
 
-    def createGraphics(self, originalAudio, low_cutoff, high_cutoff, order):
+    def createGraphics(self, originalAudio):
 
 
         print("\n")
         print("Empezando la generaciones de los graficos en conjunto........ ")
         print("\n")
 
-        self.generateGraphics1(originalAudio,low_cutoff,order,"Conjunto_1")
+        self.generateGraphics1(originalAudio, originalAudio.filter.low_cutoff, originalAudio.filter.order, "Conjunto_1")
 
-        fourierT = self.generateGraphics2(originalAudio,"Conjunto_2",low_cutoff,order)
+        fourierT = self.generateGraphics2(originalAudio, "Conjunto_2", originalAudio.filter.low_cutoff, originalAudio.filter.order)
 
-        self.generateGraphics3(originalAudio,low_cutoff,order,fourierT,"Conjunto_3")
+        self.generateGraphics3(originalAudio, originalAudio.filter.low_cutoff, originalAudio.filter.order,fourierT, "Conjunto_3")
 
-        self.SingleGraphics(originalAudio, low_cutoff, high_cutoff, order)
+        self.SingleGraphics(originalAudio, originalAudio.filter.low_cutoff, originalAudio.filter.high_cutoff, originalAudio.filter.order)
 
 
-    def amModulation (self, f,fc):
-
-        fs_c = 18*fc
-        fs = 18*f
-
-        time = np.arange(0,2,1/fs_c)
-
-        cos = np.cos(2*np.pi*f*time)
-        cos2 = np.cos(2*np.pi*fc*time)
-        result = cos*cos2
-        print(time)
-        print(cos)
-
-        #trans1,transOriginal1 = self.generateGraphics4(cos,cos2,result,time)
-        #trans2,transOriginal2 = self.generateGraphics5(cos,f,cos2,fc,result,time)
-
-        self.generateGraphics4(cos, cos2, result, time)
-        self.generateGraphics5(cos, fs_c, cos2, fs_c, result, time)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

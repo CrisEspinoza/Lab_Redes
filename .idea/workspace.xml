@@ -2,8 +2,86 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d10813e7-5702-4880-b1ce-6aad1af0aa2a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Models/filter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/modulation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/prueba.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Avance1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Avance1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/audio.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/graphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/graphic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_1_10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_1_10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_1_2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_1_4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_1_5000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_1_5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_1_7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_2_10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_2_10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_2_2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_2_4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_2_5000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_2_5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_2_7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_3_10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_3_10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_3_2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_3_4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_3_5000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_3_5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_3_7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Coseno 1_5_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Coseno 1_5_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Coseno 2_3_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Coseno 2_3_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Modulacion_3_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Resultado_7_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Resultado_7_7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: Coseno 1 aplicando T.Fourier_4_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: Coseno 2 aplicando T.Fourier_4_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: Result aplicando T.Fourier_4_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: Resultado aplicando T.Fourier_4_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: audio aplicando T.Fourier (Paso Bajo)_4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: audio aplicando T.Fourier_4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: audio aplicando TF. Inversa_4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: audio original_4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando T.Fourier (Paso Bajo)_10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando T.Fourier (Paso Bajo)_5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando T.Fourier (Paso Bajo)_7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando T.Fourier_0.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando T.Fourier_10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando T.Fourier_5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando T.Fourier_7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando TF. Inversa_10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando TF. Inversa_5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 aplicando TF. Inversa_7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 original_0.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 original_10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 original_5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: fsk-snr=10 original_7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier (Paso Bajo)_10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier (Paso Bajo)_2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier (Paso Bajo)_5000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier_10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier_2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier_5000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando TF. Inversa_10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando TF. Inversa_2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando TF. Inversa_5000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook original_10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook original_2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook original_5000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/audio-spectrogram4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/audio-spectrogramFiltrado_4000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/fsk-snr=10-spectrogram10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/fsk-snr=10-spectrogram5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/fsk-snr=10-spectrogram7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/fsk-snr=10-spectrogramFiltrado_10000.0_14.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/fsk-snr=10-spectrogramFiltrado_5000.0_8.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/fsk-snr=10-spectrogramFiltrado_7500.0_12.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogram10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogram2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogram5000.0_10.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogramFiltrado_10000.0_15.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogramFiltrado_2500.0_6.0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogramFiltrado_5000.0_10.0.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +90,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Lab_Redes$Avance1.coverage" NAME="Avance1 Coverage Results" MODIFIED="1541361150434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Lab_Redes$Avance1.coverage" NAME="Avance1 Coverage Results" MODIFIED="1542724500019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -66,32 +144,39 @@
     <session id="790787102">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.21" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="5" />
+          <entry key="py" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="5" />
+          <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Avance1" value="50" />
-          <entry key="py" value="1326" />
+          <entry key="Avance1" value="835" />
+          <entry key="Python Console" value="1" />
+          <entry key="dummy" value="2" />
+          <entry key="py" value="4009" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1376" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Python" value="4845" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -99,12 +184,15 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Models/graphic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1917">
-              <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+            <state relative-caret-position="210">
+              <caret line="142" column="33" selection-start-line="142" selection-start-column="29" selection-end-line="142" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,21 +200,40 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Models/audio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="83" selection-start-line="83" selection-end-line="83" />
+            <state relative-caret-position="90">
+              <caret line="6" column="14" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Models/filter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1200">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Models/modulation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#2#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Models/menu.py">
+        <entry file="file://$PROJECT_DIR$/Models/prueba.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-360">
+            <state relative-caret-position="4165">
+              <caret line="289" column="36" selection-start-line="289" selection-start-column="28" selection-end-line="289" selection-end-column="36" />
               <folding>
-                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#401#419#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,17 +242,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Avance1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+            <state relative-caret-position="-28">
+              <caret line="117" column="120" selection-start-line="117" selection-start-column="120" selection-end-line="117" selection-end-column="120" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>information</find>
+      <find>modAM</find>
+      <find>rate</find>
+      <find>demoduladorAM</find>
+      <find>originalAudio</find>
+      <find>totalTime</find>
+      <find>tFourier</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -154,9 +277,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Models/FIlter.py" />
+        <option value="$PROJECT_DIR$/Models/fIlter.py" />
+        <option value="$PROJECT_DIR$/Models/prueba.py" />
         <option value="$PROJECT_DIR$/Models/audio.py" />
         <option value="$PROJECT_DIR$/Avance1.py" />
         <option value="$PROJECT_DIR$/Models/graphic.py" />
+        <option value="$PROJECT_DIR$/Models/filter.py" />
+        <option value="$PROJECT_DIR$/Models/modulation.py" />
       </list>
     </option>
   </component>
@@ -166,7 +294,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="y" value="25" />
     <option name="width" value="683" />
     <option name="height" value="743" />
@@ -177,7 +305,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -194,11 +321,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
@@ -285,8 +413,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11152615" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.109391674" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -300,14 +429,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" weight="0.32952693" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32777777" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.2918919" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32777777" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.29" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.47619048" visible="true" weight="0.41675562" />
-      <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.52380955" side_tool="true" weight="0.35218784" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4710485" visible="true" weight="0.3724653" />
+      <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.52895147" side_tool="true" visible="true" weight="0.3724653" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.47633588" weight="0.22838847" />
     </layout>
     <layout-to-restore>
@@ -357,36 +486,60 @@
     <entry file="file://$PROJECT_DIR$/Models/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Models/audio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Models/menu.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/prueba.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
+        <state relative-caret-position="4165">
+          <caret line="289" column="36" selection-start-line="289" selection-start-column="28" selection-end-line="289" selection-end-column="36" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#401#419#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Avance1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+        <state relative-caret-position="-28">
+          <caret line="117" column="120" selection-start-line="117" selection-start-column="120" selection-end-line="117" selection-end-column="120" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/audio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="14" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Models/graphic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1917">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        <state relative-caret-position="210">
+          <caret line="142" column="33" selection-start-line="142" selection-start-column="29" selection-end-line="142" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/modulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+          <folding>
+            <element signature="e#2#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

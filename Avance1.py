@@ -1,24 +1,87 @@
 from scipy.io.wavfile import read
 from Models.audio import Audio
 from Models.graphic import Graphic
+from Models.modulation import Modulation
 from Models.menu import Menu
 import os
+from numpy import linspace
 import warnings
 warnings.filterwarnings('ignore')
 
+# Definimos variables globales a utilizar dentro del programa y las inicializamos en 0 (Con el fin de declararlas)
+
 def main():
 
-    aux = 1
+    menuPrincipal()
+
+def menuPrincipal():
+
     choice = '0'
 
     while choice != '-1':
         print("\n")
-        print("******** Les mostramos las distintas opciones que contiene nuestro programa*******")
+        print("******** Les mostramos las distintas etapas del programa desarrollado*******")
+        print("1. Analisis de señales")
+        print("2. Codificacion y modulacion digital")
+        print("3. Recepción y demodulación")
+        print("4. Protocolos de enlace y acceso al medio")
+        print("5. Protocolo de red y prototipo final")
+        print("6. Creditos")
+        print("7. Salir")
+        print("\n")
+
+        choice = input("Ingrese opcion a realizar: ")
+
+        if choice == "1":
+            originalAudio = signalAnaysisMenu()
+            input("Presiona Enter para continuar")
+
+        elif choice == "2":
+            digitalCodingAndModulation(originalAudio)
+            input("Presiona Enter para continuar")
+
+        elif choice == "3":
+            print("Parte 3")
+            input("Presiona Enter para continuar")
+
+        elif choice == "4":
+            print("Parte 4")
+            input("Presiona Enter para continuar")
+
+        elif choice == "5":
+            print("Parte 5")
+            input("Presiona Enter para continuar")
+
+        elif choice == "6":
+            print("\n")
+            print("\n")
+            print("********************************")
+            print("Universidad de Santiago de Chile")
+            print("Nombres: * Luis Abello")
+            print("         * Cristian Espinoza")
+            print("         * Carlos Perez")
+            print("********************************")
+            print("\n")
+            print("\n")
+
+        else:
+            choice = "-1"
+            print("\n")
+            input(" Hasta una nueva oportunidad ")
+            print("\n")
+
+def signalAnaysisMenu ():
+
+    aux = 1
+    choice = '0'
+    originalAudio = 0
+
+    while choice != '-1':
+        print("\n")
+        print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
         print("1. Leer el archivo de audio")
         print("2. Realizamos analisis completo del audio")
-        print("3. Creditos")
-        print("4. Salir")
-        print("5. parte 2")
+        print("3. Volver")
         print("\n")
 
         choice = input("Ingrese opcion a realizar: ")
@@ -40,7 +103,6 @@ def main():
         elif choice == "2":
             print("\n")
             low_cutoff = float(input("Introduzca la frecuencia de filtro bajo (Hz): "))
-            high_cutoff = float(input("Introduzca la frecuencia de filtro alto (Hz): "))
             order = float(input("Introduzca el orden deseado para el filtro (N): "))
             # print(dimension)
 
@@ -50,41 +112,60 @@ def main():
             else:
                 data = data_array[:, dimension - 1]
 
-            time = len(data) / sampling_rate
-            originalAudio = Audio(sampling_rate, dimension, data, time, audio_name, low_cutoff, high_cutoff, order)
+            duration = len(data) / sampling_rate
+            high_cutoff = 0
+            time = linspace(0, duration, len(data))
+            originalAudio = Audio(sampling_rate, dimension, data, duration, audio_name, low_cutoff, high_cutoff, order, time)
             grafic = Graphic()
-            grafic.createGraphics(originalAudio, low_cutoff, high_cutoff, order)
+            grafic.createGraphics(originalAudio)
             print("\n")
-
-        elif choice == "3":
-            print("\n")
-            print("\n")
-            print("********************************")
-            print("Universidad de Santiago de Chile")
-            print("Nombres: * Luis Abello")
-            print("         * Cristian Espinoza")
-            print("         * Carlos Perez")
-            print("********************************")
-            print("\n")
-            print("\n")
-
-        elif choice == "5":
-            grafic = Graphic()
-            grafic.amModulation(2,100)
 
         else:
             choice = "-1"
             print("\n")
-            input(" Hasta una nueva oportunidad ")
+            print(" Volviendo al menu inicial")
             print("\n")
+            return originalAudio
 
+def digitalCodingAndModulation(originalAudio):
+
+    choice = '0'
+
+    while choice != '-1':
+        print("\n")
+        print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
+        print("1. Realizar modulacion AM")
+        print("2. Realizar modulacion FM")
+        print("3. Realizar demodulacion AM")
+        print("4. Realizar demodulacion FM")
+        print("5. Volver")
+        print("\n")
+
+        choice = input("Ingrese opcion a realizar: ")
+
+        if choice == "1":
+            print("Realizando modulacion AM\n")
+            modulation = Modulation(0,0)
+            modulation.amModulation(originalAudio)
+            input("Presiona Enter para continuar")
+
+        elif choice == "2":
+            print("Realizando modulacion FM")
+            input("Presiona Enter para continuar")
+
+        elif choice == "3":
+            print("Realizando demodulacion FM")
+            input("Presiona Enter para continuar")
+
+        elif choice == "4":
+            print("Realizando demodulacion FM")
+            input("Presiona Enter para continuar")
+
+        else:
+            choice = "-1"
+            print("\n")
+            print(" Volviendo al menu inicial")
+            print("\n")
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
