@@ -37,7 +37,7 @@ def menuPrincipal():
             input("Presiona Enter para continuar")
 
         elif choice == "2":
-            digitalCodingAndModulation(originalAudio)
+            digitalCodingAndModulation()
             input("Presiona Enter para continuar")
 
         elif choice == "3":
@@ -127,7 +127,7 @@ def signalAnaysisMenu ():
             print("\n")
             return originalAudio
 
-def digitalCodingAndModulation(originalAudio):
+def digitalCodingAndModulation():
 
     choice = '0'
 
@@ -146,7 +146,7 @@ def digitalCodingAndModulation(originalAudio):
         if choice == "1":
             print("Realizando modulacion AM\n")
             modulation = Modulation(0,0)
-            modulation.amModulation(originalAudio)
+            modulation.amModulationCos(7, 100)
             input("Presiona Enter para continuar")
 
         elif choice == "2":

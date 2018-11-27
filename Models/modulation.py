@@ -37,6 +37,8 @@ class Modulation:
         modulation.function2 = np.cos(2*np.pi*fc*modulation.time)
         modulation.function3 = modulation.function1 * modulation.function2
 
+        self.demodulatorAMCos(modulation)
+
         graphic.generateGraphics4(modulation.function1, modulation.function2, modulation.function3, modulation.time)
         graphic.generateGraphics5(modulation.function1, modulation.freqSampling, modulation.function2, modulation.freqSampling, modulation.function3, modulation.time)
 
@@ -70,6 +72,14 @@ class Modulation:
         demoduleAM = AM * dataCarrier * dataCarrier
         print(demoduleAM)
         return demoduleAM
+
+    def demodulatorAMCos(self, modulation):
+
+        graphic = Graphic()
+        dataCarrier = modulation.function3 * modulation.function2
+        print(dataCarrier)
+        graphic.generateGraphics5(modulation.function1, modulation.freqSampling, modulation.function3,modulation.freqSampling, dataCarrier, modulation.time)
+
 
 
 
