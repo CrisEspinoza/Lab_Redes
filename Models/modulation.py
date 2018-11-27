@@ -1,6 +1,7 @@
 
 
 from Models.graphic import Graphic
+from Models.audio import Audio
 import numpy as np
 from numpy import linspace, cos, interp
 import matplotlib.pyplot as plt
@@ -78,7 +79,10 @@ class Modulation:
         graphic = Graphic()
         dataCarrier = modulation.function3 * modulation.function2
         print(dataCarrier)
-        graphic.generateGraphics5(modulation.function1, modulation.freqSampling, modulation.function3,modulation.freqSampling, dataCarrier, modulation.time)
+        graphic.generateGraphics4(modulation.function1, modulation.function3, dataCarrier,modulation.time)
+        graphic.frequencyGraphic(dataCarrier,modulation.freqSampling,"demodulada",10000,8)
+        audio = Audio(modulation.freqSampling,)
+        #graphic.generateGraphics5(modulation.function1, modulation.freqSampling, modulation.function3,modulation.freqSampling, dataCarrier, modulation.time)
 
 
 

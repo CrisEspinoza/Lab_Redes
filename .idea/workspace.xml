@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d10813e7-5702-4880-b1ce-6aad1af0aa2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Avance1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Avance1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/graphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/graphic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/modulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/modulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_1_10000.0_10.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_2_10000.0_10.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Conjunto_3_10000.0_10.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Resultado_7_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Resultado_7_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier (Paso Bajo)_10000.0_10.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando T.Fourier_10000.0_10.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook aplicando TF. Inversa_10000.0_10.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: ook original_10000.0_10.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogram10000.0_10.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/ook-spectrogramFiltrado_10000.0_10.0.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Lab_Redes$Avance1.coverage" NAME="Avance1 Coverage Results" MODIFIED="1542724500019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Lab_Redes$Avance1.coverage" NAME="Avance1 Coverage Results" MODIFIED="1543341428651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -43,14 +31,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Models/graphic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-227">
-              <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
+            <state relative-caret-position="1105">
+              <caret line="90" column="42" selection-start-line="90" selection-start-column="37" selection-end-line="90" selection-end-column="42" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Models/filter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Models/audio.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -70,7 +76,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Avance1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="-216">
               <caret line="129" column="31" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
@@ -79,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Models/modulation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+            <state relative-caret-position="325">
+              <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
               <folding>
                 <element signature="e#2#36#0" expanded="true" />
               </folding>
@@ -122,8 +128,8 @@
         <option value="$PROJECT_DIR$/Models/prueba.py" />
         <option value="$PROJECT_DIR$/Models/audio.py" />
         <option value="$PROJECT_DIR$/Models/filter.py" />
-        <option value="$PROJECT_DIR$/Models/graphic.py" />
         <option value="$PROJECT_DIR$/Avance1.py" />
+        <option value="$PROJECT_DIR$/Models/graphic.py" />
         <option value="$PROJECT_DIR$/Models/modulation.py" />
       </list>
     </option>
@@ -175,7 +181,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Avance1">
     <configuration name="Avance1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Lab_Redes" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -217,9 +223,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="modulation" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Lab_Redes" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Models" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Models/modulation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Avance1" />
+        <item itemvalue="Python.modulation" />
       </list>
     </recent_temporary>
   </component>
@@ -234,12 +260,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541270869739</updated>
       <workItem from="1542911807188" duration="2317000" />
-      <workItem from="1543338030112" duration="1687000" />
+      <workItem from="1543338030112" duration="3672000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4004000" />
+    <option name="totallyTimeSpent" value="5989000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -254,13 +280,13 @@
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11152615" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11152615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32952693" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32852387" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39955604" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32972974" />
@@ -269,13 +295,14 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32777777" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.28856826" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.28856826" />
       <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="right" id="Coverage" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="SciView" order="3" sideWeight="0.46957877" visible="true" weight="0.28388473" />
-      <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.5304212" side_tool="true" visible="true" weight="0.28388473" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.53419596" visible="true" weight="0.2854856" />
+      <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.46580407" side_tool="true" visible="true" weight="0.2854856" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.47633588" weight="0.22838847" />
     </layout>
     <layout-to-restore>
@@ -319,20 +346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Models/filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Models/audio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Models/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -341,13 +354,10 @@
         <state relative-caret-position="-985" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Models/graphic.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/third_party/thriftpy/_shaded_thriftpy/thrift.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-227">
-          <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-426">
+          <caret line="191" selection-start-line="191" selection-end-line="191" />
         </state>
       </provider>
     </entry>
@@ -361,9 +371,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Models/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Avance1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
+        <state relative-caret-position="-216">
           <caret line="129" column="31" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
@@ -373,10 +390,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Models/modulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+        <state relative-caret-position="325">
+          <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
           <folding>
             <element signature="e#2#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/audio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/graphic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="90" column="42" selection-start-line="90" selection-start-column="37" selection-end-line="90" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
