@@ -81,7 +81,9 @@ class Modulation:
         print(dataCarrier)
         graphic.generateGraphics4(modulation.function1, modulation.function3, dataCarrier,modulation.time)
         graphic.frequencyGraphic(dataCarrier,modulation.freqSampling,"demodulada",10000,8)
-        audio = Audio(modulation.freqSampling,)
+        audio = Audio(modulation.freqSampling,0,dataCarrier,modulation.time,"demodulada",150,10000,10,modulation.time)
+        newdata, fft = graphic.lowpassFilteredGraphic(audio,150,10)
+        graphic.inverseGraphic(modulation.freqSampling,2*fft,"demodulacion",150,10)
         #graphic.generateGraphics5(modulation.function1, modulation.freqSampling, modulation.function3,modulation.freqSampling, dataCarrier, modulation.time)
 
 

@@ -29,7 +29,8 @@ class Graphic:
         plt.ylabel(ylabel, color = 'orange')
         plt.plot(xdata, ydata)#, "*-")
         plt.savefig( os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) + ".png")
-        #plt.show()
+        print("Aca")
+        plt.show()
 
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
