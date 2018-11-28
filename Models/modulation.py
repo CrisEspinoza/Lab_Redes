@@ -103,9 +103,18 @@ class Modulation:
 
         phase = k * (integrate.cumtrapz(modulating_signal, modulation.time, initial=0))
         print(phase)
-
         modulated_signal = np.cos( (2 * np.pi * fc * modulation.time) + phase)
-        plt.plot(modulation.time, modulated_signal, linewidth = 2)
+
+        graphic.generateGraphics4(modulating_signal, modulating_signal, modulated_signal, modulation.time)
+        graphic.generateGraphics5(modulating_signal, modulation.freqSampling, modulating_signal,
+                                  modulation.freqSampling, modulated_signal, modulation.time)
+
+        plt.subplot(311)
+        plt.plot(modulation.time, modulating_signal, linewidth=1)
+        plt.title("senal")
+        plt.subplot(312)
+        plt.plot(modulation.time, modulated_signal, linewidth = 1)
+        plt.title("Resultado")
         plt.show()
 
 

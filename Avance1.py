@@ -157,7 +157,8 @@ def digitalCodingAndModulation():
         elif choice == "3":
             print("Realizando modulacion FM")
             modulation = Modulation(0, 0)
-            modulation.fmModulation(7, 100, 50)
+            modulation.fmModulation(7, 100, 200)
+
             input("Presiona Enter para continuar")
 
         elif choice == "4":
