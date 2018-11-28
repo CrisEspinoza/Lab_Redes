@@ -93,6 +93,7 @@ def signalAnaysisMenu ():
                 try:
                     nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
                     sampling_rate, data_array = read(nameText)
+                    print(sampling_rate)
                     dimension = data_array[0].size
                     aux = 0
 
@@ -154,7 +155,9 @@ def digitalCodingAndModulation():
             input("Presiona Enter para continuar")
 
         elif choice == "3":
-            print("Realizando demodulacion FM")
+            print("Realizando modulacion FM")
+            modulation = Modulation(0, 0)
+            modulation.fmModulation(7, 100, 50)
             input("Presiona Enter para continuar")
 
         elif choice == "4":
