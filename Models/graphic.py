@@ -30,7 +30,7 @@ class Graphic:
         plt.plot(xdata, ydata)#, "*-")
         plt.savefig( os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) + ".png")
         print("Aca")
-        #plt.show()
+        plt.show()
 
 
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@ class Graphic:
         # Funcion que retorna los resultados aplicando fourier y crea una matriz con el resultado
         fftFrequency = np.fft.fftfreq(sample_length, 1 / samplingRate)
         self.makeGraphic("Sonido: " + audioName + " aplicando T.Fourier", "Frecuencia [Hz]", fftFrequency, "Amplitud [dB]", abs(new_data),low_cutoff,order)
-        #plt.show()
+        plt.show()
         return new_data, fft(data)
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

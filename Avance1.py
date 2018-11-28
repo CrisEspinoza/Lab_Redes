@@ -131,6 +131,7 @@ def signalAnaysisMenu ():
 def digitalCodingAndModulation():
 
     choice = '0'
+    modulation = Modulation(0, 0)
 
     while choice != '-1':
         print("\n")
@@ -146,7 +147,6 @@ def digitalCodingAndModulation():
 
         if choice == "1":
             print("Realizando modulacion AM\n")
-            modulation = Modulation(0,0)
             modulation.amModulationCos(7, 100)
             input("Presiona Enter para continuar")
 
@@ -156,9 +156,7 @@ def digitalCodingAndModulation():
 
         elif choice == "3":
             print("Realizando modulacion FM")
-            modulation = Modulation(0, 0)
-            modulation.fmModulation(7, 100, 200)
-
+            modulation.fmModulation(7, 100, 50)
             input("Presiona Enter para continuar")
 
         elif choice == "4":

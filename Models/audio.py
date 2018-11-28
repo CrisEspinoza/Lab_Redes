@@ -4,14 +4,14 @@ class Audio:
 
 ## - ATTRIBUTES - ##
     sampling_rate = 0
-    data_array = 0
+    data_array = []
     bandpass_data = 0
     duration = 0
     time = 0
     dimension = 0
     audio_name = ""
     information_numpy_fourier = []
-    filter = 0
+    filter = Filter(0, 0, 0)
 
 ## - FUNCTIONS - ##
 

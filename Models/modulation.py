@@ -38,10 +38,21 @@ class Modulation:
         modulation.function2 = np.cos(2*np.pi*fc*modulation.time)
         modulation.function3 = modulation.function1 * modulation.function2
 
-        self.demodulatorAMCos(modulation)
-
         graphic.generateGraphics4(modulation.function1, modulation.function2, modulation.function3, modulation.time)
         graphic.generateGraphics5(modulation.function1, modulation.freqSampling, modulation.function2, modulation.freqSampling, modulation.function3, modulation.time)
+
+    def demodulatorAMCos(self, modulation):
+
+        graphic = Graphic()
+        dataCarrier = modulation.function3 * modulation.function2
+        print(dataCarrier)
+        graphic.generateGraphics4(modulation.function1, modulation.function3, dataCarrier,modulation.time)
+        graphic.frequencyGraphic(dataCarrier,modulation.freqSampling,"demodulada",10000,8)
+        audio = Audio(modulation.freqSampling,0,dataCarrier,modulation.time,"demodulada",150,10000,10,modulation.time)
+        newdata, fft = graphic.lowpassFilteredGraphic(audio,150,5)
+        graphic.inverseGraphic(modulation.freqSampling,2*fft,"demodulacion",150,10)
+        #graphic.generateGraphics5(modulation.function1, modulation.freqSampling, modulation.function3,modulation.freqSampling, dataCarrier, modulation.time)
+
 
     def amModulation (self, modulatingSignal, carrierSignalFequency, lowCutoff):
 
@@ -67,28 +78,12 @@ class Modulation:
         graphic.generateGraphics4(modulatingSignal, modulated_signal, demodulated_signal, carrier_signal_time)
 
 
-    def amDemodulation (self, modulatedSignal, lowCutoff, order, ):
-
-        return
-
     def demodulatorAM(self, AM, totalTime):
         timesCarrier = linspace(0, totalTime, 250000 * totalTime)
         dataCarrier = cos(2 * np.pi * 62500 * timesCarrier)
         demoduleAM = AM * dataCarrier
         print(demoduleAM)
         return demoduleAM
-
-    def demodulatorAMCos(self, modulation):
-
-        graphic = Graphic()
-        dataCarrier = modulation.function3 * modulation.function2
-        print(dataCarrier)
-        graphic.generateGraphics4(modulation.function1, modulation.function3, dataCarrier,modulation.time)
-        graphic.frequencyGraphic(dataCarrier,modulation.freqSampling,"demodulada",10000,8)
-        audio = Audio(modulation.freqSampling,0,dataCarrier,modulation.time,"demodulada",150,10000,10,modulation.time)
-        newdata, fft = graphic.lowpassFilteredGraphic(audio,150,5)
-        graphic.inverseGraphic(modulation.freqSampling,2*fft,"demodulacion",150,10)
-        #graphic.generateGraphics5(modulation.function1, modulation.freqSampling, modulation.function3,modulation.freqSampling, dataCarrier, modulation.time)
 
 
     def fmModulation (self, f, fc, k):
@@ -103,18 +98,9 @@ class Modulation:
 
         phase = k * (integrate.cumtrapz(modulating_signal, modulation.time, initial=0))
         print(phase)
+
         modulated_signal = np.cos( (2 * np.pi * fc * modulation.time) + phase)
-
-        graphic.generateGraphics4(modulating_signal, modulating_signal, modulated_signal, modulation.time)
-        graphic.generateGraphics5(modulating_signal, modulation.freqSampling, modulating_signal,
-                                  modulation.freqSampling, modulated_signal, modulation.time)
-
-        plt.subplot(311)
-        plt.plot(modulation.time, modulating_signal, linewidth=1)
-        plt.title("senal")
-        plt.subplot(312)
-        plt.plot(modulation.time, modulated_signal, linewidth = 1)
-        plt.title("Resultado")
+        plt.plot(modulation.time, modulated_signal, linewidth = 2)
         plt.show()
 
 
