@@ -17,6 +17,7 @@ def main():
 def menuPrincipal():
 
     choice = '0'
+    originalAudio = []
 
     while choice != '-1':
         print("\n")
@@ -37,7 +38,7 @@ def menuPrincipal():
             input("Presiona Enter para continuar")
 
         elif choice == "2":
-            digitalCodingAndModulation()
+            digitalCodingAndModulation(originalAudio)
             input("Presiona Enter para continuar")
 
         elif choice == "3":
@@ -129,9 +130,11 @@ def signalAnaysisMenu ():
             print("\n")
             return originalAudio
 
-def digitalCodingAndModulation():
+def digitalCodingAndModulation(originalAudio):
 
     choice = '0'
+    modulationAM = Modulation(0, 0)
+    modulationFM = Modulation(0, 0)
 
     while choice != '-1':
         print("\n")
@@ -139,32 +142,27 @@ def digitalCodingAndModulation():
         print("1. Realizar modulacion AM")
         print("2. Realizar modulacion FM")
         print("3. Realizar demodulacion AM")
-        print("4. Realizar demodulacion FM")
-        print("5. Volver")
+        print("4. Volver")
         print("\n")
 
         choice = input("Ingrese opcion a realizar: ")
 
         if choice == "1":
             print("Realizando modulacion AM\n")
-            modulation = Modulation(0,0)
-            modulation.amModulationCos(7, 100)
+            modulationAM = modulationAM.amModulationCos(7, 100)
             input("Presiona Enter para continuar")
 
         elif choice == "2":
             print("Realizando modulacion FM")
+            modulationFM = modulationFM.fmModulation(modulationFM, 7, 100, 50)
             originalAudio = signalAnaysisMenu()
             modulation = Modulation(0, 0)
             modulation.fmModulationSound(originalAudio, 300)
-            #modulation.fmModulation(7, 100, 200)
             input("Presiona Enter para continuar")
 
         elif choice == "3":
-            print("Realizando modulacion FM")
-            input("Presiona Enter para continuar")
-
-        elif choice == "4":
-            print("Realizando demodulacion FM")
+            print("Realizando demodulacion AM")
+            modulationAM = modulationAM.demodulatorAMCos(modulationAM)
             input("Presiona Enter para continuar")
 
         else:
@@ -172,6 +170,7 @@ def digitalCodingAndModulation():
             print("\n")
             print(" Volviendo al menu inicial")
             print("\n")
+            return modulationFM, modulationAM
 
 if __name__ == '__main__':
     main()

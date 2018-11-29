@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d10813e7-5702-4880-b1ce-6aad1af0aa2a" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/Avance1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Avance1.py" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Models/graphic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/graphic.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
+=======
+>>>>>>> parent of aaa5798... adding Fm modulation
       <change beforePath="$PROJECT_DIR$/Models/modulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/modulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Coseno 1_5_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Coseno 1_5_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Coseno 2_3_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Coseno 2_3_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Resultado_7_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Resultado_7_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: Coseno 1 aplicando T.Fourier_4_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Sonido: Coseno 1 aplicando T.Fourier_4_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: Coseno 2 aplicando T.Fourier_4_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Sonido: Coseno 2 aplicando T.Fourier_4_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Salida/Sonido: Result aplicando T.Fourier_4_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Salida/Sonido: Result aplicando T.Fourier_4_3.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +21,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Lab_Redes$modulation.coverage" NAME="modulation Coverage Results" MODIFIED="1543347907853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Models" />
-    <SUITE FILE_PATH="coverage/Lab_Redes$Avance1.coverage" NAME="Avance1 Coverage Results" MODIFIED="1543408399922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Lab_Redes$Avance1.coverage" NAME="Avance1 Coverage Results" MODIFIED="1543341428651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -38,11 +39,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Models/graphic.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
             <state relative-caret-position="120">
               <caret line="121" column="4" selection-start-line="121" selection-start-column="4" selection-end-line="121" selection-end-column="4" />
+=======
+            <state relative-caret-position="3330">
+              <caret line="222" column="55" selection-start-line="222" selection-start-column="55" selection-end-line="222" selection-end-column="55" />
+>>>>>>> Stashed changes
+=======
+            <state relative-caret-position="356">
+              <caret line="222" column="55" selection-start-line="222" selection-start-column="42" selection-end-line="222" selection-end-column="55" />
+>>>>>>> parent of aaa5798... adding Fm modulation
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -53,8 +64,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Models/filter.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="210">
               <caret line="59" column="57" lean-forward="true" selection-start-line="59" selection-start-column="57" selection-end-line="59" selection-end-column="57" />
+=======
+            <state relative-caret-position="885">
+              <caret line="59" column="48" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="48" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -71,7 +87,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Models/prueba.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="355">
+=======
+            <state relative-caret-position="4335">
+>>>>>>> Stashed changes
               <caret line="289" column="36" selection-start-line="289" selection-start-column="28" selection-end-line="289" selection-end-column="36" />
               <folding>
                 <element signature="e#401#419#0" expanded="true" />
@@ -83,8 +103,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Avance1.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="262">
               <caret line="159" column="42" selection-start-line="159" selection-start-column="42" selection-end-line="159" selection-end-column="42" />
+=======
+            <state relative-caret-position="1755">
+              <caret line="117" column="58" selection-start-line="117" selection-start-column="58" selection-end-line="117" selection-end-column="58" />
+>>>>>>> Stashed changes
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -92,11 +117,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Models/modulation.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
             <state relative-caret-position="-645">
               <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+=======
+            <state relative-caret-position="425">
+              <caret line="88" column="7" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
+>>>>>>> Stashed changes
+=======
+            <state relative-caret-position="390">
+              <caret line="108" column="18" lean-forward="true" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
+>>>>>>> parent of aaa5798... adding Fm modulation
               <folding>
                 <element signature="e#1#35#0" expanded="true" />
               </folding>
@@ -135,13 +170,13 @@
         <option value="$PROJECT_DIR$/Models/prueba.py" />
         <option value="$PROJECT_DIR$/Models/audio.py" />
         <option value="$PROJECT_DIR$/Models/filter.py" />
+        <option value="$PROJECT_DIR$/Models/graphic.py" />
         <option value="$PROJECT_DIR$/Avance1.py" />
         <option value="$PROJECT_DIR$/Models/modulation.py" />
-        <option value="$PROJECT_DIR$/Models/graphic.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="y" value="25" />
     <option name="width" value="683" />
     <option name="height" value="743" />
@@ -152,7 +187,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -174,6 +208,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -198,6 +233,9 @@
       <module name="Lab_Redes" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -239,6 +277,9 @@
       <module name="Lab_Redes" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Models" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -273,12 +314,28 @@
       <updated>1541270869739</updated>
       <workItem from="1542911807188" duration="2317000" />
       <workItem from="1543338030112" duration="4253000" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
       <workItem from="1543343605753" duration="10211000" />
+=======
+      <workItem from="1543407902998" duration="844000" />
+>>>>>>> Stashed changes
+=======
+      <workItem from="1543343605753" duration="7579000" />
+>>>>>>> parent of aaa5798... adding Fm modulation
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="16781000" />
+=======
+    <option name="totallyTimeSpent" value="7414000" />
+>>>>>>> Stashed changes
+=======
+    <option name="totallyTimeSpent" value="14149000" />
+>>>>>>> parent of aaa5798... adding Fm modulation
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -293,13 +350,17 @@
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< Updated upstream
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.112878785" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11259338" />
+>>>>>>> Stashed changes
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32852387" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39739415" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3990228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32972974" />
@@ -308,14 +369,25 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32777777" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32899022" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
       <window_info active="true" anchor="right" id="SciView" order="3" sideWeight="0.92718446" visible="true" weight="0.8871212" />
       <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.07281554" side_tool="true" weight="0.7522727" />
+=======
+      <window_info active="true" anchor="right" id="SciView" order="3" sideWeight="0.92508143" visible="true" weight="0.34545454" />
+      <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.07491857" side_tool="true" visible="true" weight="0.34545454" />
+>>>>>>> parent of aaa5798... adding Fm modulation
       <window_info anchor="right" id="Database" order="5" sideWeight="0.5011442" weight="0.22803031" />
+=======
+      <window_info active="true" anchor="right" id="SciView" order="3" sideWeight="0.5335413" visible="true" weight="0.2854856" />
+      <window_info anchor="right" x="0" y="0" width="291" height="543" id="Documentation" order="4" sideWeight="0.46645865" side_tool="true" visible="true" weight="0.2854856" />
+      <window_info anchor="right" id="Database" order="5" sideWeight="0.47633588" weight="0.22838847" />
+>>>>>>> Stashed changes
       <window_info anchor="right" id="Coverage" order="6" side_tool="true" />
     </layout>
     <layout-to-restore>
@@ -376,22 +448,28 @@
     </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/numpy/core/function_base.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="204">
           <caret line="123" selection-start-line="123" selection-end-line="123" />
+=======
+        <state relative-caret-position="1755">
+          <caret line="117" column="58" selection-start-line="117" selection-start-column="58" selection-end-line="117" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="255">
           <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Models/audio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret column="32" lean-forward="true" selection-start-column="32" selection-end-column="32" />
+=======
+        <state relative-caret-position="885">
+          <caret line="59" column="48" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="48" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -404,7 +482,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Models/prueba.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="355">
+=======
+        <state relative-caret-position="4335">
+>>>>>>> Stashed changes
           <caret line="289" column="36" selection-start-line="289" selection-start-column="28" selection-end-line="289" selection-end-column="36" />
           <folding>
             <element signature="e#401#419#0" expanded="true" />
@@ -412,10 +494,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Models/audio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-93">
+          <caret column="32" lean-forward="true" selection-start-column="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/graphic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="222" column="55" selection-start-line="222" selection-start-column="42" selection-end-line="222" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Avance1.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+        <state relative-caret-position="-645">
+          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+=======
+        <state relative-caret-position="3330">
+          <caret line="222" column="55" selection-start-line="222" selection-start-column="55" selection-end-line="222" selection-end-column="55" />
+>>>>>>> Stashed changes
+=======
         <state relative-caret-position="262">
           <caret line="159" column="42" selection-start-line="159" selection-start-column="42" selection-end-line="159" selection-end-column="42" />
+>>>>>>> parent of aaa5798... adding Fm modulation
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
@@ -424,20 +533,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Models/modulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-645">
-          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
-          <folding>
-            <element signature="e#1#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Models/graphic.py">
-      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
         <state relative-caret-position="120">
           <caret line="121" column="4" selection-start-line="121" selection-start-column="4" selection-end-line="121" selection-end-column="4" />
+=======
+        <state relative-caret-position="425">
+          <caret line="88" column="7" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
+>>>>>>> Stashed changes
+=======
+        <state relative-caret-position="390">
+          <caret line="108" column="18" lean-forward="true" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
+>>>>>>> parent of aaa5798... adding Fm modulation
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#1#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -168,8 +168,8 @@ class Graphic:
         originalAudio.informationNumpyFourier, fourierT = self.frequencyGraphic(originalAudio.data_array,originalAudio.sampling_rate,originalAudio.audio_name,low_cutoff,order)
         plt.subplot(313)
         filter = Filter(low_cutoff,8,order)
-        filter.butterBandpass(low_cutoff,10000,originalAudio.sampling_rate,order)
-        #self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
+        #filter.butterBandpass(low_cutoff,10000,originalAudio.sampling_rate,order)
+        self.lowpassFilteredGraphic(originalAudio, low_cutoff, order)
         plt.tight_layout()
         plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) + ".png")
         plt.show()
@@ -227,7 +227,7 @@ class Graphic:
 
     def generateGraphics4 (self, cos,cos2,result,time):
         print("\n")
-        print("Realizando el grafico de conjunto numero 3")
+        print("Realizando el grafico de conjunto numero 4")
         print("El cual contiene los grafico del audio completo, espectrograma (aplicado el filtro) y audio regenerado")
         print("\n")
         plt.figure(1)
@@ -246,7 +246,7 @@ class Graphic:
 
     def generateGraphics5 (self, cos, f, cos2, fc, result, time):
         print("\n")
-        print("Realizando el grafico de conjunto numero 3")
+        print("Realizando el grafico de conjunto numero 5")
         print("El cual contiene los grafico del audio completo, espectrograma (aplicado el filtro) y audio regenerado")
         print("\n")
         plt.figure(1)
@@ -263,7 +263,60 @@ class Graphic:
         #plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
         plt.show()
 
-    # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    def generateGraphics6 (self, modulation, audio):
+        print("\n")
+        print("Realizando el grafico de conjunto numero 6")
+        print("El cual contiene los grafico del audio completo, espectrograma (aplicado el filtro) y audio regenerado")
+        print("\n")
+        graphic = Graphic()
+        plt.figure(1)
+        plt.subplot(311)
+        p1 = plt.plot(linewidth = 2)
+        graphic.frequencyGraphic(modulation.function4, modulation.freqSampling, "demodulada", audio.filter.low_cutoff, audio.filter.order)
+        plt.subplot(312)
+        p2 = plt.plot(linewidth = 2)
+        newdata, fft = graphic.lowpassFilteredGraphic(audio, audio.filter.low_cutoff, audio.filter.order)
+        plt.subplot(313)
+        p3 = plt.plot(linewidth = 2)
+        graphic.inverseGraphic(modulation.freqSampling, 2 * fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
+        plt.tight_layout()
+        #plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
+        plt.show()
+
+    def generateGraphics7 (self, modulation):
+        print("\n")
+        print("Realizando el grafico de conjunto numero 7")
+        print("El cual contiene los grafico del audio completo, espectrograma (aplicado el filtro) y audio regenerado")
+        print("\n")
+        graphic = Graphic()
+        plt.figure(1)
+        plt.subplot(211)
+        p1 = plt.plot(linewidth = 2)
+        self.makeGraphic("Moduladora", "Tiempo", modulation.time, "Coseno", modulation.function1, 5, 5)
+        plt.subplot(212)
+        p2 = plt.plot(linewidth = 2)
+        self.makeGraphic("Modulacion FM", "Tiempo", modulation.time, "Coseno", modulation.function3, 5, 5)
+        plt.tight_layout()
+        #plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
+        plt.show()
+
+    def generateGraphics8 (self, modulation):
+        print("\n")
+        print("Realizando el grafico de conjunto numero 8")
+        print("El cual contiene los grafico del audio completo, espectrograma (aplicado el filtro) y audio regenerado")
+        print("\n")
+        plt.figure(1)
+        plt.subplot(211)
+        p1 = plt.plot(linewidth = 2)
+        trans1 = self.frequencyGraphic(modulation.function1, modulation.freqSampling, "Moduladora", 4, 3)
+        plt.subplot(212)
+        p2 = plt.plot(linewidth = 2)
+        trans2 = self.frequencyGraphic(modulation.function3, modulation.freqSampling, "Modulacion FM", 4, 3)
+        plt.tight_layout()
+        #plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
+        plt.show()
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: SingleGraphics
     # - DESCRIPTION: Genera todos los graficos de manera separada
     # - PARAMS: Clase audio, Frecuencia de corte de frecuencias bajas, Frecuencia de corte de frecuencias altas, Orden del polinomio
