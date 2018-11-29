@@ -4,6 +4,7 @@ class Audio:
 
 ## - ATTRIBUTES - ##
     sampling_rate = 0
+    info = 0
     data_array = 0
     bandpass_data = 0
     duration = 0
@@ -17,14 +18,15 @@ class Audio:
 
     #CONSTRUCTOR////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    def __init__(self, samplingRate, dimension, data, duration, audioName, low_cutoff, high_cutoff, order, time):
+    def __init__(self, samplingRate,time,dimension,data,data_array, duration, audioName, low_cutoff, high_cutoff,order):
         self.sampling_rate = samplingRate
+        self.info = data_array
         self.data_array = data
         self.duration = duration
         self.dimension = dimension
         self.audio_name = audioName
         self.time = time
-        self.filter = Filter(low_cutoff,high_cutoff,order)
+        self.filter = Filter(low_cutoff, high_cutoff, order)
 
 
 

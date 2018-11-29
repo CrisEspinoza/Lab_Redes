@@ -116,9 +116,10 @@ def signalAnaysisMenu ():
             duration = len(data) / sampling_rate
             high_cutoff = 0
             time = linspace(0, duration, len(data))
-            originalAudio = Audio(sampling_rate, dimension, data, duration, audio_name, low_cutoff, high_cutoff, order, time)
-            grafic = Graphic()
-            grafic.createGraphics(originalAudio)
+            originalAudio = Audio(sampling_rate, time, dimension, data,data_array, duration, audio_name, low_cutoff,
+                                  high_cutoff,order)
+            #grafic = Graphic()
+            #grafic.createGraphics(originalAudio)
             print("\n")
 
         else:
@@ -152,13 +153,14 @@ def digitalCodingAndModulation():
 
         elif choice == "2":
             print("Realizando modulacion FM")
+            originalAudio = signalAnaysisMenu()
+            modulation = Modulation(0, 0)
+            modulation.fmModulationSound(originalAudio, 300)
+            #modulation.fmModulation(7, 100, 200)
             input("Presiona Enter para continuar")
 
         elif choice == "3":
             print("Realizando modulacion FM")
-            modulation = Modulation(0, 0)
-            modulation.fmModulation(7, 100, 200)
-
             input("Presiona Enter para continuar")
 
         elif choice == "4":

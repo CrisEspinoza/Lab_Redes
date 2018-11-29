@@ -1,10 +1,11 @@
-
+from scipy.interpolate import interp1d
 from Models.graphic import Graphic
 from Models.audio import Audio
 import numpy as np
 from numpy import linspace, cos, interp
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
+import os
 
 class Modulation:
 
@@ -117,7 +118,37 @@ class Modulation:
         plt.title("Resultado")
         plt.show()
 
+    def fmModulationSound(self, originalAudio, k):
+        graphic = Graphic()
 
+        interp = interp1d(originalAudio.time, originalAudio.data_array)
+        newTime = np.linspace(0, len(originalAudio.data_array) / originalAudio.sampling_rate,
+                              len(originalAudio.data_array) * 10)
+        newData = interp(newTime)
+
+        newLen = len(newData)
+
+        timesCarrier = linspace(0, len(originalAudio.data_array) / originalAudio.sampling_rate, newLen)
+        # print(timesCarrier)
+        # print(newData)
+        fc = 50000
+
+        carrier = np.sin(2 * np.pi * timesCarrier)
+        w = fc*timesCarrier
+
+        integral = integrate.cumtrapz(newData, timesCarrier, initial=0)
+
+        result = np.cos(2*np.pi * w + k * integral)
+        # print(result)
+
+        plt.subplot(311)
+        plt.plot(originalAudio.time, originalAudio.data_array, linewidth=0.5)
+        plt.title("senal del mensaje")
+        plt.subplot(312)
+        plt.plot(timesCarrier[200:800], result[200:800], linewidth=0.5)
+        plt.title("modulacion fm")
+        plt.savefig(os.getcwd() + "/Salida/fmModulation.png")
+        plt.show()
 
 
 
