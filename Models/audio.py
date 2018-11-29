@@ -3,12 +3,12 @@ from Models.filter import Filter
 class Audio:
 
 ## - ATTRIBUTES - ##
-    sampling_rate = 0
+    sampling_rate = []
     data_array = []
     bandpass_data = 0
-    duration = 0
-    time = 0
-    dimension = 0
+    duration = []
+    time = []
+    dimension = []
     audio_name = ""
     information_numpy_fourier = []
     filter = Filter(0, 0, 0)
