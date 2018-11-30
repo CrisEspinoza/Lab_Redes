@@ -58,36 +58,55 @@ class Modulation:
 
         return modulation
 
-    def amModulation (self, modulatingSignal, carrierSignalFequency, lowCutoff):
+    def amModulation (self, modulatingSignal):
 
         graphic = Graphic()
+        modulation = Modulation(1, 62500)
+        modulation.freqSampling = 10000
+
         carrier_signal_time = linspace(0, modulatingSignal.duration, 250000 * modulatingSignal.duration)
         print(carrier_signal_time)
+        modulation.time = carrier_signal_time
+
         new_data = interp(carrier_signal_time, modulatingSignal.time, modulatingSignal.data_array)
         print(new_data)
-        carrier_signal = cos(2 * np.pi * 62500 * carrier_signal_time)
+        modulation.function1 = new_data
+
+        carrier_signal = cos(2 * np.pi * modulation.freqSampling * carrier_signal_time)
+        modulation.function2 = carrier_signal
+
         modulated_signal = carrier_signal * new_data
         print(modulated_signal)
+        modulation.function3 = modulated_signal
 
         graphic.generateGraphics4(carrier_signal, new_data, modulated_signal, carrier_signal_time)
 
-        demodulated_signal = self.amDemodulation(modulated_signal, modulatingSignal.duration)
+        demodulated_signal = self.demodulatorAM(modulation)
 
-        print(demodulated_signal)
+        #print(demodulated_signal)
 
-        graphic.inverseGraphic(carrier_signal_time,demodulated_signal,"a",0,0)
+        #graphic.inverseGraphic(carrier_signal_time,demodulated_signal,"a",0,0)
 
-        graphic.generateGraphics4(carrier_signal, new_data, demodulated_signal, carrier_signal_time)
+        #graphic.generateGraphics4(carrier_signal, new_data, demodulated_signal, carrier_signal_time)
 
-        graphic.generateGraphics4(modulatingSignal, modulated_signal, demodulated_signal, carrier_signal_time)
+        #graphic.generateGraphics4(modulatingSignal, modulated_signal, demodulated_signal, carrier_signal_time)
+
+        return modulation
 
 
-    def demodulatorAM(self, AM, totalTime):
-        timesCarrier = linspace(0, totalTime, 250000 * totalTime)
-        dataCarrier = cos(2 * np.pi * 62500 * timesCarrier)
-        demoduleAM = AM * dataCarrier
+    def demodulatorAM(self, modulation):
+        graphic = Graphic()
+        demoduleAM = modulation.function3 * modulation.function2
         print(demoduleAM)
-        return demoduleAM
+        modulation.function4 = demoduleAM
+
+        modulation.function4 = demoduleAM
+        audio = Audio(modulation.freqSampling, 0, demoduleAM, modulation.time, "demodulada", 5000, 0, 8, modulation.time)
+
+        graphic.generateGraphics4(modulation.function1, modulation.function3, demoduleAM, modulation.time)
+        graphic.generateGraphics6(modulation, audio)
+
+        return modulation
 
 
     def fmModulation (self, modulation, f, fc, k):
