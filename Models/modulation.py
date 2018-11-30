@@ -123,11 +123,10 @@ class Modulation:
         newLen = len(newData)
 
         timesCarrier = linspace(0, len(originalAudio.data_array) / originalAudio.sampling_rate, newLen)
-        # print(timesCarrier)
-        # print(newData)
-        fc = 50000
+        #print(newLen)
 
-        carrier = np.sin(2 * np.pi * timesCarrier)
+        fc = 80000
+
         w = fc*timesCarrier
 
         integral = integrate.cumtrapz(newData, timesCarrier, initial=0)
@@ -135,14 +134,17 @@ class Modulation:
         result = np.cos(2*np.pi * w + k * integral)
         # print(result)
 
-        plt.subplot(311)
-        plt.plot(originalAudio.time, originalAudio.data_array, linewidth=0.5)
-        plt.title("senal del mensaje")
-        plt.subplot(312)
-        plt.plot(timesCarrier[200:800], result[200:800], linewidth=0.5)
-        plt.title("modulacion fm")
-        plt.savefig(os.getcwd() + "/Salida/fmModulation.png")
-        plt.show()
+        graphic.generateGraphics9(originalAudio,timesCarrier,result)
+        graphic.generateGraphics10(originalAudio,fc,result)
+
+        #plt.subplot(311)
+        #plt.plot(originalAudio.time, originalAudio.data_array, linewidth=0.5)
+        #plt.title("senal del mensaje")
+        #plt.subplot(312)
+        #plt.plot(timesCarrier, result, linewidth=0.5)
+        #plt.title("modulacion fm")
+        #plt.savefig(os.getcwd() + "/Salida/fmModulation.png")
+        #plt.show()
 
 
 

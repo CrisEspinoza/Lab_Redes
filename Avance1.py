@@ -71,6 +71,31 @@ def menuPrincipal():
             input(" Hasta una nueva oportunidad ")
             print("\n")
 
+def readAudio():
+    aux = 1
+    while aux == 1:
+        audio_name = input("Introduzca el nombre del archivo: ")
+        try:
+            nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
+            sampling_rate, data_array = read(nameText)
+            print(sampling_rate)
+            dimension = data_array[0].size
+            aux = 0
+
+        except FileNotFoundError:
+            print("No se pudo abrir el audio intentelo nuevamente\n")
+    print("\n")
+    if dimension == 1:
+        data = data_array
+    else:
+        data = data_array[:, dimension - 1]
+
+    duration = len(data) / sampling_rate
+    time = linspace(0, duration, len(data))
+    originalAudio = Audio(sampling_rate, time, dimension, data, data_array, duration, audio_name, 0,
+                          22000, 10)
+    return originalAudio
+
 def signalAnaysisMenu ():
 
     aux = 1
@@ -119,8 +144,8 @@ def signalAnaysisMenu ():
             time = linspace(0, duration, len(data))
             originalAudio = Audio(sampling_rate, time, dimension, data,data_array, duration, audio_name, low_cutoff,
                                   high_cutoff,order)
-            #grafic = Graphic()
-            #grafic.createGraphics(originalAudio)
+            grafic = Graphic()
+            grafic.createGraphics(originalAudio)
             print("\n")
 
         else:
@@ -154,10 +179,13 @@ def digitalCodingAndModulation(originalAudio):
 
         elif choice == "2":
             print("Realizando modulacion FM")
-            modulationFM = modulationFM.fmModulation(modulationFM, 7, 100, 50)
-            originalAudio = signalAnaysisMenu()
+            #Modulacion FM para audios
+            originalAudio = readAudio()
             modulation = Modulation(0, 0)
-            modulation.fmModulationSound(originalAudio, 300)
+            modulation.fmModulationSound(originalAudio, 10)
+
+            # Modulacion FM para cosenos
+            modulationFM = modulationFM.fmModulation(modulationFM, 7, 100, 50)
             input("Presiona Enter para continuar")
 
         elif choice == "3":
