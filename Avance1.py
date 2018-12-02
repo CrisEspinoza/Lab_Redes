@@ -1,10 +1,8 @@
-from scipy.io.wavfile import read
-from Models.audio import Audio
 from Models.graphic import Graphic
 from Models.modulation import Modulation
-from Models.menu import Menu
-import os
-from numpy import linspace
+from Models.archive import Archive
+from Models.audio import Audio
+from Models.filter import Filter
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -17,6 +15,7 @@ def main():
 def menuPrincipal():
 
     choice = '0'
+    aux = 0
     originalAudio = []
 
     while choice != '-1':
@@ -35,11 +34,16 @@ def menuPrincipal():
 
         if choice == "1":
             originalAudio = signalAnaysisMenu()
+            aux  = 1
             input("Presiona Enter para continuar")
 
         elif choice == "2":
-            digitalCodingAndModulation(originalAudio)
-            input("Presiona Enter para continuar")
+            if aux == 1:
+                digitalCodingAndModulation(originalAudio)
+                input("Presiona Enter para continuar")
+            else:
+                print("Primero debe cargaro un audio para continuar (Opción numero 1)")
+                input("Presione Enter para continuar")
 
         elif choice == "3":
             print("Parte 3")
@@ -71,36 +75,11 @@ def menuPrincipal():
             input(" Hasta una nueva oportunidad ")
             print("\n")
 
-def readAudio():
-    aux = 1
-    while aux == 1:
-        audio_name = input("Introduzca el nombre del archivo: ")
-        try:
-            nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
-            sampling_rate, data_array = read(nameText)
-            print(sampling_rate)
-            dimension = data_array[0].size
-            aux = 0
-
-        except FileNotFoundError:
-            print("No se pudo abrir el audio intentelo nuevamente\n")
-    print("\n")
-    if dimension == 1:
-        data = data_array
-    else:
-        data = data_array[:, dimension - 1]
-
-    duration = len(data) / sampling_rate
-    time = linspace(0, duration, len(data))
-    originalAudio = Audio(sampling_rate, time, dimension, data, data_array, duration, audio_name, 0,
-                          22000, 10)
-    return originalAudio
-
 def signalAnaysisMenu ():
 
     aux = 1
     choice = '0'
-    originalAudio = 0
+    originalAudio = Audio(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     while choice != '-1':
         print("\n")
@@ -114,37 +93,16 @@ def signalAnaysisMenu ():
 
         if choice == "1":
             print("\n")
-            while (aux == 1):
-                audio_name = input("Introduzca el nombre del archivo: ")
-                try:
-                    nameText = os.getcwd() + '/Audios/' + audio_name + '.wav'
-                    sampling_rate, data_array = read(nameText)
-                    print(sampling_rate)
-                    dimension = data_array[0].size
-                    aux = 0
-
-                except FileNotFoundError:
-                    print("No se pudo abrir el audio intentelo nuevamente\n")
+            archive = Archive(0)
+            aux, originalAudio = archive.readAudio(aux)
             print("\n")
 
         elif choice == "2":
+            grafic = Graphic()
             print("\n")
             low_cutoff = float(input("Introduzca la frecuencia de filtro bajo (Hz): "))
             order = float(input("Introduzca el orden deseado para el filtro (N): "))
-            # print(dimension)
-
-            # data: datos del audio(arreglo de numpy)
-            if dimension == 1:
-                data = data_array
-            else:
-                data = data_array[:, dimension - 1]
-
-            duration = len(data) / sampling_rate
-            high_cutoff = 0
-            time = linspace(0, duration, len(data))
-            originalAudio = Audio(sampling_rate, time, dimension, data,data_array, duration, audio_name, low_cutoff,
-                                  high_cutoff,order)
-            grafic = Graphic()
+            originalAudio.filter = Filter(low_cutoff, 0, order)
             grafic.createGraphics(originalAudio)
             print("\n")
 
@@ -181,9 +139,7 @@ def digitalCodingAndModulation(originalAudio):
         elif choice == "2":
             print("Realizando modulacion FM")
             #Modulacion FM para audios
-            originalAudio = readAudio()
-            modulation = Modulation(0, 0)
-            modulation.fmModulationSound(originalAudio, 10)
+            modulationFM = modulationFM.fmModulationSound(originalAudio, 10, modulationFM)
 
             # Modulacion FM para cosenos
             modulationFM = modulationFM.fmModulation(modulationFM, 7, 100, 50)
@@ -191,7 +147,8 @@ def digitalCodingAndModulation(originalAudio):
 
         elif choice == "3":
             print("Realizando demodulacion AM")
-            modulationAM = modulationAM.demodulatorAMCos(modulationAM)
+            #modulationAM = modulationAM.demodulatorAMCos(modulationAM)
+            modulationAM = modulationAM.demodulatorAM(modulationAM)
             input("Presiona Enter para continuar")
 
         else:
