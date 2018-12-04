@@ -20,6 +20,7 @@ class Modulation:
     function4 = []
     freqSampling = 0
     audio = Audio(0,0,0,0,0,0,0,0,0,0)
+    freqX = 250000
 
     ## - FUNCTIONS - ##
 
@@ -64,12 +65,12 @@ class Modulation:
 
         graphic = Graphic()
         modulation = Modulation(0, 100)
-        modulation.freqSampling = 180 * modulation.freq2
+        modulation.freqSampling = 18 * modulation.freq2
         modulation.audio = modulatingSignal
 
         #print("El largo del audio es: " + str(len(modulatingSignal.data_array)))
 
-        carrier_signal_time = linspace(0, modulatingSignal.duration, 250000*modulatingSignal.duration)
+        carrier_signal_time = linspace(0, modulatingSignal.duration, modulation.freqX*modulatingSignal.duration)
         #print(carrier_signal_time)
         #print ( "El largo es: " + str(len(carrier_signal_time) ))
         modulation.time = carrier_signal_time
@@ -89,7 +90,7 @@ class Modulation:
 
         graphic.generateGraphics4(modulation.function1,modulation.function2,modulation.function3, modulation.time, "Grafico de tiempo de señal modulada de audio"  + modulation.audio.audio_name)
         #  (Descomentar despues se demora)
-        graphic.generateGraphics5(modulation.function1, modulation.function2, modulation.function3, modulation.freqSampling, "Grafico de tranformada de fourier de señal modulada de audio " + modulation.audio.audio_name)
+        #graphic.generateGraphics5(modulation.function1, modulation.function2, modulation.function3, modulation.freqSampling, "Grafico de tranformada de fourier de señal modulada de audio " + modulation.audio.audio_name)
 
         return modulation
 
@@ -101,9 +102,9 @@ class Modulation:
         #print(demoduleAM)
 
         modulation.function4 = demoduleAM
-        audio = Audio(modulation.freqSampling, 0,0, demoduleAM, demoduleAM, modulation.time, modulation.audio.audio_name, (modulation.freq2 + (modulation.freq2 / 2)), 0, 8)
+        audio = Audio(modulation.freqSampling, 0,0, demoduleAM, demoduleAM, modulation.time, modulation.audio.audio_name, 5 * modulation.freq2 , 0, 8)
 
-        graphic.generateGraphics4(modulation.function1, modulation.function3, demoduleAM, modulation.time, "Grafico de tiempo de señal demodulada de audio" + modulation.audio.audio_name)
+        #graphic.generateGraphics4(modulation.function1, modulation.function3, demoduleAM, modulation.time, "Grafico de tiempo de señal demodulada de audio" + modulation.audio.audio_name)
         graphic.generateGraphics6(modulation, audio, "Grafico de transformada de fourier de señal demodulada de audio" + modulation.audio.audio_name)
 
         newDemo = interp(modulation.audio.time, modulation.time, demoduleAM)

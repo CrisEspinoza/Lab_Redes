@@ -103,7 +103,7 @@ def signalAnaysisMenu ():
             low_cutoff = float(input("Introduzca la frecuencia de filtro bajo (Hz): "))
             order = float(input("Introduzca el orden deseado para el filtro (N): "))
             originalAudio.filter = Filter(low_cutoff, 0, order)
-            grafic.createGraphics(originalAudio)
+            #grafic.createGraphics(originalAudio)
             print("\n")
 
         else:
