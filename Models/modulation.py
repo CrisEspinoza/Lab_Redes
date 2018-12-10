@@ -3,7 +3,8 @@ from Models.graphic import Graphic
 from Models.audio import Audio
 from Models.archive import Archive
 import numpy as np
-from numpy import linspace, cos, interp
+import matplotlib.pyplot as plt
+from numpy import linspace, interp
 import scipy.integrate as integrate
 import os
 
@@ -130,7 +131,7 @@ class Modulation:
         phase = k * (integrate.cumtrapz(modulation.function1, modulation.time, initial=0))
         print(phase)
 
-        modulated_signal = np.cos( (2 * np.pi * fc * modulation.time) + phase)
+        modulated_signal = np.cos((2 * np.pi * fc * modulation.time) + phase)
         modulation.function3 = modulated_signal
 
         graphic.generateGraphics7(modulation, "Grafico de tiempo de modulacion FM de cosenos")
@@ -147,7 +148,7 @@ class Modulation:
         newLen = len(newData)
         timesCarrier = linspace(0, len(originalAudio.data_array) / originalAudio.sampling_rate, newLen)
         #print(newLen)
-        fc = 80000
+        fc = 0.7*originalAudio.sampling_rate
         w = fc*timesCarrier
         integral = integrate.cumtrapz(newData, timesCarrier, initial=0)
         result = np.cos(2*np.pi * w + k * integral)
@@ -158,14 +159,14 @@ class Modulation:
         modulation.freq1 = fc
         modulation.audio = originalAudio
 
-        graphic.generateGraphics9(originalAudio,timesCarrier,result, "Grafico de tiempo de modulacion FM de audio " + modulation.audio.audio_name)
+        graphic.generateGraphics9(newData,timesCarrier,result, "Grafico de tiempo de modulacion FM de audio " + modulation.audio.audio_name)
         graphic.generateGraphics10(originalAudio,fc,result, "Grafico de frecuencia de modulacion FM de audio " + modulation.audio.audio_name)
 
         #plt.subplot(311)
-        #plt.plot(originalAudio.time, originalAudio.data_array, linewidth=0.5)
+        #plt.plot(originalAudio.time[10000:10500], originalAudio.data_array[10000:10500], linewidth=0.5)
         #plt.title("senal del mensaje")
         #plt.subplot(312)
-        #plt.plot(timesCarrier, result, linewidth=0.5)
+        #plt.plot(timesCarrier[10000:10500], result[10000:10500], linewidth=0.5)
         #plt.title("modulacion fm")
         #plt.savefig(os.getcwd() + "/Salida/fmModulation.png")
         #plt.show()
