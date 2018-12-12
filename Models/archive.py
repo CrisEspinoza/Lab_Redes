@@ -42,7 +42,7 @@ class Archive:
 
 
     def saveWav(self,title, rate, data):
-        x = data.astype('int16')
-        write(title, rate, x)
+        #x = data.astype('int16')
+        write(title, rate, data)
 
 

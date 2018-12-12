@@ -382,6 +382,53 @@ class Graphic:
         plt.show()
 
 
+    def generateGraphics11 (self, title, cos1, cos2, askModulation,timeCos, timeModulation):
+        print("\n")
+        print("Realizando el grafico de conjunto numero 4")
+        print("El cual contiene los grafico de tiempo de cada una de las señales ha analizar")
+        print("\n")
+        plt.figure(1)
+        plt.subplot(311)
+        self.makeGraphic("Señal Moduladora","Tiempo",timeCos,"Amplitud",cos1,5,5)
+        plt.subplot(312)
+        self.makeGraphic("Señal Portadora","Tiempo",timeCos,"Amplitud",cos2,3,3)
+        plt.subplot(313)
+        self.makeGraphic("Señal Modulada","Tiempo",timeModulation,"Amplitud",askModulation,7,7)
+        plt.tight_layout()
+        plt.savefig(os.getcwd() + "/Salida/_" + title +".png")
+        plt.show()
+        # Realizando graficos individuales
+        self.makeGraphic("Señal Moduladora", "Tiempo", timeCos, "Amplitud", cos1, 5, 5)
+        plt.show()
+        self.makeGraphic("Señal Portadora", "Tiempo", timeCos, "Amplitud", cos2, 3, 3)
+        plt.show()
+        self.makeGraphic("Señal Modulada", "Tiempo", timeModulation, "Amplitud", askModulation, 7, 7)
+        plt.show()
+
+    def generateGraphics12 (self, modulation, title):
+        print("\n")
+        print("Realizando el grafico de conjunto numero 4")
+        print("El cual contiene los grafico de tiempo de cada una de las señales ha analizar")
+        print("\n")
+        plt.figure(1)
+        plt.subplot(311)
+        self.makeGraphic("Señal Moduladora","Tiempo",modulation.ask_time2,"Amplitud",modulation.ask_function3,5,5)
+        plt.subplot(312)
+        self.makeGraphic("Señal Portadora","Tiempo",modulation.ask_time2,"Amplitud",modulation.noise,3,3)
+        plt.subplot(313)
+        self.makeGraphic("Señal Modulada","Tiempo",modulation.ask_time2,"Amplitud",modulation.ask_function4,7,7)
+        plt.tight_layout()
+        plt.savefig(os.getcwd() + "/Salida/_" + title +".png")
+        plt.show()
+        # Realizando graficos individuales
+        #self.makeGraphic("Señal Moduladora","Tiempo",modulation.ask_time1,"Amplitud",modulation.ask_function1,5,5)
+        #plt.show()
+        #self.makeGraphic("Señal Portadora","Tiempo",modulation.ask_time1,"Amplitud",modulation.noise,3,3)
+        #plt.show()
+        #self.makeGraphic("Señal Modulada","Tiempo",modulation.ask_time2,"Amplitud",modulation.ask_function4,7,7)
+        #plt.show()
+
+
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: SingleGraphics
     # - DESCRIPTION: Genera todos los graficos de manera separada

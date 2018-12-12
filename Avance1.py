@@ -22,12 +22,13 @@ def menuPrincipal():
         print("\n")
         print("******** Les mostramos las distintas etapas del programa desarrollado*******")
         print("1. Analisis de señales")
-        print("2. Codificacion y modulacion digital")
-        print("3. Recepción y demodulación")
-        print("4. Protocolos de enlace y acceso al medio")
-        print("5. Protocolo de red y prototipo final")
-        print("6. Creditos")
-        print("7. Salir")
+        print("2. Codificacion")
+        print("3. Modulacion digital")
+        print("4. Recepción y demodulación")
+        print("5. Protocolos de enlace y acceso al medio")
+        print("6. Protocolo de red y prototipo final")
+        print("7. Creditos")
+        print("8. Salir")
         print("\n")
 
         choice = input("Ingrese opcion a realizar: ")
@@ -39,7 +40,7 @@ def menuPrincipal():
 
         elif choice == "2":
             if aux == 1:
-                digitalCodingAndModulation(originalAudio)
+                digitalCoding(originalAudio)
                 input("Presiona Enter para continuar")
             else:
                 print("Primero debe cargaro un audio para continuar (Opción numero 1)")
@@ -47,17 +48,28 @@ def menuPrincipal():
 
         elif choice == "3":
             print("Parte 3")
-            input("Presiona Enter para continuar")
+
+            digital()
+            if aux == 1:
+                digital()
+                input("Presiona Enter para continuar")
+            else:
+                print("Primero debe cargaro un audio para continuar (Opción numero 1)")
+                input("Presione Enter para continuar")
 
         elif choice == "4":
             print("Parte 4")
             input("Presiona Enter para continuar")
 
         elif choice == "5":
-            print("Parte 5")
+            print("Parte 6")
             input("Presiona Enter para continuar")
 
         elif choice == "6":
+            print("Parte 6")
+            input("Presiona Enter para continuar")
+
+        elif choice == "7":
             print("\n")
             print("\n")
             print("********************************")
@@ -113,7 +125,7 @@ def signalAnaysisMenu ():
             print("\n")
             return originalAudio
 
-def digitalCodingAndModulation(originalAudio):
+def digitalCoding(originalAudio):
 
     choice = '0'
     modulationAM = Modulation(0, 0)
@@ -157,6 +169,115 @@ def digitalCodingAndModulation(originalAudio):
             print(" Volviendo al menu inicial")
             print("\n")
             return modulationFM, modulationAM
+
+def digital():
+
+    modulation = Modulation(0, 0)
+    choice = '0'
+
+    while choice != '-1':
+
+        print("\n")
+        print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
+        print("1. Modulacion")
+        print("2. Demodulacion")
+        print("3. Volver")
+        print("\n")
+
+        choice = input("Ingrese opcion a realizar: ")
+
+        if choice == "1":
+            print("Opcion 1")
+            modulation = digitalModulation()
+
+        elif choice == "2":
+            print("Opcion 2")
+            modulation = digitalDemodulation(modulation)
+        else:
+            choice = "-1"
+            print("\n")
+            print(" Volviendo al menu inicial")
+            print("\n")
+            return modulation
+
+def digitalModulation():
+
+    modulation = Modulation(0,0)
+    choice = '0'
+
+    while choice != '-1':
+
+        print("\n")
+        print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
+        print("1. Modulacion ask")
+        print("1. Modulacion fsk")
+        print("1. Modulacion psk")
+        print("4. Volver")
+        print("\n")
+
+        choice = input("Ingrese opcion a realizar: ")
+
+        if choice == "1":
+            print("Opcion 1")
+            modulation = modulation.askModulation(modulation)
+
+        elif choice == "2":
+            print("Opcion 2")
+            modulation = modulation.fskModulation(modulation)
+
+        elif choice == "3":
+            print("Opcion 3")
+            modulation = modulation.pskModulation(modulation)
+
+        else:
+            choice = "-1"
+            print("\n")
+            print(" Volviendo al menu anterior")
+            print("\n")
+            return modulation
+
+def digitalDemodulation(modulation):
+
+    graphic = Graphic()
+    choice = '0'
+
+    while choice != '-1':
+
+        print("\n")
+        print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
+        print("1. Demodulacion ask")
+        print("1. Demodulacion fsk")
+        print("1. Demodulacion psk")
+        print("4. Volver")
+        print("\n")
+
+        choice = input("Ingrese opcion a realizar: ")
+
+        if choice == "1":
+            print("Opcion 1")
+            print("Aplicando ruido")
+            modulation.ask_function4, modulation.noise = modulation.addNoise(modulation.ask_function3)
+            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+
+        elif choice == "2":
+            print("Opcion 2")
+            print("Aplicando ruido")
+            modulation.fsk_function4, modulation.noise = modulation.addNoise(modulation.fsk_function3)
+            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+
+        elif choice == "3":
+            print("Opcion 3")
+            print("Aplicando ruido")
+            modulation.psk_function4, modulation.noise = modulation.addNoise(modulation.psk_function3)
+            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+
+        else:
+            choice = "-1"
+            print("\n")
+            print(" Volviendo al menu anterior")
+            print("\n")
+            return modulation
+
 
 if __name__ == '__main__':
     main()

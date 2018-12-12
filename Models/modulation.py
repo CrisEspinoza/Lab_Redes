@@ -3,9 +3,11 @@ from Models.graphic import Graphic
 from Models.audio import Audio
 from Models.archive import Archive
 import numpy as np
-from numpy import linspace, cos, interp
+from numpy import linspace, cos, interp, random
 import scipy.integrate as integrate
 import os
+import math
+import matplotlib.pyplot as plt
 
 class Modulation:
 
@@ -21,6 +23,25 @@ class Modulation:
     freqSampling = 0
     audio = Audio(0,0,0,0,0,0,0,0,0,0)
     freqX = 250000
+    ask_function1 = []
+    ask_function2 = []
+    ask_function3 = []
+    ask_function4 = []
+    ask_time1 = []
+    ask_time2 = []
+    fsk_function1 = []
+    fsk_function2 = []
+    fsk_function3 = []
+    fsk_function4 = []
+    fsk_time1 = []
+    fsk_time2 = []
+    psk_function1 = []
+    psk_function2 = []
+    psk_function3 = []
+    psk_function4 = []
+    psk_time1 = []
+    psk_time2 = []
+    noise = []
 
     ## - FUNCTIONS - ##
 
@@ -171,6 +192,159 @@ class Modulation:
         #plt.show()
 
         return modulation
+
+    def askModulation(self,modulation):
+
+        x = [0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1]
+
+        #frecuencia = input("Ingrese la frecuencia a utilizar")
+        #fc = frecuencia
+
+        fc = 1000 # her
+        tb = 10 # bit por segundo
+        fs = 4.5 * fc # FRECUENCIA DE MUESTREO
+        t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
+
+        amplitud1 = input("Ingrese la amplitud numero 1: ")
+        amplitud2 = input("Ingrese la amplitud numero 2: ")
+
+        c1 = float(amplitud1) * np.cos(2 * np.pi * fc * t)
+        c2 = float(amplitud2) * np.cos(2 * np.pi * fc * t)
+
+        y = []
+
+        for b in x:
+            if b:
+                y.extend(c1)
+            else:
+                y.extend(c2)
+
+        y = np.array(y)
+        t = np.array(t)
+        x = linspace(0, 1/tb, int(len(t)) * len(x))
+
+        archive = Archive(0)
+        # Realizando el audio de salida
+        name = "audio"
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_ask.wav",int(fs),y)
+
+        #Realizando el grafico
+        graphic = Graphic()
+        graphic.generateGraphics11("Modulacion ask",c1,c2,y,t,x)
+
+        modulation.ask_function1 = c1
+        modulation.ask_function2 = c2
+        modulation.ask_function3 = y
+        modulation.ask_time1 = t
+        modulation.ask_time2 = x
+
+        return modulation
+
+    def fskModulation(self,modulation):
+
+        x = [0, 1, 0, 0, 1, 0, 1, 0, 0, 1,0, 1, 0, 0, 1, 0, 1, 0, 0, 1,0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
+
+        #frecuencia = input("Ingrese la frecuencia a utilizar: ")
+        #fc = frecuencia
+
+        fc = 1000 # her
+        tb = 10 # bit por segundo
+        fs = 4.5 * fc # FRECUENCIA DE MUESTREO
+        t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
+
+        amplitud = input("Ingrese la amplitud a utilizar: ")
+
+        c1 = float(amplitud) * np.cos(2 * np.pi * fc/2 * t)
+        c2 = float(amplitud) * np.cos(2 * np.pi * fc * t)
+        y = []
+
+        for b in x:
+            if b:
+                y.extend(c1)
+            else:
+                y.extend(c2)
+
+        y = np.array(y)
+        t = np.array(t)
+        x = linspace(0, 1/tb, int(len(t)) * len(x))
+
+        archive = Archive(0)
+        # Realizando el audio de salida
+        name = "audio"
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/"+ name + "_fsk.wav",int(fs),y)
+
+        #Realizando el grafico
+        graphic = Graphic()
+        graphic.generateGraphics11("Modulacion fsk",c1,c2,y,t,x)
+
+        modulation.fsk_function1 = c1
+        modulation.fsk_function2 = c2
+        modulation.fsk_function3 = y
+        modulation.fsk_time1 = t
+        modulation.fsk_time2 = x
+
+        return modulation
+
+
+    def pskModulation(self,modulation):
+
+        x = [0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1]
+
+        #frecuencia = input("Ingrese la frecuencia a utilizar: ")
+        #fc = frecuencia
+
+        fc = 1000 # her
+        tb = 10 # bit por segundo
+        fs = 4.5 * fc # FRECUENCIA DE MUESTREO
+        t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
+
+        amplitud = input("Ingrese amplitud a utilizar: ")
+        grados = input("Ingrese fase a desfasar (en grados) : ")
+
+        phase = float(math.radians(int(grados)))
+
+        c1 = float(amplitud) * np.cos(2 * np.pi * fc/2 * t)
+        c2 = float(amplitud) * np.cos( (2 * np.pi * fc * t) + phase)
+        y = []
+
+        for b in x:
+            if b:
+                y.extend(c1)
+            else:
+                y.extend(c2)
+
+        y = np.array(y)
+        t = np.array(t)
+        x = linspace(0, 1/tb, int(len(t)) * len(x))
+
+        archive = Archive(0)
+        # Realizando el audio de salida
+        name = "audio"
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_psk.wav",int(fs),y)
+
+        #Realizando el grafico
+        graphic = Graphic()
+        graphic.generateGraphics11("Modulacion psk",c1,c2,y,t,x)
+
+        modulation.psk_function1 = c1
+        modulation.psk_function2 = c2
+        modulation.psk_function3 = y
+        modulation.psk_time1 = t
+        modulation.psk_time2 = x
+
+        return modulation
+
+    def addNoise(self,signal):
+
+        noise = random.normal(0.0, 0.1, len(signal))
+        signal = signal + noise
+        return noise + signal, noise
+
+
+
+
+
+
 
 
 
