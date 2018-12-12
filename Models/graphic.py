@@ -338,7 +338,7 @@ class Graphic:
         trans2 = self.frequencyGraphic(modulation.function3, modulation.freqSampling, "Modulacion FM", 4, 3)
         plt.show()
 
-    def generateGraphics9 (self, originalAudio,timeCarrier,result,title):
+    def generateGraphics9 (self, newData,timeCarrier,result,title):
         print("\n")
         print("Realizando el grafico de conjunto numero 9")
         print("El cual contiene los grafico de tiempo del audio representadno a la señal moduladora y la señal modulada por FM")
@@ -347,15 +347,28 @@ class Graphic:
         plt.figure(1)
         plt.subplot(211)
         p2 = plt.plot(linewidth = 1)
-        self.makeGraphic("Moduladora", "Tiempo[s]", originalAudio.time, "Amplitud[Bd]", originalAudio.data_array, 5, 5)
+        self.makeGraphic("Moduladora", "Tiempo[s]", timeCarrier, "Amplitud[Bd]", newData, 5, 5)
         plt.subplot(212)
         p2 = plt.plot(linewidth = 1)
         self.makeGraphic("Modulacion FM", "Tiempo[s]", timeCarrier, "Amplitud[Bd]", result, 5, 5)
         plt.tight_layout()
         plt.savefig(os.getcwd() + "/Salida/" + title +".png")
         plt.show()
+
+        plt.figure(2)
+        plt.subplot(211)
+        p2 = plt.plot(linewidth=1)
+        self.makeGraphic("Moduladora extracto", "Tiempo[s]", timeCarrier[100000:101000], "Amplitud[Bd]",
+                         newData[100000:101000], 5, 5)
+        plt.subplot(212)
+        p2 = plt.plot(linewidth=1)
+        self.makeGraphic("Modulacion FM extracto", "Tiempo[s]", timeCarrier[100000:101000], "Amplitud[Bd]"
+                         ,result[100000:101000], 5, 5)
+        plt.tight_layout()
+        plt.savefig(os.getcwd() + "/Salida/" + title + " extracto.png")
+        plt.show()
         # Realizando graficos indivuales
-        self.makeGraphic("Moduladora", "Tiempo[s]", originalAudio.time, "Amplitud[Bd]", originalAudio.data_array, 5, 5)
+        self.makeGraphic("Moduladora", "Tiempo[s]", timeCarrier, "Amplitud[Bd]", newData, 5, 5)
         plt.show()
         self.makeGraphic("Modulacion FM", "Tiempo[s]", timeCarrier, "Amplitud[Bd]", result, 5, 5)
         plt.show()
@@ -371,14 +384,14 @@ class Graphic:
         trans1 = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, "Moduladora", 4, 3)
         plt.subplot(212)
         p2 = plt.plot(linewidth = 1)
-        trans2 = self.frequencyGraphic(result, frecuencia, "Modulacion FM", 4, 3)
+        trans2 = self.frequencyGraphic(result, originalAudio.sampling_rate, "Modulacion FM", 4, 3)
         plt.tight_layout()
         plt.savefig(os.getcwd() + "/Salida/" + title  +".png")
         plt.show()
         # Realizando graficos indivuales
         trans1 = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, "Moduladora", 4, 3)
         plt.show()
-        trans2 = self.frequencyGraphic(result, frecuencia, "Modulacion FM", 4, 3)
+        trans2 = self.frequencyGraphic(result, originalAudio.sampling_rate, "Modulacion FM", 4, 3)
         plt.show()
 
 

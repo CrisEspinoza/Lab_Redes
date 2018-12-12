@@ -151,10 +151,10 @@ def digitalCoding(originalAudio):
         elif choice == "2":
             print("Realizando modulacion FM")
             #Modulacion FM para audios
-            modulationFM = modulationFM.fmModulationSound(originalAudio, 10, modulationFM)
+            modulationFM = modulationFM.fmModulationSound(originalAudio, 2, modulationFM)
 
             # Modulacion FM para cosenos
-            modulationFM = modulationFM.fmModulation(modulationFM, 7, 100, 50)
+            modulationFM = modulationFM.fmModulation(modulationFM, 7, 100, 100)
             input("Presiona Enter para continuar")
 
         elif choice == "3":
