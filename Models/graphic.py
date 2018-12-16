@@ -289,7 +289,7 @@ class Graphic:
         plt.subplot(413)
         newdata, fft = graphic.lowpassFilteredGraphic(audio, audio.filter.low_cutoff, audio.filter.order)
         plt.subplot(414)
-        graphic.inverseGraphic(modulation.freqX, 2*fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
+        graphic.inverseGraphic(modulation.freqSampling, 2*fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
         plt.tight_layout()
         plt.savefig(os.getcwd() + "/Salida/" + "Grafico_Frecuencia Demodulacion AM" + title +".png")
         plt.show()
@@ -300,7 +300,7 @@ class Graphic:
         newdata, fft = graphic.lowpassFilteredGraphic(audio, audio.filter.low_cutoff, audio.filter.order)
         plt.savefig(os.getcwd() + "/Salida/" + "Grafico_Filtro paso bajo"  + title + "_" + str(audio.filter.low_cutoff) + "_" + str(audio.filter.order) + ".png")
         plt.show()
-        graphic.inverseGraphic(modulation.freqX, 2 * fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
+        graphic.inverseGraphic(modulation.freqSampling, 2 * fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
         plt.savefig(os.getcwd() + "/Salida/" + "Grafico_audio original_"  + title + "_" + str(audio.filter.low_cutoff) + "_" + str(audio.filter.order) + ".png")
         plt.show()
 
