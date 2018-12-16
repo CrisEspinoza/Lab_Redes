@@ -111,7 +111,7 @@ class Modulation:
 
         graphic.generateGraphics4(modulation.function1,modulation.function2,modulation.function3, modulation.time, modulation.audio.audio_name)
         #  (Descomentar despues se demora)
-        #graphic.generateGraphics5(modulation.function1, modulation.function2, modulation.function3, modulation.freqSampling, "Grafico de tranformada de fourier de señal modulada de audio " + modulation.audio.audio_name)
+        graphic.generateGraphics5(modulation.function1, modulation.function2, modulation.function3, modulation.freqSampling, modulation.audio.audio_name)
 
         return modulation
 
