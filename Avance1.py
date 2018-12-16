@@ -144,8 +144,8 @@ def digitalCoding(originalAudio):
 
         if choice == "1":
             print("Realizando modulacion AM\n")
-            #modulationAM = modulationAM.amModulationCos(7, 100)
-            modulationAM = modulationAM.amModulation(originalAudio)
+            modulationAM = modulationAM.amModulationCos(7, 100)
+            #modulationAM = modulationAM.amModulation(originalAudio)
             input("Presiona Enter para continuar")
 
         elif choice == "2":
@@ -159,8 +159,8 @@ def digitalCoding(originalAudio):
 
         elif choice == "3":
             print("Realizando demodulacion AM")
-            #modulationAM = modulationAM.demodulatorAMCos(modulationAM)
-            modulationAM = modulationAM.demodulatorAM(modulationAM)
+            modulationAM = modulationAM.demodulatorAMCos(modulationAM)
+            #modulationAM = modulationAM.demodulatorAM(modulationAM)
             input("Presiona Enter para continuar")
 
         else:
