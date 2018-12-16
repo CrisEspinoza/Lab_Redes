@@ -222,27 +222,31 @@ class Graphic:
         plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
         plt.show()
 
-    def generateGraphics4 (self, cos, cos2, result, time, title):
+
+    def generateGraphics4(self, cos, cos2, result, time, title):
         print("\n")
         print("Realizando el grafico de conjunto numero 4")
         print("El cual contiene los grafico de tiempo de cada una de las señales ha analizar")
         print("\n")
         plt.figure(1)
         plt.subplot(311)
-        self.makeGraphic("Señal Moduladora","Tiempo",time,"Amplitud",cos,5,5)
+        self.makeGraphic("Señal Moduladora", "Tiempo", time, "Amplitud", cos, 5, 5)
         plt.subplot(312)
-        self.makeGraphic("Señal Portadora","Tiempo",time,"Amplitud",cos2,3,3)
+        self.makeGraphic("Señal Portadora", "Tiempo", time, "Amplitud", cos2, 3, 3)
         plt.subplot(313)
-        self.makeGraphic("Señal Modulada","Tiempo",time,"Amplitud",result,7,7)
+        self.makeGraphic("Señal Modulada", "Tiempo", time, "Amplitud", result, 7, 7)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/_" + title +".png")
+        plt.savefig(os.getcwd() + "/Salida/_" + "Graficos_Tiempo_Modulacion_AM_" + title + ".png")
         plt.show()
         # Realizando graficos individuales
         self.makeGraphic("Señal Moduladora", "Tiempo", time, "Amplitud", cos, 5, 5)
+        plt.savefig(os.getcwd() + "/Salida/_" + "Grafico_Tiempo_Moduladora_" + title + ".png")
         plt.show()
         self.makeGraphic("Señal Portadora", "Tiempo", time, "Amplitud", cos2, 3, 3)
+        plt.savefig(os.getcwd() + "/Salida/_" + "Grafico_Tiempo_Portadora_" + title + ".png")
         plt.show()
         self.makeGraphic("Señal Modulada", "Tiempo", time, "Amplitud", result, 7, 7)
+        plt.savefig(os.getcwd() + "/Salida/_" + "Grafico_Tiempo_Modulada_" + title + ".png")
         plt.show()
 
     def generateGraphics5 (self, cos, cos2, result, freqSampling,title):
