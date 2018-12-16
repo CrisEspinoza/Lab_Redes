@@ -319,7 +319,7 @@ class Graphic:
         p1 = plt.plot(linewidth = 2)
         self.makeGraphic("Modulacion FM", "Tiempo", modulation.time, "Señal portadora", modulation.function3, 5, 5)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/" + title +".png")
+        plt.savefig(os.getcwd() + "/Salida/" + title + ".png")
         plt.show()
         # Realizando graficos indivuales
         self.makeGraphic("Moduladora", "Tiempo", modulation.time, "Señal moduladora coseno de Freq. " + str(modulation.freq1),modulation.function1, 5, 5)
@@ -362,7 +362,7 @@ class Graphic:
         p2 = plt.plot(linewidth = 1)
         self.makeGraphic("Modulacion FM", "Tiempo[s]", timeCarrier, "Amplitud[Bd]", result, 5, 5)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/" + title +".png")
+        plt.savefig(os.getcwd() + "/Salida/" + title + ".png")
         plt.show()
 
         plt.figure(2)
@@ -396,7 +396,7 @@ class Graphic:
         p2 = plt.plot(linewidth = 1)
         trans2 = self.frequencyGraphic(result, originalAudio.sampling_rate, "Modulacion FM", 4, 3)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/" + title  +".png")
+        plt.savefig(os.getcwd() + "/Salida/" + title + ".png")
         plt.show()
         # Realizando graficos indivuales
         trans1 = self.frequencyGraphic(originalAudio.data_array, originalAudio.sampling_rate, "Moduladora", 4, 3)
@@ -418,7 +418,7 @@ class Graphic:
         plt.subplot(313)
         self.makeGraphic("Señal Modulada","Tiempo",timeModulation,"Amplitud",askModulation,7,7)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/_" + title +".png")
+        plt.savefig(os.getcwd() + "/Salida/" + title +".png")
         plt.show()
         # Realizando graficos individuales
         self.makeGraphic("Señal Moduladora", "Tiempo", timeCos, "Amplitud", cos1, 5, 5)
@@ -441,7 +441,7 @@ class Graphic:
         plt.subplot(313)
         self.makeGraphic("Señal Modulada","Tiempo",modulation.ask_time2,"Amplitud",modulation.ask_function4,7,7)
         plt.tight_layout()
-        plt.savefig(os.getcwd() + "/Salida/_" + title +".png")
+        plt.savefig(os.getcwd() + "/Salida/" + title +".png")
         plt.show()
         # Realizando graficos individuales
         #self.makeGraphic("Señal Moduladora","Tiempo",modulation.ask_time1,"Amplitud",modulation.ask_function1,5,5)

@@ -182,15 +182,6 @@ class Modulation:
         graphic.generateGraphics9(newData,timesCarrier,result, "Grafico de tiempo de modulacion FM de audio " + modulation.audio.audio_name)
         graphic.generateGraphics10(originalAudio,fc,result, "Grafico de frecuencia de modulacion FM de audio " + modulation.audio.audio_name)
 
-        #plt.subplot(311)
-        #plt.plot(originalAudio.time[10000:10500], originalAudio.data_array[10000:10500], linewidth=0.5)
-        #plt.title("senal del mensaje")
-        #plt.subplot(312)
-        #plt.plot(timesCarrier[10000:10500], result[10000:10500], linewidth=0.5)
-        #plt.title("modulacion fm")
-        #plt.savefig(os.getcwd() + "/Salida/fmModulation.png")
-        #plt.show()
-
         return modulation
 
     def askModulation(self,modulation):
