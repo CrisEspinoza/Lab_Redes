@@ -249,7 +249,7 @@ class Graphic:
         plt.savefig(os.getcwd() + "/Salida/_" + "Grafico_Tiempo_Modulada_" + title + ".png")
         plt.show()
 
-    def generateGraphics5 (self, cos, cos2, result, freqSampling, title):
+    def generateGraphics5 (self, cos, cos2, result, freqSampling,title):
         print("\n")
         print("Realizando el grafico de conjunto numero 5")
         print("El cual contiene los grafico de frecuencia de cada una de las señales analizadas")
@@ -266,13 +266,13 @@ class Graphic:
         plt.show()
         # Realizando graficos indivuales
         self.frequencyGraphic(cos, freqSampling, "Señal moduladora", 4, 3)
-        plt.savefig(os.getcwd() + "/Salida/_" + "Grafico_Freuencia_Moduladora_" + title + ".png")
+        plt.savefig(os.getcwd() + "/Salida/"+ "Grafico_Frecuencia Moduladora_" + title + ".png")
         plt.show()
         trans2 = self.frequencyGraphic(cos2, freqSampling, "Señal portadora", 4, 3)
-        plt.savefig(os.getcwd() + "/Salida/_" + "Grafico_Frecuencia_Portadora_" + title + ".png")
+        plt.savefig(os.getcwd() + "/Salida/"+ "Grafico_Frecuencia Portadora" + title + ".png")
         plt.show()
         self.frequencyGraphic(result, freqSampling, "Señal modulada", 4, 3)
-        plt.savefig(os.getcwd() + "/Salida/_" + "Grafico_Frecuencia_Modulada_" + title + ".png")
+        plt.savefig(os.getcwd() + "/Salida/"+ "Grafico_Frecuencia Modulada_" + title + ".png")
         plt.show()
 
     def generateGraphics6 (self, modulation, audio, title):
@@ -289,7 +289,7 @@ class Graphic:
         plt.subplot(413)
         newdata, fft = graphic.lowpassFilteredGraphic(audio, audio.filter.low_cutoff, audio.filter.order)
         plt.subplot(414)
-        graphic.inverseGraphic(modulation.freqSampling, 2*fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
+        graphic.inverseGraphic(modulation.freqX, 2*fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
         plt.tight_layout()
         plt.savefig(os.getcwd() + "/Salida/" + "Grafico_Frecuencia Demodulacion AM" + title +".png")
         plt.show()
@@ -300,7 +300,7 @@ class Graphic:
         newdata, fft = graphic.lowpassFilteredGraphic(audio, audio.filter.low_cutoff, audio.filter.order)
         plt.savefig(os.getcwd() + "/Salida/" + "Grafico_Filtro paso bajo"  + title + "_" + str(audio.filter.low_cutoff) + "_" + str(audio.filter.order) + ".png")
         plt.show()
-        graphic.inverseGraphic(modulation.freqSampling, 2 * fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
+        graphic.inverseGraphic(modulation.freqX, 2 * fft, "demodulacion", audio.filter.low_cutoff, audio.filter.order)
         plt.savefig(os.getcwd() + "/Salida/" + "Grafico_audio original_"  + title + "_" + str(audio.filter.low_cutoff) + "_" + str(audio.filter.order) + ".png")
         plt.show()
 
