@@ -85,7 +85,7 @@ class Modulation:
     def amModulation (self, modulatingSignal):
 
         graphic = Graphic()
-        modulation = Modulation(0, 100)
+        modulation = Modulation(0, 1000)
         modulation.freqSampling = 18 * modulation.freq2
         modulation.audio = modulatingSignal
 
@@ -123,9 +123,9 @@ class Modulation:
         #print(demoduleAM)
 
         modulation.function4 = demoduleAM
-        audio = Audio(modulation.freqSampling, 0,0, demoduleAM, demoduleAM, modulation.time, modulation.audio.audio_name, 5 * modulation.freq2 , 0, 8)
+        audio = Audio(modulation.freqSampling,0, 0, demoduleAM, demoduleAM, modulation.time, modulation.audio.audio_name, (modulation.freq2 + (modulation.freq2/2) ), 0, 8)
 
-        #graphic.generateGraphics4(modulation.function1, modulation.function3, demoduleAM, modulation.time, "Grafico de tiempo de señal demodulada de audio" + modulation.audio.audio_name)
+        graphic.generateGraphics4(modulation.function1, modulation.function3, demoduleAM, modulation.time, "Grafico de tiempo de señal demodulada de audio" + modulation.audio.audio_name)
         graphic.generateGraphics6(modulation, audio, "Grafico de transformada de fourier de señal demodulada de audio" + modulation.audio.audio_name)
 
         newDemo = interp(modulation.audio.time, modulation.time, demoduleAM)
