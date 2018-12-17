@@ -85,7 +85,7 @@ class Modulation:
     def amModulation (self, modulatingSignal):
 
         graphic = Graphic()
-        modulation = Modulation(0, 100)
+        modulation = Modulation(0, 1000)
         modulation.freqSampling = 18 * modulation.freq2
         modulation.audio = modulatingSignal
 
@@ -105,7 +105,6 @@ class Modulation:
         modulation.function2 = carrier_signal
 
         modulated_signal = carrier_signal * new_data
-        #print(modulated_signal)
         #print("El largo de la new_data es: "+ str(len(modulated_signal)))
         modulation.function3 = modulated_signal
 
