@@ -257,19 +257,19 @@ def digitalDemodulation(modulation):
             print("Opcion 1")
             print("Aplicando ruido")
             modulation.ask_function4, modulation.noise = modulation.addNoise(modulation.ask_function3)
-            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+            graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.ask_time2, modulation.ask_function3, modulation.ask_function4, modulation.noise)
 
         elif choice == "2":
             print("Opcion 2")
             print("Aplicando ruido")
             modulation.fsk_function4, modulation.noise = modulation.addNoise(modulation.fsk_function3)
-            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+            graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.fsk_time2, modulation.fsk_function3, modulation.fsk_function4, modulation.noise)
 
         elif choice == "3":
             print("Opcion 3")
             print("Aplicando ruido")
             modulation.psk_function4, modulation.noise = modulation.addNoise(modulation.psk_function3)
-            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+            graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.psk_time1, modulation.psk_function3, modulation.psk_function4, modulation.noise)
 
         else:
             choice = "-1"
