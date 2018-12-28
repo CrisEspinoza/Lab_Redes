@@ -191,7 +191,7 @@ class Modulation:
         #frecuencia = input("Ingrese la frecuencia a utilizar")
         #fc = frecuencia
 
-        fc = 1000 # her
+        fc = 1000 # herz
         tb = 10 # bit por segundo
         fs = 4.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
@@ -327,9 +327,11 @@ class Modulation:
 
     def addNoise(self,signal):
 
-        noise = random.normal(0.0, 0.1, len(signal))
+        noise = random.normal(0.0, 1.6, len(signal))
         signal = signal + noise
-        return noise + signal, noise
+        return signal, noise
+
+
 
 
 
