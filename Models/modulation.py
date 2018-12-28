@@ -105,7 +105,6 @@ class Modulation:
         modulation.function2 = carrier_signal
 
         modulated_signal = carrier_signal * new_data
-        #print(modulated_signal)
         #print("El largo de la new_data es: "+ str(len(modulated_signal)))
         modulation.function3 = modulated_signal
 
