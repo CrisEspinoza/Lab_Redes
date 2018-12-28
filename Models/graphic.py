@@ -443,7 +443,7 @@ class Graphic:
         plt.tight_layout()
         plt.savefig(os.getcwd() + "/Salida/_" + title +".png")
         plt.show()
-        # Realizando graficos individuales
+        # # Realizando graficos individuales
         #self.makeGraphic("Señal Moduladora","Tiempo",modulation.ask_time1,"Amplitud",modulation.ask_function1,5,5)
         #plt.show()
         #self.makeGraphic("Señal Portadora","Tiempo",modulation.ask_time1,"Amplitud",modulation.noise,3,3)
