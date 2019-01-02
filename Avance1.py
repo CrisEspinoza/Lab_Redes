@@ -210,8 +210,8 @@ def digitalModulation():
         print("\n")
         print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
         print("1. Modulacion ask")
-        print("1. Modulacion fsk")
-        print("1. Modulacion psk")
+        print("2. Modulacion fsk")
+        print("3. Modulacion psk")
         print("4. Volver")
         print("\n")
 
@@ -246,8 +246,8 @@ def digitalDemodulation(modulation):
         print("\n")
         print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
         print("1. Demodulacion ask")
-        print("1. Demodulacion fsk")
-        print("1. Demodulacion psk")
+        print("2. Demodulacion fsk")
+        print("3. Demodulacion psk")
         print("4. Volver")
         print("\n")
 
@@ -264,6 +264,7 @@ def digitalDemodulation(modulation):
             print("Aplicando ruido")
             modulation.fsk_function4, modulation.noise = modulation.addNoise(modulation.fsk_function3)
             graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.fsk_time2, modulation.fsk_function3, modulation.fsk_function4, modulation.noise)
+            bitArray = modulation.DemulatorFsk(modulation)
 
         elif choice == "3":
             print("Opcion 3")

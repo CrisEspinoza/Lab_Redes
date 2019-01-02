@@ -501,3 +501,12 @@ class Graphic:
 
 
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    def graphicCorr(self, title, rate, data):
+        time = np.arange(len(data)) / rate * 1000
+        plt.title(title, fontsize=12, color='blue')
+        plt.xlabel('Time (ms)', color='red')
+        plt.ylabel('Amplitude (dB)', color='orange')
+        plt.plot(time, data)
+        plt.show()
+

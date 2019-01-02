@@ -3,8 +3,12 @@ from Models.graphic import Graphic
 from Models.audio import Audio
 from Models.archive import Archive
 import numpy as np
+import time
 from numpy import linspace, cos, interp, random
 import scipy.integrate as integrate
+import scipy.signal as signal
+import matplotlib.pyplot as plt
+from numpy import arange
 import os
 import math
 import matplotlib.pyplot as plt
@@ -35,6 +39,8 @@ class Modulation:
     fsk_function4 = []
     fsk_time1 = []
     fsk_time2 = []
+    fsk_tb = 0
+    fsk_fs = 0
     psk_function1 = []
     psk_function2 = []
     psk_function3 = []
@@ -247,7 +253,7 @@ class Modulation:
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 1000 # her
+        fc = 1000 # hertz
         tb = 10 # bit por segundo
         fs = 4.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
@@ -282,6 +288,8 @@ class Modulation:
         modulation.fsk_function3 = y
         modulation.fsk_time1 = t
         modulation.fsk_time2 = x
+        modulation.fsk_tb = 1/tb
+        modulation.fsk_fs = fs
 
         return modulation
 
@@ -333,6 +341,50 @@ class Modulation:
         modulation.psk_time2 = x
 
         return modulation
+
+    def DemulatorFsk(self, modulation):
+        graphic = Graphic()
+
+        c2 = modulation.fsk_function1
+        c1 = modulation.fsk_function2
+        fsk_signal = modulation.fsk_function4
+        corr0 = signal.fftconvolve(fsk_signal, c1, 'same')
+        corr1 = signal.fftconvolve(fsk_signal, c2, 'same')
+
+        t1 = time.time()
+
+        corr0 = modulation.windows_rms(corr0, 101)
+        corr1 = modulation.windows_rms(corr1, 101)
+
+        t2 = time.time()
+
+        #print("TIME: ", t2 - t1)
+
+        bit_position = arange(modulation.fsk_fs * modulation.fsk_tb / 2, len(fsk_signal), modulation.fsk_fs * modulation.fsk_tb).astype(int)
+
+        #print(bit_position)
+
+        bit_array = []
+        for position in bit_position:
+            if corr0[position] < corr1[position]:
+                bit_array.append(1)
+            else:
+                bit_array.append(0)
+
+        title1 = 'Correlator 0'
+        title2 = 'Correlator 1'
+        #graphic.graphicCorr(title1, 44100, corr0)
+        #graphic.graphicCorr(title2, 44100, corr1)
+
+        print(bit_array)
+        return bit_array
+
+    def windows_rms(self, corr, windowssize):
+        corr2 = np.power(corr, 2)
+        window = np.ones(windowssize)/float(windowssize)
+        raiz = np.sqrt(np.convolve(corr2, window, mode='valid'))
+        return raiz
+
 
     def addNoise(self,signal):
 
