@@ -3,14 +3,14 @@ from Models.graphic import Graphic
 from Models.audio import Audio
 from Models.archive import Archive
 import numpy as np
-import time
-from numpy import linspace, cos, interp, random
+from numpy import linspace, cos, interp, random, arange, pi
 import scipy.integrate as integrate
 import scipy.signal as signal
 import matplotlib.pyplot as plt
 from numpy import arange
 import os
 import math
+from scipy import signal
 import matplotlib.pyplot as plt
 
 class Modulation:
@@ -188,55 +188,54 @@ class Modulation:
         graphic.generateGraphics9(newData,timesCarrier,result, "Grafico de tiempo de modulacion FM de audio " + modulation.audio.audio_name)
         graphic.generateGraphics10(originalAudio,fc,result, "Grafico de frecuencia de modulacion FM de audio " + modulation.audio.audio_name)
 
-        #plt.subplot(311)
-        #plt.plot(originalAudio.time[10000:10500], originalAudio.data_array[10000:10500], linewidth=0.5)
-        #plt.title("senal del mensaje")
-        #plt.subplot(312)
-        #plt.plot(timesCarrier[10000:10500], result[10000:10500], linewidth=0.5)
-        #plt.title("modulacion fm")
-        #plt.savefig(os.getcwd() + "/Salida/fmModulation.png")
-        #plt.show()
-
         return modulation
+
+    def generateCarrierSignalAm(self, fr, rate, bit_time):
+        tb = arange(0, bit_time, 1 / rate)
+        #tb = linspace(0,(bit_time*100),rate/(bit_time*100))
+        carrier = cos(2 * pi * fr * tb)
+        return tb, carrier
 
     def askModulation(self,modulation):
 
-        x = [0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1]
+        x = [0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
 
-        #frecuencia = input("Ingrese la frecuencia a utilizar")
-        #fc = frecuencia
+        f = 7000 # herz -> Frecuencia con la que la vamos a probar
+        bit_time = 0.5 # Cantidad de bit por segundo
+        rate = 44100 # Frecuencia de muestreo ( Audio)
 
-        fc = 1000 # her
-        tb = 10 # bit por segundo
-        fs = 4.5 * fc # FRECUENCIA DE MUESTREO
-        t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
+        len_signal = len(modulation.ask_function4)
+
+        t , carrier_signal = self.generateCarrierSignalAm(f, rate, bit_time)
+
+        #t1 = linspace(0, bit_time * 100, rate / (bit_time * 100 ))  # vector de tiempo de 1 bit
 
         amplitud1 = input("Ingrese la amplitud numero 1: ")
         amplitud2 = input("Ingrese la amplitud numero 2: ")
 
-        c1 = float(amplitud1) * np.cos(2 * np.pi * fc * t)
-        c2 = float(amplitud2) * np.cos(2 * np.pi * fc * t)
+        c1 = ( int (amplitud1) * carrier_signal) / rate
+        c2 = ( int (amplitud2) * carrier_signal) / rate
 
         y = []
-
-        for b in x:
-            if b:
+        for bit in x:
+            if bit == 1:
                 y.extend(c1)
             else:
                 y.extend(c2)
 
+
         y = np.array(y)
         t = np.array(t)
-        x = linspace(0, 1/tb, int(len(t)) * len(x))
+        x = linspace(0, bit_time, int(len(t)) * len(x))
 
         archive = Archive(0)
         # Realizando el audio de salida
         name = "audio"
-        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_ask.wav",int(fs),y)
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_ask.wav",rate,y)
 
         #Realizando el grafico
         graphic = Graphic()
-        graphic.generateGraphics11("Modulacion ask",c1,c2,y,t,x)
+        graphic.generateGraphics11("Modulacion ask", c1, c2, y, t, x)
 
         modulation.ask_function1 = c1
         modulation.ask_function2 = c2
@@ -245,6 +244,33 @@ class Modulation:
         modulation.ask_time2 = x
 
         return modulation
+
+    def demoulationASK(self,ask_signal):
+
+        frMax = 10000 # herz -> Frecuencia con la que la vamos a probar
+        bit_time = 0.5 # Cantidad de bit por segundo
+        rate = 44100 # Frecuencia de muestreo ( Audio)
+
+        len_signal = len(ask_signal)
+        tb, carrier = self.generateCarrierSignalAm(frMax, rate, bit_time)
+
+        corr = signal.convolve(ask_signal, carrier, 'same')
+        plt.plot(corr)
+        plt.show()
+        corr_max = max(corr) / 2
+
+        bit_position = arange(rate * bit_time / 2, len_signal, rate * bit_time).astype(int)
+        bit_array = []
+
+        for position in bit_position:
+            diff = abs(corr_max - corr[position])
+            if diff >= corr[position]:
+                bit_array.append(1)
+            else:
+                bit_array.append(0)
+
+        print(bit_array)
+        return bit_array
 
     def fskModulation(self,modulation):
 
@@ -388,15 +414,8 @@ class Modulation:
 
     def addNoise(self,signal):
 
-        noise = random.normal(0.0, 0.1, len(signal))
+        noise = random.normal(0.0, 0.00001, len(signal))
         signal = signal + noise
-        return noise + signal, noise
-
-
-
-
-
-
-
+        return np.array(noise + signal), np.array(noise)
 
 

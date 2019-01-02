@@ -258,6 +258,7 @@ def digitalDemodulation(modulation):
             print("Aplicando ruido")
             modulation.ask_function4, modulation.noise = modulation.addNoise(modulation.ask_function3)
             graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.ask_time2, modulation.ask_function3, modulation.ask_function4, modulation.noise)
+            modulation.demoulationASK(modulation.ask_function3)
 
         elif choice == "2":
             print("Opcion 2")
