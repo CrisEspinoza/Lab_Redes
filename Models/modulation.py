@@ -4,6 +4,7 @@ from Models.audio import Audio
 from Models.archive import Archive
 import numpy as np
 from numpy import linspace, cos, interp, random, arange, pi
+import time
 import scipy.integrate as integrate
 import scipy.signal as signal
 import matplotlib.pyplot as plt
@@ -33,6 +34,8 @@ class Modulation:
     ask_function4 = []
     ask_time1 = []
     ask_time2 = []
+    ask_tb = 0
+    ask_fs = 0
     fsk_function1 = []
     fsk_function2 = []
     fsk_function3 = []
@@ -91,7 +94,7 @@ class Modulation:
     def amModulation (self, modulatingSignal):
 
         graphic = Graphic()
-        modulation = Modulation(0, 100)
+        modulation = Modulation(0, 1000)
         modulation.freqSampling = 18 * modulation.freq2
         modulation.audio = modulatingSignal
 
@@ -117,7 +120,7 @@ class Modulation:
 
         graphic.generateGraphics4(modulation.function1,modulation.function2,modulation.function3, modulation.time, modulation.audio.audio_name)
         #  (Descomentar despues se demora)
-        #graphic.generateGraphics5(modulation.function1, modulation.function2, modulation.function3, modulation.freqSampling, "Grafico de tranformada de fourier de señal modulada de audio " + modulation.audio.audio_name)
+        graphic.generateGraphics5(modulation.function1, modulation.function2, modulation.function3, modulation.freqSampling, "Grafico de tranformada de fourier de señal modulada de audio " + modulation.audio.audio_name)
 
         return modulation
 
@@ -196,7 +199,7 @@ class Modulation:
         carrier = cos(2 * pi * fr * tb)
         return tb, carrier
 
-    def askModulation(self,modulation):
+    def askModulation(self, modulation):
 
         x = [0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
 
@@ -237,37 +240,50 @@ class Modulation:
         graphic = Graphic()
         graphic.generateGraphics11("Modulacion ask", c1, c2, y, t, x)
 
-        modulation.ask_function1 = c1
-        modulation.ask_function2 = c2
+        modulation.ask_function1 = np.array(c1)
+        modulation.ask_function2 = np.array(c2)
         modulation.ask_function3 = y
         modulation.ask_time1 = t
         modulation.ask_time2 = x
+        modulation.ask_fs = rate
+        modulation.ask_tb = bit_time
+
 
         return modulation
 
-    def demoulationASK(self,ask_signal):
+    def demoulationASK(self,modulation):
 
-        frMax = 10000 # herz -> Frecuencia con la que la vamos a probar
-        bit_time = 0.5 # Cantidad de bit por segundo
-        rate = 44100 # Frecuencia de muestreo ( Audio)
+        graphic = Graphic()
 
-        len_signal = len(ask_signal)
-        tb, carrier = self.generateCarrierSignalAm(frMax, rate, bit_time)
+        c2 = modulation.ask_function1
+        c1 = modulation.ask_function2
+        ask_signal = modulation.ask_function4
+        corr0 = signal.fftconvolve(ask_signal, c1, 'same')
+        corr1 = signal.fftconvolve(ask_signal, c2, 'same')
 
-        corr = signal.convolve(ask_signal, carrier, 'same')
-        plt.plot(corr)
-        plt.show()
-        corr_max = max(corr) / 2
+        corr0 = modulation.windows_rms(corr0, 101)
+        corr1 = modulation.windows_rms(corr1, 101)
 
-        bit_position = arange(rate * bit_time / 2, len_signal, rate * bit_time).astype(int)
+        maxCorre = max(corr1)
+        minCorre = min(corr1)
+        prom = (maxCorre - minCorre) / 2
+        print(minCorre)
+        print(maxCorre)
+
+        bit_position = arange(modulation.ask_fs * modulation.ask_tb / 2, len(ask_signal), modulation.ask_fs * modulation.ask_tb).astype(int)
+
         bit_array = []
-
         for position in bit_position:
-            diff = abs(corr_max - corr[position])
-            if diff >= corr[position]:
+            print( prom )
+            if corr1[position] > prom :
                 bit_array.append(1)
             else:
                 bit_array.append(0)
+
+        title1 = 'Correlator 0'
+        title2 = 'Correlator 1'
+        graphic.graphicCorr(title1, 44100, corr0)
+        graphic.graphicCorr(title2, 44100, corr1)
 
         print(bit_array)
         return bit_array
