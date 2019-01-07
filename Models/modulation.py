@@ -2,6 +2,7 @@ from scipy.interpolate import interp1d
 from Models.graphic import Graphic
 from Models.audio import Audio
 from Models.archive import Archive
+from Models.textToBinaries import TextoBinario
 import numpy as np
 from numpy import linspace, cos, interp, random, arange, pi
 import time
@@ -12,6 +13,7 @@ from numpy import arange
 import os
 import math
 from scipy import signal
+from cmd import Cmd
 import matplotlib.pyplot as plt
 
 class Modulation:
@@ -52,6 +54,7 @@ class Modulation:
     fsk_time2 = []
     fsk_tb = 0
     fsk_fs = 0
+    fsk_array = []
     psk_function1 = []
     psk_function2 = []
     psk_function3 = []
@@ -396,21 +399,34 @@ class Modulation:
 
     def fskModulation(self,modulation):
 
-        x = [0, 1, 0, 0, 1, 0, 1, 0, 0, 1,0, 1, 0, 0, 1, 0, 1, 0, 0, 1,0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
+        #x = [0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
+
+        text = TextoBinario()
+        text1 = input("Ingrese el texto a binarizar")
+        a = text.do_codificar(text,text1)
+        print(a)
+
 
         print(len(modulation.audio.data_array))
+
+        #for i in modulation.audio.data_array:
+        #    print(i)
+        archive = Archive(0)
+        x1 = archive.openWav("ook")
+
+        x = a
 
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 1000 # hertz
-        tb = 10 # bit por segundo
-        fs = 4.5 * fc # FRECUENCIA DE MUESTREO
+        fc = 80000 # hertz
+        tb = 1000 # bit por segundo
+        fs = 12.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
         amplitud = input("Ingrese la amplitud a utilizar: ")
 
-        c1 = float(amplitud) * np.cos(2 * np.pi * fc/2 * t)
+        c1 = float(amplitud) * np.cos(2 * np.pi * fc/4 * t)
         c2 = float(amplitud) * np.cos(2 * np.pi * fc * t)
         y = []
 
@@ -427,7 +443,7 @@ class Modulation:
         archive = Archive(0)
         # Realizando el audio de salida
         name = "audio"
-        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/"+ name + "_fsk.wav",int(fs),y)
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_fsk.wav",int(fs),y)
 
         #Realizando el grafico
         graphic = Graphic()
@@ -438,8 +454,11 @@ class Modulation:
         modulation.fsk_function3 = y
         modulation.fsk_time1 = t
         modulation.fsk_time2 = x
+        modulation.fsk_array = a
         modulation.fsk_tb = 1/tb
         modulation.fsk_fs = fs
+
+        print(y)
 
         return modulation
 
@@ -452,8 +471,8 @@ class Modulation:
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 1000 # her
-        tb = 10 # bit por segundo
+        fc = 10000 # her
+        tb = 1000 # bit por segundo
         fs = 4.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
@@ -528,6 +547,16 @@ class Modulation:
         #graphic.graphicCorr(title2, 44100, corr1)
 
         print(bit_array)
+        print("EL largo es: " + str(len(bit_array)))
+        print("EL largo es: " + str(len(modulation.fsk_array)))
+        con = 0
+        for i in bit_array:
+            if (bit_array[i] != modulation.fsk_array[i]):
+                print("malo ")
+                con = con + 1
+                print (" antes: " + str(modulation.fsk_array[i]) + " - ahora: " + str(bit_array[i]) + " \n")
+        print(con)
+
         return bit_array
 
     def windows_rms(self, corr, windowssize):
@@ -539,7 +568,7 @@ class Modulation:
 
     def addNoise(self,signal):
 
-        noise = random.normal(0.0, 0.00001, len(signal))
+        noise = random.normal(0.0, 0.000001, len(signal))
         signal = signal + noise
         return np.array(noise + signal), np.array(noise)
 

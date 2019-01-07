@@ -1,11 +1,11 @@
 from scipy.io.wavfile import read, write
 from Models.audio import Audio
 import os
-import pyaudio
 import numpy as np
 import sounddevice as sd
-from scipy import signal as sp
 from numpy import linspace
+import scipy.io.wavfile as wavfile
+import wave
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -64,5 +64,18 @@ class Archive:
         fs = 44100
         sd.play(data, fs)
         sd.wait()
+
+    def openWav (self,name):
+
+        try:
+            nameText = os.getcwd() + '/Audios/' + name + '.wav'
+            waveData = wave.open(nameText, "rb")
+            binarySignal = waveData.readframes(waveData.getnframes())
+
+            return binarySignal
+
+        except FileNotFoundError:
+            print("No se pudo abrir el audio intentelo nuevamente\n")
+
 
 

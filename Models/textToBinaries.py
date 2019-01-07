@@ -1,13 +1,12 @@
-from cmd import Cmd
-import ast
 
+class TextoBinario :
 
-class TextoBinarioApp(Cmd):
-    def __init__(mi):
-        super().__init__()
-        mi.codigo = 'utf8'
+    codigo = ''
 
-    def do_codigo(mi, argumento):
+    def __init__(self):
+        self.codigo = 'utf8'
+
+    def do_codigo(self,mi, argumento):
         """Fija el código (ascii, utf8, etc.) que se usa para codificar/decodificar."""
         codigo = argumento.strip()
         try:
@@ -17,7 +16,7 @@ class TextoBinarioApp(Cmd):
         else:
             mi.codigo = codigo
 
-    def do_codificar(mi, argumento):
+    def do_codificar(self,mi, argumento):
         """Codifica un texto en binario."""
         try:
             octetos = bytearray(argumento, mi.codigo)
@@ -25,22 +24,34 @@ class TextoBinarioApp(Cmd):
             print(f'**No se puede codificar en {mi.codigo}.')
         else:
             #print(' '.join(f'{x:b}'.rjust(8, '0') for x in octetos))
-            print(octetos)
+            #print(octetos)
             c = []
+            d = []
             for x in octetos:
                 print(x)
                 a = ''.join(f'{x:b}'.rjust(8,'0') )
                 print(a)
-                c.append(a)
-                #for x1 in a:
-
-                #    c.extend(x1)
+                for x1 in a:
+                    c.append(x1)
             print(c)
 
-    def do_decodificar(mi, argumento):
+            for elemento in c:
+                if elemento == '0':
+                    d.append(0)
+                else:
+                    d.append(1)
+            #print(d)
+            return d
+
+    def do_decodificar(self,mi, argumento):
         """Decodifica un texto en binario."""
         try:
+            for i in argumento:
+                octetos1 = bytearray(int(x,2) for x in argumento.split())
+                print(octetos1)
+            print(argumento)
             octetos = bytearray(int(x, 2) for x in argumento.split())
+            print(octetos)
         except:
             print('**No es una cadena binaria.')
             return None
@@ -52,7 +63,3 @@ class TextoBinarioApp(Cmd):
     def do_salir(mi, arg):
         """Salir del programa."""
         return True
-
-
-app = TextoBinarioApp()
-app.cmdloop()
