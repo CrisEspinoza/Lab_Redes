@@ -1,4 +1,5 @@
 from cmd import Cmd
+import ast
 
 
 class TextoBinarioApp(Cmd):
@@ -23,7 +24,18 @@ class TextoBinarioApp(Cmd):
         except:
             print(f'**No se puede codificar en {mi.codigo}.')
         else:
-            print(' '.join(f'{x:b}'.rjust(8, '0') for x in octetos))
+            #print(' '.join(f'{x:b}'.rjust(8, '0') for x in octetos))
+            print(octetos)
+            c = []
+            for x in octetos:
+                print(x)
+                a = ''.join(f'{x:b}'.rjust(8,'0') )
+                print(a)
+                c.append(a)
+                #for x1 in a:
+
+                #    c.extend(x1)
+            print(c)
 
     def do_decodificar(mi, argumento):
         """Decodifica un texto en binario."""

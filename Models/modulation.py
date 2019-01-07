@@ -36,6 +36,14 @@ class Modulation:
     ask_time2 = []
     ask_tb = 0
     ask_fs = 0
+    ook_function1 = []
+    ook_function2 = []
+    ook_function3 = []
+    ook_function4 = []
+    ook_time1 = []
+    ook_time2 = []
+    ook_tb = 0
+    ook_fs = 0
     fsk_function1 = []
     fsk_function2 = []
     fsk_function3 = []
@@ -264,6 +272,17 @@ class Modulation:
         corr0 = modulation.windows_rms(corr0, 101)
         corr1 = modulation.windows_rms(corr1, 101)
 
+        """
+        plt.figure(1)
+        plt.subplot(211)
+        # plt.title("Sonido Original")
+        plt.plot(corr0)
+        plt.subplot(212)
+        # plt.title("Sonido aplicadando transformada")
+        plt.plot(corr1)
+        plt.show()
+        """
+
         maxCorre = max(corr1)
         minCorre = min(corr1)
         prom = (maxCorre - minCorre) / 2
@@ -271,6 +290,93 @@ class Modulation:
         print(maxCorre)
 
         bit_position = arange(modulation.ask_fs * modulation.ask_tb / 2, len(ask_signal), modulation.ask_fs * modulation.ask_tb).astype(int)
+
+        bit_array = []
+        for position in bit_position:
+            print( prom )
+            if corr1[position] > prom :
+                bit_array.append(1)
+            else:
+                bit_array.append(0)
+
+        title1 = 'Correlator 0'
+        title2 = 'Correlator 1'
+        graphic.graphicCorr(title1, 44100, corr0)
+        graphic.graphicCorr(title2, 44100, corr1)
+
+        print(bit_array)
+        return bit_array
+
+    def ookModulation(self, modulation):
+
+        x = [0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
+
+        f = 7000 # herz -> Frecuencia con la que la vamos a probar
+        bit_time = 0.5 # Cantidad de bit por segundo
+        rate = 44100 # Frecuencia de muestreo ( Audio)
+
+        len_signal = len(modulation.ook_function4)
+
+        t , carrier_signal = self.generateCarrierSignalAm(f, rate, bit_time)
+
+        #t1 = linspace(0, bit_time * 100, rate / (bit_time * 100 ))  # vector de tiempo de 1 bit
+
+        amplitud1 = input("Ingrese la amplitud numero 1: ")
+
+        c1 = ( int (amplitud1) * carrier_signal) / rate
+        c2 = ( 0 * carrier_signal) / rate
+
+        y = []
+        for bit in x:
+            if bit == 1:
+                y.extend(c1)
+            else:
+                y.extend(c2)
+
+
+        y = np.array(y)
+        t = np.array(t)
+        x = linspace(0, bit_time, int(len(t)) * len(x))
+
+        archive = Archive(0)
+        # Realizando el audio de salida
+        name = "audio"
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_ook.wav",rate,y)
+
+        #Realizando el grafico
+        graphic = Graphic()
+        graphic.generateGraphics11("Modulacion ook", c1, c2, y, t, x)
+
+        modulation.ook_function1 = np.array(c1)
+        modulation.ook_function2 = np.array(c2)
+        modulation.ook_function3 = y
+        modulation.ook_time1 = t
+        modulation.ook_time2 = x
+        modulation.ook_fs = rate
+        modulation.ook_tb = bit_time
+
+        return modulation
+
+    def demoulationOOK(self,modulation):
+
+        graphic = Graphic()
+
+        c2 = modulation.ook_function1
+        c1 = modulation.ook_function2
+        ook_signal = modulation.ook_function4
+        corr0 = signal.fftconvolve(ook_signal, c1, 'same')
+        corr1 = signal.fftconvolve(ook_signal, c2, 'same')
+
+        corr0 = modulation.windows_rms(corr0, 101)
+        corr1 = modulation.windows_rms(corr1, 101)
+
+        maxCorre = max(corr1)
+        minCorre = min(corr1)
+        prom = (maxCorre - minCorre) / 2
+        print(minCorre)
+        print(maxCorre)
+
+        bit_position = arange(modulation.ook_fs * modulation.ook_tb / 2, len(ook_signal), modulation.ook_fs * modulation.ook_tb).astype(int)
 
         bit_array = []
         for position in bit_position:
