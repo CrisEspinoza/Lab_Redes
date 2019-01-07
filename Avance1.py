@@ -21,7 +21,8 @@ def menuPrincipal():
     while choice != '-1':
         print("\n")
         print("******** Les mostramos las distintas etapas del programa desarrollado*******")
-        print("1. Analisis de señales")
+        print("0. Grabar audio")
+        print("1. Analisis de señales (Permite cargar archivo) ")
         print("2. Codificacion")
         print("3. Modulacion y demodulacion digital")
         print("4. Texto, Recepción y demodulación")
@@ -33,7 +34,15 @@ def menuPrincipal():
 
         choice = input("Ingrese opcion a realizar: ")
 
-        if choice == "1":
+        if choice == "0":
+            archive = Archive(0)
+            durationAudio = input("Ingrese la cantidad de segundos a grabar")
+            print(" ************* Grabando ************* ")
+            audioRecord = archive.audioRecord(int(durationAudio))
+            print(" ************* Reproduciendo grabacion ************* ")
+            archive.audioPlay(audioRecord)
+
+        elif choice == "1":
             originalAudio = signalAnaysisMenu()
             aux  = 1
             input("Presiona Enter para continuar")
@@ -47,11 +56,8 @@ def menuPrincipal():
                 input("Presione Enter para continuar")
 
         elif choice == "3":
-            print("Parte 3")
-
-            digital()
             if aux == 1:
-                digital()
+                digital(originalAudio)
                 input("Presiona Enter para continuar")
             else:
                 print("Primero debe cargaro un audio para continuar (Opción numero 1)")
@@ -170,9 +176,10 @@ def digitalCoding(originalAudio):
             print("\n")
             return modulationFM, modulationAM
 
-def digital():
+def digital(originalAudio):
 
     modulation = Modulation(0, 0)
+    modulation.audio = originalAudio
     choice = '0'
 
     while choice != '-1':
@@ -188,7 +195,7 @@ def digital():
 
         if choice == "1":
             print("Opcion 1")
-            modulation = digitalModulation()
+            modulation = digitalModulation(modulation)
 
         elif choice == "2":
             print("Opcion 2")
@@ -200,9 +207,8 @@ def digital():
             print("\n")
             return modulation
 
-def digitalModulation():
+def digitalModulation(modulation):
 
-    modulation = Modulation(0,0)
     choice = '0'
 
     while choice != '-1':

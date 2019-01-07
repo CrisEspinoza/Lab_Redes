@@ -398,6 +398,8 @@ class Modulation:
 
         x = [0, 1, 0, 0, 1, 0, 1, 0, 0, 1,0, 1, 0, 0, 1, 0, 1, 0, 0, 1,0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
 
+        print(len(modulation.audio.data_array))
+
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
@@ -443,6 +445,7 @@ class Modulation:
 
 
     def pskModulation(self,modulation):
+
 
         x = [0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1]
 

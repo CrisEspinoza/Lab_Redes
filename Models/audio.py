@@ -1,4 +1,5 @@
 from Models.filter import Filter
+
     # Clase que se encarga de guardar los datos de un audio
 class Audio:
 
@@ -27,7 +28,5 @@ class Audio:
         self.audio_name = audioName
         self.time = time
         self.filter = Filter(low_cutoff, high_cutoff, order)
-
-
 
     # ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
