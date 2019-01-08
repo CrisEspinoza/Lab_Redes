@@ -419,8 +419,8 @@ class Modulation:
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 80000 # hertz
-        tb = 1000 # bit por segundo
+        fc = 100000 # hertz
+        tb = 5000 # bit por segundo
         fs = 12.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
@@ -552,10 +552,32 @@ class Modulation:
         con = 0
         for i in bit_array:
             if (bit_array[i] != modulation.fsk_array[i]):
-                print("malo ")
+                #print("malo ")
                 con = con + 1
-                print (" antes: " + str(modulation.fsk_array[i]) + " - ahora: " + str(bit_array[i]) + " \n")
+                #print (" antes: " + str(modulation.fsk_array[i]) + " - ahora: " + str(bit_array[i]) + " \n")
         print(con)
+
+        d = []
+        i = 0
+        j = 0
+        while i < len(bit_array):
+            binaries = ""
+            while j < 8:
+                binaries = binaries + str(bit_array[i])
+                j = j + 1
+                i = i + 1
+            d.append(binaries)
+            binaries = ""
+            j = 0
+
+        text = TextoBinario()
+        textFinaly = ""
+        for i in d:
+            aux = text.do_decodificar(text,i)
+            textFinaly = textFinaly + str(aux)
+            print("\n")
+
+        print(textFinaly)
 
         return bit_array
 
@@ -568,7 +590,7 @@ class Modulation:
 
     def addNoise(self,signal):
 
-        noise = random.normal(0.0, 0.000001, len(signal))
+        noise = random.normal(0.0, 0.1, len(signal))
         signal = signal + noise
         return np.array(noise + signal), np.array(noise)
 
