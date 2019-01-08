@@ -15,7 +15,7 @@ def main():
 def menuPrincipal():
 
     choice = '0'
-    aux = 0
+    aux = 1
     originalAudio = []
 
     while choice != '-1':

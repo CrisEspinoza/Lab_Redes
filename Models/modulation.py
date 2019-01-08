@@ -227,8 +227,8 @@ class Modulation:
         amplitud1 = input("Ingrese la amplitud numero 1: ")
         amplitud2 = input("Ingrese la amplitud numero 2: ")
 
-        c1 = ( int (amplitud1) * carrier_signal) / rate
-        c2 = ( int (amplitud2) * carrier_signal) / rate
+        c1 = ( int (amplitud1) * carrier_signal) #/ rate
+        c2 = ( int (amplitud2) * carrier_signal) #/ rate
 
         y = []
         for bit in x:
