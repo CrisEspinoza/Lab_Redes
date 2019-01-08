@@ -215,7 +215,7 @@ class Modulation:
         x = [0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1]
 
         f = 7000 # herz -> Frecuencia con la que la vamos a probar
-        bit_time = 0.5 # Cantidad de bit por segundo
+        bit_time = 0.5 #0.001 # Cantidad de bit por segundo
         rate = 44100 # Frecuencia de muestreo ( Audio)
 
         len_signal = len(modulation.ask_function4)
@@ -419,8 +419,8 @@ class Modulation:
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 100000 # hertz
-        tb = 5000 # bit por segundo
+        fc = 500000 # hertz
+        tb = 10000 # bit por segundo
         fs = 12.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
@@ -543,8 +543,8 @@ class Modulation:
 
         title1 = 'Correlator 0'
         title2 = 'Correlator 1'
-        #graphic.graphicCorr(title1, 44100, corr0)
-        #graphic.graphicCorr(title2, 44100, corr1)
+        graphic.graphicCorr(title1, 44100, corr0)
+        graphic.graphicCorr(title2, 44100, corr1)
 
         print(bit_array)
         print("EL largo es: " + str(len(bit_array)))
@@ -590,7 +590,7 @@ class Modulation:
 
     def addNoise(self,signal):
 
-        noise = random.normal(0.0, 0.1, len(signal))
+        noise = random.normal(1.0, 1.6, len(signal))
         signal = signal + noise
         return np.array(noise + signal), np.array(noise)
 
