@@ -594,10 +594,11 @@ class Graphic:
 
         self.SingleGraphics(originalAudio, originalAudio.filter.low_cutoff, originalAudio.filter.high_cutoff, originalAudio.filter.order)
 
-
-
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    # - NAME: graphicCorr
+    # - DESCRIPTION: Genera el grafico de un correlacionador
+    # - PARAMS: Titulo del gráfico, frecuencia del correlacionador y el array de datos del correlacionador
+    # - OUT: Void
     def graphicCorr(self, title, rate, data):
         time = np.arange(len(data)) / rate * 1000
         plt.title(title, fontsize=12, color='blue')
