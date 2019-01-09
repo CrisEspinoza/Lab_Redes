@@ -407,7 +407,7 @@ class Modulation:
         print(a)
 
 
-        print(len(modulation.audio.data_array))
+        #print(len(modulation.audio.data_array))
 
         #for i in modulation.audio.data_array:
         #    print(i)
