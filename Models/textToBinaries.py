@@ -1,5 +1,5 @@
 
-class TextoBinario :
+class TextoBinario:
 
     codigo = ''
 
@@ -43,16 +43,18 @@ class TextoBinario :
             #print(d)
             return d
 
-    def do_decodificar(self,mi, argumento):
+    def do_decodificar(self, mi, argumento):
         """Decodifica un texto en binario."""
         try:
+            print(argumento)
             octetos = bytearray(int(x, 2) for x in argumento.split())
+            print(octetos)
         except:
             print('**No es una cadena binaria.')
             return None
         try:
-            #print("estamos aca")
-            #print(octetos.decode(encoding=mi.codigo))
+            print("estamos aca")
+            print(octetos.decode(encoding=mi.codigo))
             return octetos.decode(encoding=mi.codigo)
         except:
             print(f'**No es una cadena codificada en {mi.codigo}')

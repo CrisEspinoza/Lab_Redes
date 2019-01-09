@@ -405,15 +405,6 @@ class Modulation:
         text1 = input("Ingrese el texto a binarizar")
         a = text.do_codificar(text,text1)
         print(a)
-
-
-        #print(len(modulation.audio.data_array))
-
-        #for i in modulation.audio.data_array:
-        #    print(i)
-        archive = Archive(0)
-        x1 = archive.openWav("ook")
-
         x = a
 
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
@@ -465,7 +456,6 @@ class Modulation:
 
     def pskModulation(self,modulation):
 
-
         #x = [0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1]
 
         text = TextoBinario()
@@ -491,7 +481,7 @@ class Modulation:
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
         amplitud = input("Ingrese amplitud a utilizar: ")
-        grados = input("Ingrese fase a desfasar (en grados) : ")
+        grados = input("Ingrese fase a desfasar (en grados [0 - 90]) : ")
 
         phase = float(math.radians(int(grados)))
 
@@ -589,8 +579,11 @@ class Modulation:
 
         text = TextoBinario()
         textFinaly = ""
+        print(d)
         for i in d:
+            print(i)
             aux = text.do_decodificar(text,i)
+            print(aux)
             textFinaly = textFinaly + str(aux)
             print("\n")
 
@@ -659,13 +652,12 @@ class Modulation:
         text = TextoBinario()
         textFinaly = ""
         for i in d:
-            aux = text.do_decodificar(text,i)
+            print(i)
+            aux = text.do_decodificar(text, str(i))
             textFinaly = textFinaly + str(aux)
             print("\n")
 
         print(textFinaly)
-
-        return bit_array
 
     def windows_rms(self, corr, windowssize):
         corr2 = np.power(corr, 2)
