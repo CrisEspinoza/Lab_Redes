@@ -466,12 +466,26 @@ class Modulation:
     def pskModulation(self,modulation):
 
 
-        x = [0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1]
+        #x = [0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1,0, 1, 0, 0, 1]
+
+        text = TextoBinario()
+        text1 = input("Ingrese el texto a binarizar")
+        a = text.do_codificar(text, text1)
+        print(a)
+
+        print(len(modulation.audio.data_array))
+
+        # for i in modulation.audio.data_array:
+        #    print(i)
+        archive = Archive(0)
+        #x1 = archive.openWav("ook")
+
+        x = a
 
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 10000 # her
+        fc = 500000 # her
         tb = 1000 # bit por segundo
         fs = 4.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
@@ -509,6 +523,9 @@ class Modulation:
         modulation.psk_function3 = y
         modulation.psk_time1 = t
         modulation.psk_time2 = x
+        modulation.psk_array = a
+        modulation.psk_tb = 1/tb
+        modulation.psk_fs = fs
 
         return modulation
 
@@ -555,6 +572,75 @@ class Modulation:
                 #print("malo ")
                 con = con + 1
                 #print (" antes: " + str(modulation.fsk_array[i]) + " - ahora: " + str(bit_array[i]) + " \n")
+        print(con)
+
+        d = []
+        i = 0
+        j = 0
+        while i < len(bit_array):
+            binaries = ""
+            while j < 8:
+                binaries = binaries + str(bit_array[i])
+                j = j + 1
+                i = i + 1
+            d.append(binaries)
+            binaries = ""
+            j = 0
+
+        text = TextoBinario()
+        textFinaly = ""
+        for i in d:
+            aux = text.do_decodificar(text,i)
+            textFinaly = textFinaly + str(aux)
+            print("\n")
+
+        print(textFinaly)
+
+        return bit_array
+
+    def DemulatorPsk(self, modulation):
+        graphic = Graphic()
+
+        c2 = modulation.psk_function1
+        c1 = modulation.psk_function2
+        psk_signal = modulation.psk_function4
+        corr0 = signal.fftconvolve(psk_signal, c1, 'same')
+        corr1 = signal.fftconvolve(psk_signal, c2, 'same')
+
+        t1 = time.time()
+
+        corr0 = modulation.windows_rms(corr0, 101)
+        corr1 = modulation.windows_rms(corr1, 101)
+
+        t2 = time.time()
+
+        #print("TIME: ", t2 - t1)
+
+        bit_position = arange(modulation.psk_fs * modulation.psk_tb / 2, len(psk_signal), modulation.psk_fs * modulation.psk_tb).astype(int)
+
+        #print(bit_position)
+
+        bit_array = []
+        for position in bit_position:
+            if corr0[position] < corr1[position]:
+                bit_array.append(1)
+            else:
+                bit_array.append(0)
+
+        title1 = 'Correlator 0'
+        title2 = 'Correlator 1'
+        graphic.graphicCorr(title1, 44100, corr0)
+        graphic.graphicCorr(title2, 44100, corr1)
+
+        print(bit_array)
+        print("EL largo es: " + str(len(bit_array)))
+        print("EL largo es: " + str(len(modulation.psk_array)))
+        con = 0
+        for i in bit_array:
+            if (bit_array[i] != modulation.psk_array[i]):
+                #print("malo ")
+                con = con + 1
+                #print (" antes: " + str(modulation.psk_array[i]) + " - ahora: " + str(bit_array[i]) + " \n")
         print(con)
 
         d = []

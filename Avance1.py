@@ -276,21 +276,22 @@ def digitalDemodulation(modulation):
             print("Opcion 2")
             print("Aplicando ruido")
             modulation.ook_function4, modulation.noise = modulation.addNoise(modulation.ook_function3)
-            graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.ook_time2, modulation.ook_function3, modulation.ook_function4, modulation.noise)
+            graphic.generateGraphics12("Agregando ruido a señal modulada_ook", modulation.ook_time2, modulation.ook_function3, modulation.ook_function4, modulation.noise)
             modulation.demoulationOOK(modulation)
 
         elif choice == "3":
             print("Opcion 3")
             print("Aplicando ruido")
             modulation.fsk_function4, modulation.noise = modulation.addNoise(modulation.fsk_function3)
-            graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.fsk_time2, modulation.fsk_function3, modulation.fsk_function4, modulation.noise)
+            graphic.generateGraphics12("Agregando ruido a señal modulada_fsk", modulation.fsk_time2, modulation.fsk_function3, modulation.fsk_function4, modulation.noise)
             bitArray = modulation.DemulatorFsk(modulation)
 
         elif choice == "4":
             print("Opcion 4")
             print("Aplicando ruido")
             modulation.psk_function4, modulation.noise = modulation.addNoise(modulation.psk_function3)
-            graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.psk_time1, modulation.psk_function3, modulation.psk_function4, modulation.noise)
+            graphic.generateGraphics12("Agregando ruido a señal modulada_psk", modulation.psk_time2, modulation.psk_function3, modulation.psk_function4, modulation.noise)
+            bitArray = modulation.DemulatorPsk(modulation)
 
         else:
             choice = "-1"
