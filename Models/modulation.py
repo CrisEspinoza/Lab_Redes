@@ -77,13 +77,6 @@ class Modulation:
     # - PARAMS: Frecuencia de la funcion a modular y frecuencia del carrier
     # - OUT: Objeto de tipo modulation, que contiene todas las funciones creadas en esta función
 
-
-    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    # - NAME: demodulatorAMCos
-    # - DESCRIPTION: Funcion que realiza el proceso de demodulación para la fución coseno de ejemplo
-    # - PARAMS: Objeto de tipo modulation, que contiene la función a demodular
-    # - OUT: Objeto de tipo modulation, que contiene la función demodulada
-    
     def amModulationCos (self, f, fc):
 
         graphic = Graphic()
@@ -101,6 +94,12 @@ class Modulation:
 
         return modulation
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: demodulatorAMCos
+    # - DESCRIPTION: Funcion que realiza el proceso de demodulación para la fución coseno de ejemplo
+    # - PARAMS: Objeto de tipo modulation, que contiene la función a demodular
+    # - OUT: Objeto de tipo modulation, que contiene la función demodulada
+
     def demodulatorAMCos(self, modulation):
 
         graphic = Graphic()
@@ -114,6 +113,12 @@ class Modulation:
         graphic.generateGraphics6(modulation, audio, "Grafico de Transformada de Cosenos de señal demodulada")
 
         return modulation
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: amModulation
+    # - DESCRIPTION: Funcion que realiza el proceso de modulación AM de un audio
+    # - PARAMS: La señal a modular
+    # - OUT: Objeto de tipo modulation que contiene la señal, el carrier y la función modulada
 
     def amModulation (self, modulatingSignal):
 
@@ -148,6 +153,11 @@ class Modulation:
 
         return modulation
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: demodulatorAM
+    # - DESCRIPTION: Funcion que realiza el proceso de demodulación para cualquier función modulada por amplitud
+    # - PARAMS: Objeto de tipo modulation, que contiene la función a demodular
+    # - OUT: Objeto de tipo modulation, que contiene la función demodulada
 
     def demodulatorAM(self, modulation):
 
@@ -165,6 +175,11 @@ class Modulation:
 
         return modulation
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: fmModulation
+    # - DESCRIPTION: Funcion que realiza el proceso de modulación por frecuencia para una función coseno de ejemplo
+    # - PARAMS: Objeto de tipo modulation, frecuencia de la función de ejemplo, la frecuencia de la nueva función modulada y un parametro k
+    # - OUT: Objeto de tipo modulation, que contiene la función modulada
 
     def fmModulation (self, modulation, f, fc, k):
 
@@ -181,6 +196,12 @@ class Modulation:
         graphic.generateGraphics7(modulation, "Grafico de tiempo de modulacion FM de cosenos")
         graphic.generateGraphics8(modulation, "Grafico de frecuencia de modulacion FM de cosenos")
         return modulation
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: fmModulationSound
+    # - DESCRIPTION: Funcion que realiza el proceso de modulación por frecuencia para un audio
+    # - PARAMS: Objeto de tipo modulation, frecuencia de la función de ejemplo, la frecuencia de la nueva función modulada y un parametro k
+    # - OUT: Objeto de tipo modulation, que contiene la función modulada
 
     def fmModulationSound(self, originalAudio, k, modulation):
         graphic = Graphic()
@@ -207,11 +228,23 @@ class Modulation:
 
         return modulation
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: generateCarrierSignalAM
+    # - DESCRIPTION: Funcion que genera una función carrier
+    # - PARAMS: frecuencia del carrier, frecuencia de muestreo, tiempo de bit
+    # - OUT: arreglo de datos para el tiempo de bit y la señal carrier
+
     def generateCarrierSignalAm(self, fr, rate, bit_time):
         tb = arange(0, bit_time, 1 / rate)
         #tb = linspace(0,(bit_time*100),rate/(bit_time*100))
         carrier = cos(2 * pi * fr * tb)
         return tb, carrier
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: askModulation
+    # - DESCRIPTION: Funcion que realiza el proceso de modulación ask para un arreglo de bits (0 y 1)
+    # - PARAMS: Objeto de tipo modulation
+    # - OUT: Objeto de tipo modulation, que contiene la función modulada
 
     def askModulation(self, modulation):
 
@@ -264,6 +297,12 @@ class Modulation:
         modulation.ask_tb = bit_time
         return modulation
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: demodulationASK
+    # - DESCRIPTION: Funcion que realiza el proceso de demodulación ask
+    # - PARAMS: Objeto de tipo modulation
+    # - OUT: Arreglo de bit rescatados de la función modulada
+
     def demoulationASK(self,modulation):
         graphic = Graphic()
 
@@ -310,6 +349,12 @@ class Modulation:
 
         print(bit_array)
         return bit_array
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: 00kModulation
+    # - DESCRIPTION: Funcion que realiza el proceso de modulación ook para un arreglo de bits (0 y 1)
+    # - PARAMS: Objeto de tipo modulation
+    # - OUT: Objeto de tipo modulation, que contiene la función modulada
 
     def ookModulation(self, modulation):
 
@@ -361,6 +406,12 @@ class Modulation:
 
         return modulation
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: demodulationOOK
+    # - DESCRIPTION: Funcion que realiza el proceso de demodulación ook
+    # - PARAMS: Objeto de tipo modulation
+    # - OUT: Arreglo de bit rescatados de la función modulada
+
     def demoulationOOK(self,modulation):
 
         graphic = Graphic()
@@ -397,6 +448,12 @@ class Modulation:
 
         print(bit_array)
         return bit_array
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: fskModulationm
+    # - DESCRIPTION: Funcion que realiza el proceso de modulación fsk para un arreglo de bits (0 y 1) que representa un textp
+    # - PARAMS: Objeto de tipo modulation
+    # - OUT: Objeto de tipo modulation, que contiene la función modulada
 
     def fskModulation(self,modulation):
 
@@ -454,6 +511,10 @@ class Modulation:
 
         return modulation
 
+    # - NAME: pskModulationm
+    # - DESCRIPTION: Funcion que realiza el proceso de modulación psk para un arreglo de bits (0 y 1) que representa un texto
+    # - PARAMS: Objeto de tipo modulation
+    # - OUT: Objeto de tipo modulation, que contiene la función modulada
 
     def pskModulation(self,modulation):
 
@@ -519,6 +580,12 @@ class Modulation:
         modulation.psk_fs = fs
 
         return modulation
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: DemodulatorFsk
+    # - DESCRIPTION: Funcion que realiza el proceso de demodulación fsk que utiliza dos correlacionadores
+    # - PARAMS: Objeto de tipo modulation
+    # - OUT: Arreglo de bit rescatados de la función modulada
 
     def DemulatorFsk(self, modulation):
         graphic = Graphic()
@@ -596,6 +663,12 @@ class Modulation:
 
         return bit_array
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: DemodulatorPsk
+    # - DESCRIPTION: Funcion que realiza el proceso de demodulación psk que utiliza dos correlacionadores
+    # - PARAMS: Objeto de tipo modulation
+    # - OUT: Arreglo de bit rescatados de la función modulada
+
     def DemulatorPsk(self, modulation):
         graphic = Graphic()
 
@@ -664,12 +737,23 @@ class Modulation:
 
         print(textFinaly)
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: windows_rms
+    # - DESCRIPTION: Funcion que aplica el filtro a los correlaciondores determinando la media cuadratica
+    # - PARAMS: correlacionador, valor constante
+    # - OUT: correlacionador filtrado
+
     def windows_rms(self, corr, windowssize):
         corr2 = np.power(corr, 2)
         window = np.ones(windowssize)/float(windowssize)
         raiz = np.sqrt(np.convolve(corr2, window, mode='valid'))
         return raiz
 
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: addNoise
+    # - DESCRIPTION: Funcion que aplica ruido blanco gaussiano a una función modulada, para simular un medio real
+    # - PARAMS: señal modulada
+    # - OUT: señal con ruidio, el ruido
 
     def addNoise(self,signal):
 
