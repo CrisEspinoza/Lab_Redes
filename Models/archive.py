@@ -14,8 +14,20 @@ class Archive:
 
     aux = 0
 
+    """
+    Entrada: Entra un numero auxiliar para saber que lo que vamos a realizar
+    Procedimiento: Asigna el valor a la variable local
+    Salida: -
+    """
+
     def __init__(self, aux):
         self.aux = aux
+
+    """
+        Entrada: Entra un numero auxiliar para saber si el archvo fue leido coorectamente.
+        Procedimiento: Se encarga de leer el audio, verificando si se abrio correctamente con la variable que utilizamos como bandera.
+        Salida: tiene como salida el estado que se produce y el archivo leido.
+    """
 
     def readAudio(self, aux):
 
@@ -44,10 +56,21 @@ class Archive:
                               22000, 10)
         return aux, originalAudio
 
+    """
+        Entrada: Entra el titulo, la frecuencia de muestro y los datos.
+        Procedimiento: Se encarga de guarda los datos en un archivo.wav
+        Salida: -
+    """
 
     def saveWav(self,title, rate, data):
         #x = data.astype('int16')
         write(title, rate, data)
+
+    """
+        Entrada: Entra la duracion del audio que vamos a grabar
+        Procedimiento: Se encarga de grabar un audio desde el exterior
+        Salida: Entrega el audio que se grabo desde el exterior, para poder trabajarlo
+    """
 
     def audioRecord(self,duration):
         fs = 44100  # Samples por segundo
@@ -60,22 +83,17 @@ class Archive:
         return np.ndarray.flatten(myrecording, 1)
         # return myrecording
 
+    """
+        Entrada: Entra los datos que vamos a reproducir
+        Procedimiento: Se encarga de reproducir los datos que fueron ingresados.
+        Salida: -
+    """
+
     def audioPlay(self,data):
         fs = 44100
         sd.play(data, fs)
         sd.wait()
 
-    def openWav (self,name):
-
-        try:
-            nameText = os.getcwd() + '/Audios/' + name + '.wav'
-            waveData = wave.open(nameText, "rb")
-            binarySignal = waveData.readframes(waveData.getnframes())
-
-            return binarySignal
-
-        except FileNotFoundError:
-            print("No se pudo abrir el audio intentelo nuevamente\n")
 
 
 
