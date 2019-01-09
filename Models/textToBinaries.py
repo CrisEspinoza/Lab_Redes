@@ -3,18 +3,20 @@ class TextoBinario:
 
     codigo = ''
 
+    """
+    Entrada: -
+    Procedimiento: Crea el objeto
+    Salida: -
+    """
+
     def __init__(self):
         self.codigo = 'utf8'
 
-    def do_codigo(self,mi, argumento):
-        """Fija el código (ascii, utf8, etc.) que se usa para codificar/decodificar."""
-        codigo = argumento.strip()
-        try:
-            bytearray('', codigo)
-        except LookupError:
-            print('**Código desconocido.')
-        else:
-            mi.codigo = codigo
+    """
+    Entrada: Entra el objeto a utilizar y la letra a convertir a binario
+    Procedimiento: Realiza la conversion de la letra a binario, que contiene 8 bits
+    Salida: Entrega el arreglo de bit donde contiene la letra ingresada en binarios
+    """
 
     def do_codificar(self,mi, argumento):
         """Codifica un texto en binario."""
@@ -43,6 +45,12 @@ class TextoBinario:
             #print(d)
             return d
 
+    """
+    Entrada: Entra el objeto a utilizar y una cadena de bit.
+    Procedimiento: Convierte esa cadena de bits en la letra que corresponde.
+    Salida: Entrega la letra corresondiente a la cadena de bits ingresada.
+    """
+
     def do_decodificar(self, mi, argumento):
         """Decodifica un texto en binario."""
         try:
@@ -58,7 +66,3 @@ class TextoBinario:
             return octetos.decode(encoding=mi.codigo)
         except:
             print(f'**No es una cadena codificada en {mi.codigo}')
-
-    def do_salir(self,mi, arg):
-        """Salir del programa."""
-        return True
