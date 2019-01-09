@@ -512,7 +512,7 @@ class Modulation:
         a = text.do_codificar(text, text1)
         print(a)
 
-        print(len(modulation.audio.data_array))
+        #print(len(modulation.audio.data_array))
 
         # for i in modulation.audio.data_array:
         #    print(i)
