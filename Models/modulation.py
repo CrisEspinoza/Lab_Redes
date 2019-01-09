@@ -227,8 +227,8 @@ class Modulation:
         amplitud1 = input("Ingrese la amplitud numero 1: ")
         amplitud2 = input("Ingrese la amplitud numero 2: ")
 
-        c1 = ( int (amplitud1) * carrier_signal) / rate
-        c2 = ( int (amplitud2) * carrier_signal) / rate
+        c1 = ( int (amplitud1) * carrier_signal) #/ rate
+        c2 = ( int (amplitud2) * carrier_signal) #/ rate
 
         y = []
         for bit in x:
@@ -486,8 +486,8 @@ class Modulation:
         #fc = frecuencia
 
         fc = 500000 # her
-        tb = 1000 # bit por segundo
-        fs = 4.5 * fc # FRECUENCIA DE MUESTREO
+        tb = 10000 # bit por segundo
+        fs = 12.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
         amplitud = input("Ingrese amplitud a utilizar: ")
@@ -495,7 +495,7 @@ class Modulation:
 
         phase = float(math.radians(int(grados)))
 
-        c1 = float(amplitud) * np.cos(2 * np.pi * fc/2 * t)
+        c1 = float(amplitud) * np.cos(2 * np.pi * fc * t)
         c2 = float(amplitud) * np.cos( (2 * np.pi * fc * t) + phase)
         y = []
 
