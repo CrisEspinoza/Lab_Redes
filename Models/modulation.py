@@ -77,6 +77,13 @@ class Modulation:
     # - PARAMS: Frecuencia de la funcion a modular y frecuencia del carrier
     # - OUT: Objeto de tipo modulation, que contiene todas las funciones creadas en esta función
 
+
+    # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: demodulatorAMCos
+    # - DESCRIPTION: Funcion que realiza el proceso de demodulación para la fución coseno de ejemplo
+    # - PARAMS: Objeto de tipo modulation, que contiene la función a demodular
+    # - OUT: Objeto de tipo modulation, que contiene la función demodulada
+    
     def amModulationCos (self, f, fc):
 
         graphic = Graphic()
