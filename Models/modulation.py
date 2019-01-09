@@ -468,9 +468,10 @@ class Modulation:
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 500000 # hertz
-        tb = 10000 # bit por segundo
-        fs = 12.5 * fc # FRECUENCIA DE MUESTREO
+        fc = 18000 # hertz
+        tb = 760 # bit por segundo
+        #fs = 4.5 * fc # FRECUENCIA DE MUESTREO
+        fs = 44100
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
         amplitud = input("Ingrese la amplitud a utilizar: ")
@@ -604,6 +605,9 @@ class Modulation:
         corr0 = modulation.windows_rms(corr0, 101)
         corr1 = modulation.windows_rms(corr1, 101)
 
+        #corr0 = np.abs(corr0)
+        #corr1 = np.abs(corr1)
+
         t2 = time.time()
 
         #print("TIME: ", t2 - t1)
@@ -611,7 +615,7 @@ class Modulation:
         #Posiciones donde termina le tiempo de bits para determinar el tipo de bits
         bit_position = arange(modulation.fsk_fs * modulation.fsk_tb / 2, len(fsk_signal), modulation.fsk_fs * modulation.fsk_tb).astype(int)
 
-        #print(bit_position)
+        print(str(len(bit_position)))
 
         bit_array = []
         for position in bit_position:
@@ -629,7 +633,7 @@ class Modulation:
         print("EL largo es: " + str(len(bit_array)))
         print("EL largo es: " + str(len(modulation.fsk_array)))
         con = 0
-        for i in bit_array:
+        for i in range(0,len(bit_array)):
             if (bit_array[i] != modulation.fsk_array[i]):
                 #print("malo ")
                 con = con + 1
@@ -642,6 +646,7 @@ class Modulation:
         while i < len(bit_array):
             binaries = ""
             while j < 8:
+                print("x1 = " + str(len(bit_array))+ " - x2 : " + str(i))
                 binaries = binaries + str(bit_array[i])
                 j = j + 1
                 i = i + 1
@@ -746,7 +751,7 @@ class Modulation:
     def windows_rms(self, corr, windowssize):
         corr2 = np.power(corr, 2)
         window = np.ones(windowssize)/float(windowssize)
-        raiz = np.sqrt(np.convolve(corr2, window, mode='valid'))
+        raiz = np.sqrt(np.convolve(corr2, window, mode='same'))
         return raiz
 
     # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -757,8 +762,8 @@ class Modulation:
 
     def addNoise(self,signal):
 
-        noise = random.normal(1.0, 1.6, len(signal))
+        noise = random.normal(0.0, 0.1, len(signal))
         signal = signal + noise
-        return np.array(noise + signal), np.array(noise)
+        return np.array(signal), np.array(noise)
 
 
