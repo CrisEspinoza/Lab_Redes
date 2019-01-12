@@ -62,6 +62,7 @@ class Modulation:
     psk_time1 = []
     psk_time2 = []
     noise = []
+    syn = []
 
     ## - FUNCTIONS - ##
 
@@ -449,6 +450,13 @@ class Modulation:
         print(bit_array)
         return bit_array
 
+
+    def create_syn(self,amplitud,fc,t) :
+
+        syn = float(amplitud) * np.cos(2 * np.pi * fc / 2 * t)  # Función que representa los bist 0, con una frecuencia1 dada
+        #print(syn)
+        return syn
+
     # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: fskModulationm
     # - DESCRIPTION: Funcion que realiza el proceso de modulación fsk para un arreglo de bits (0 y 1) que representa un textp
@@ -462,23 +470,30 @@ class Modulation:
         text = TextoBinario()
         text1 = input("Ingrese el texto a binarizar")
         a = text.do_codificar(text,text1) #Función que transforma texto en binario
-        print(a)
+        #print(a)
         x = a
+
 
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 18000 # hertz
-        tb = 760 # bit por segundo
+        fc = 10000 # hertz
+        tb = 800 # bit por segundo
         #fs = 4.5 * fc # FRECUENCIA DE MUESTREO
         fs = 44100
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
         amplitud = input("Ingrese la amplitud a utilizar: ")
 
-        c1 = float(amplitud) * np.cos(2 * np.pi * fc/4 * t) #Función que representa los bist 0, con una frecuencia1 dada
+        c1 = float(amplitud) * np.cos(2 * np.pi * fc/2 * t) #Función que representa los bist 0, con una frecuencia1 dada
         c2 = float(amplitud) * np.cos(2 * np.pi * fc * t)   #Función que representa los bist 1, con una frecuencia2 dada
+        syn = self.create_syn(amplitud, 18000, t)
         y = []
+
+        for i in range(0, 64):
+            y.extend(syn)
+
+        #print("EL largo es: " + str(y))
 
         for b in x:
             if b:
@@ -486,21 +501,34 @@ class Modulation:
             else:
                 y.extend(c2)
 
+
+        #print("EL largo es: " + str(y))
+
+
+        for i in range(0, 64):
+            y.extend(syn)
+
+
+        #print("EL largo es: " + str(y))
+
         y = np.array(y)
         t = np.array(t)
-        x = linspace(0, 1/tb, int(len(t)) * len(x))
+        x = linspace(0, 1/tb, int(len(t)) * (len(x) + 128) )
+
+        print(y)
 
         archive = Archive(0)
         # Realizando el audio de salida
         name = "audio"
-        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_fsk.wav",int(fs),y)
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_fsk.wav", int(fs), y)
 
         #Realizando el grafico
         graphic = Graphic()
-        graphic.generateGraphics11("Modulacion fsk",c1,c2,y,t,x)
+        graphic.generateGraphics11("Modulacion fsk", c1, c2, y, t, x)
 
         modulation.fsk_function1 = c1
         modulation.fsk_function2 = c2
+        modulation.syn = syn
         modulation.fsk_function3 = y
         modulation.fsk_time1 = t
         modulation.fsk_time2 = x
@@ -508,7 +536,7 @@ class Modulation:
         modulation.fsk_tb = 1/tb
         modulation.fsk_fs = fs
 
-        print(y)
+        #print(y)
 
         return modulation
 
@@ -538,19 +566,25 @@ class Modulation:
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
         #fc = frecuencia
 
-        fc = 500000 # her
-        tb = 10000 # bit por segundo
-        fs = 12.5 * fc # FRECUENCIA DE MUESTREO
+        fc = 18000 # her
+        tb = 180 # bit por segundo
+        fs = 44100
+        #fs = 12.5 * fc # FRECUENCIA DE MUESTREO
         t = linspace(0, 1 / tb, fs/tb ) # vector de tiempo de 1 bit
 
         amplitud = input("Ingrese amplitud a utilizar: ")
-        grados = input("Ingrese fase a desfasar (en grados [0 - 90]) : ")
+        grados = input("Ingrese fase a desfasar (en grados [45 - 90 - 135 - 180 - 225 - 270 - 315] ) : ")
 
         phase = float(math.radians(int(grados)))
 
         c1 = float(amplitud) * np.cos(2 * np.pi * fc * t)
         c2 = float(amplitud) * np.cos( (2 * np.pi * fc * t) + phase)
+        syn = self.create_syn(amplitud, 1000, t)
+
         y = []
+
+        for i in range(0,64):
+            y.extend(syn)
 
         for b in x:
             if b:
@@ -558,21 +592,25 @@ class Modulation:
             else:
                 y.extend(c2)
 
+        for i in range(0,64):
+            y.extend(syn)
+
         y = np.array(y)
         t = np.array(t)
-        x = linspace(0, 1/tb, int(len(t)) * len(x))
+        x = linspace(0, 1/tb, int(len(t)) * (len(x) + 128))
 
         archive = Archive(0)
         # Realizando el audio de salida
         name = "audio"
-        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_psk.wav",int(fs),y)
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_psk.wav",int(fs), y)
 
         #Realizando el grafico
         graphic = Graphic()
-        graphic.generateGraphics11("Modulacion psk",c1,c2,y,t,x)
+        graphic.generateGraphics11("Modulacion psk", c1, c2, y, t, x)
 
         modulation.psk_function1 = c1
         modulation.psk_function2 = c2
+        modulation.syn = syn
         modulation.psk_function3 = y
         modulation.psk_time1 = t
         modulation.psk_time2 = x
@@ -593,17 +631,20 @@ class Modulation:
 
         c2 = modulation.fsk_function1
         c1 = modulation.fsk_function2
+        c3 = modulation.syn
         fsk_signal = modulation.fsk_function4
 
         #Se crean los correlacionadores
         corr0 = signal.fftconvolve(fsk_signal, c1, 'same')
         corr1 = signal.fftconvolve(fsk_signal, c2, 'same')
+        corr2 = signal.fftconvolve(fsk_signal, c3, 'same')
 
         t1 = time.time()
 
         #Filtro para los correlacionadores
         corr0 = modulation.windows_rms(corr0, 101)
         corr1 = modulation.windows_rms(corr1, 101)
+        corr2 = modulation.windows_rms(corr2, 101)
 
         #corr0 = np.abs(corr0)
         #corr1 = np.abs(corr1)
@@ -613,27 +654,65 @@ class Modulation:
         #print("TIME: ", t2 - t1)
 
         #Posiciones donde termina le tiempo de bits para determinar el tipo de bits
-        bit_position = arange(modulation.fsk_fs * modulation.fsk_tb / 2, len(fsk_signal), modulation.fsk_fs * modulation.fsk_tb).astype(int)
+        #print("Valor 1 es: " + str(int((modulation.fsk_fs * modulation.fsk_tb) / 2)))
+        #print("Valor 2 es: " + str(int(modulation.fsk_fs * modulation.fsk_tb)))
+        bit_position = arange(int ((modulation.fsk_fs * modulation.fsk_tb) / 2), len(fsk_signal), int((modulation.fsk_fs * modulation.fsk_tb))).astype(int)
 
-        print(str(len(bit_position)))
+        """
+        aux1 = 0
+        
+        for aux in bit_position:
+            print("La diferencia es: " + str(aux - aux1) + "\n")
+
+            if (aux - aux1) != 58:
+                print("\n")
+                print("\n")
+                print("Aca esta la caga cm jajajajajajajajajajajajajajjaajaj \n")
+                print("\n")
+                print("\n")
+
+            aux1 = aux
+
+        """
+        print("EL largo del bit_position es: " + str(len(bit_position)))
 
         bit_array = []
+        cont = 0
+        numsyn = 0
+        num = 0
         for position in bit_position:
-            if corr0[position] < corr1[position]:
-                bit_array.append(1)
+            #print("Vuelta: " + str(cont) + " - Datos : 1: " + str(corr0[position]) + " 2: " + str(corr1[position]) + " 3: " + str(corr2[position]) + "\n")
+            if corr2[position] < corr1[position] or corr2[position] < corr0[position]:
+
+                #print("1: " + str(corr0[position]) + " 2: " + str(corr1[position]))
+                if corr0[position] < corr1[position]:
+                    print("Agrege un 1  -  Vamos en el numero:  " + str(num))
+                    num = num + 1
+                    bit_array.append(1)
+                else:
+                    print("Agrege un 0  -  Vamos en el numero:  " + str(num))
+                    num = num + 1
+                    bit_array.append(0)
             else:
-                bit_array.append(0)
+                print(" Estamos sincronizando numero: " + str(numsyn))
+                numsyn = numsyn + 1
+            cont = cont + 1
 
         title1 = 'Correlator 0'
         title2 = 'Correlator 1'
+        title3 = 'Correlator 2'
         graphic.graphicCorr(title1, 44100, corr0)
         graphic.graphicCorr(title2, 44100, corr1)
+        graphic.graphicCorr(title3, 44100, corr2)
 
         print(bit_array)
         print("EL largo es: " + str(len(bit_array)))
         print("EL largo es: " + str(len(modulation.fsk_array)))
         con = 0
-        for i in range(0,len(bit_array)):
+        i = 0
+        for i in range(0, len(bit_array) ):
+            #print (" El valor de i es : " + str(i) + "\n")
+            #print("\n")
             if (bit_array[i] != modulation.fsk_array[i]):
                 #print("malo ")
                 con = con + 1
@@ -646,7 +725,9 @@ class Modulation:
         while i < len(bit_array):
             binaries = ""
             while j < 8:
-                print("x1 = " + str(len(bit_array))+ " - x2 : " + str(i))
+                print("Entramos \n")
+                print("El valor de i es: " + str(i) + " ----  El valor de j es: " + str(j) + "---- El largo es : " + str(len(bit_array)) + "\n")
+                #print("x1 = " + str(len(bit_array))+ " - x2 : " + str(i))
                 binaries = binaries + str(bit_array[i])
                 j = j + 1
                 i = i + 1
@@ -659,7 +740,7 @@ class Modulation:
         print(d)
         for i in d:
             print(i)
-            aux = text.do_decodificar(text,i)
+            aux = text.do_decodificar(text, i)
             print(aux)
             textFinaly = textFinaly + str(aux)
             print("\n")
@@ -679,40 +760,56 @@ class Modulation:
 
         c2 = modulation.psk_function1
         c1 = modulation.psk_function2
+        c3 = modulation.syn
         psk_signal = modulation.psk_function4
         corr0 = signal.fftconvolve(psk_signal, c1, 'same')
         corr1 = signal.fftconvolve(psk_signal, c2, 'same')
+        corr2 = signal.fftconvolve(psk_signal, c3, 'same')
 
         t1 = time.time()
 
         corr0 = modulation.windows_rms(corr0, 101)
         corr1 = modulation.windows_rms(corr1, 101)
+        corr2 = modulation.windows_rms(corr2, 101)
 
         t2 = time.time()
 
         #print("TIME: ", t2 - t1)
 
-        bit_position = arange(modulation.psk_fs * modulation.psk_tb / 2, len(psk_signal), modulation.psk_fs * modulation.psk_tb).astype(int)
+        bit_position = arange( int((modulation.psk_fs * modulation.psk_tb) / 2), len(psk_signal), int(modulation.psk_fs * modulation.psk_tb)).astype(int)
 
         #print(bit_position)
 
         bit_array = []
+        cont = 0
         for position in bit_position:
-            if corr0[position] < corr1[position]:
-                bit_array.append(1)
-            else:
-                bit_array.append(0)
+            print(cont)
+            print("1: " + str(corr0[position]) + " 2: " + str(corr1[position]) + " 3: " + str(corr2[position]) + "\n")
+            if corr2[position] < corr1[position] or corr2[position] < corr0[position]:
+                if corr0[position] < corr1[position]:
+                    print("Agregue un 1")
+                    bit_array.append(1)
+                else:
+                    print("Agregue un 0")
+                    bit_array.append(0)
+
+            cont = cont + 1
 
         title1 = 'Correlator 0'
         title2 = 'Correlator 1'
+        title3 = 'Correlator 2'
         graphic.graphicCorr(title1, 44100, corr0)
         graphic.graphicCorr(title2, 44100, corr1)
+        graphic.graphicCorr(title3, 44100, corr2)
 
         print(bit_array)
         print("EL largo es: " + str(len(bit_array)))
         print("EL largo es: " + str(len(modulation.psk_array)))
         con = 0
-        for i in bit_array:
+        con1 = 0
+        for i in range(0, len(bit_array)):
+            print(con1)
+            con1 = con1 +1
             if (bit_array[i] != modulation.psk_array[i]):
                 #print("malo ")
                 con = con + 1
@@ -725,6 +822,7 @@ class Modulation:
         while i < len(bit_array):
             binaries = ""
             while j < 8:
+                #print("x1 = " + str(len(bit_array)) + " - x2 : " + str(i))
                 binaries = binaries + str(bit_array[i])
                 j = j + 1
                 i = i + 1
@@ -734,11 +832,14 @@ class Modulation:
 
         text = TextoBinario()
         textFinaly = ""
+        print(d)
         for i in d:
-            print(i)
-            aux = text.do_decodificar(text, str(i))
+            #print(i)
+            aux = text.do_decodificar(text, i)
+            #print(aux)
             textFinaly = textFinaly + str(aux)
-            print("\n")
+            #print("\n")
+
 
         print(textFinaly)
 
