@@ -48,6 +48,12 @@ class Menu:
             except FileNotFoundError:
                 self.variable.set("*Archivo no encontrado")
 
+    """
+    Entrada: 
+    Procedimiento: Crea cada uno de los componenetes que se van a utilizar dentro de la interfax
+    Salida: -
+    """
+
     def otherWindows(self):
         self.raiz.withdraw()
         raiz2 = Toplevel(self.raiz)
@@ -84,6 +90,12 @@ class Menu:
 
         mostrar = Button(raiz2, text='Aceptar', command=self.showgraphic())
         mostrar.pack(side=LEFT, padx=180, pady=5)
+
+    """
+    Entrada: -
+    Procedimiento: Se encarga de mostrastr la interfax grafica
+    Salida: -
+    """
 
     def showgraphic(self):
         print("Funciona")

@@ -15,16 +15,17 @@ def main():
 def menuPrincipal():
 
     choice = '0'
-    aux = 0
+    aux = 1
     originalAudio = []
 
     while choice != '-1':
         print("\n")
         print("******** Les mostramos las distintas etapas del programa desarrollado*******")
-        print("1. Analisis de señales")
+        print("0. Grabar audio")
+        print("1. Analisis de señales (Permite cargar archivo) ")
         print("2. Codificacion")
-        print("3. Modulacion digital")
-        print("4. Recepción y demodulación")
+        print("3. Modulacion y demodulacion digital")
+        print("4. Texto, Recepción y demodulación")
         print("5. Protocolos de enlace y acceso al medio")
         print("6. Protocolo de red y prototipo final")
         print("7. Creditos")
@@ -33,7 +34,15 @@ def menuPrincipal():
 
         choice = input("Ingrese opcion a realizar: ")
 
-        if choice == "1":
+        if choice == "0":
+            archive = Archive(0)
+            durationAudio = input("Ingrese la cantidad de segundos a grabar")
+            print(" ************* Grabando ************* ")
+            audioRecord = archive.audioRecord(int(durationAudio))
+            print(" ************* Reproduciendo grabacion ************* ")
+            archive.audioPlay(audioRecord)
+
+        elif choice == "1":
             originalAudio = signalAnaysisMenu()
             aux  = 1
             input("Presiona Enter para continuar")
@@ -47,11 +56,8 @@ def menuPrincipal():
                 input("Presione Enter para continuar")
 
         elif choice == "3":
-            print("Parte 3")
-
-            digital()
             if aux == 1:
-                digital()
+                digital(originalAudio)
                 input("Presiona Enter para continuar")
             else:
                 print("Primero debe cargaro un audio para continuar (Opción numero 1)")
@@ -144,8 +150,8 @@ def digitalCoding(originalAudio):
 
         if choice == "1":
             print("Realizando modulacion AM\n")
-            modulationAM = modulationAM.amModulationCos(7, 100)
-            #modulationAM = modulationAM.amModulation(originalAudio)
+            #modulationAM = modulationAM.amModulationCos(7, 100)
+            modulationAM = modulationAM.amModulation(originalAudio)
             input("Presiona Enter para continuar")
 
         elif choice == "2":
@@ -170,9 +176,10 @@ def digitalCoding(originalAudio):
             print("\n")
             return modulationFM, modulationAM
 
-def digital():
+def digital(originalAudio):
 
     modulation = Modulation(0, 0)
+    modulation.audio = originalAudio
     choice = '0'
 
     while choice != '-1':
@@ -188,7 +195,7 @@ def digital():
 
         if choice == "1":
             print("Opcion 1")
-            modulation = digitalModulation()
+            modulation = digitalModulation(modulation)
 
         elif choice == "2":
             print("Opcion 2")
@@ -200,9 +207,8 @@ def digital():
             print("\n")
             return modulation
 
-def digitalModulation():
+def digitalModulation(modulation):
 
-    modulation = Modulation(0,0)
     choice = '0'
 
     while choice != '-1':
@@ -210,9 +216,10 @@ def digitalModulation():
         print("\n")
         print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
         print("1. Modulacion ask")
-        print("1. Modulacion fsk")
-        print("1. Modulacion psk")
-        print("4. Volver")
+        print("2. Modulacion ook")
+        print("3. Modulacion fsk")
+        print("4. Modulacion psk")
+        print("5. Volver")
         print("\n")
 
         choice = input("Ingrese opcion a realizar: ")
@@ -223,10 +230,14 @@ def digitalModulation():
 
         elif choice == "2":
             print("Opcion 2")
-            modulation = modulation.fskModulation(modulation)
+            modulation = modulation.ookModulation(modulation)
 
         elif choice == "3":
             print("Opcion 3")
+            modulation = modulation.fskModulation(modulation)
+
+        elif choice == "4":
+            print("Opcion 4")
             modulation = modulation.pskModulation(modulation)
 
         else:
@@ -246,9 +257,10 @@ def digitalDemodulation(modulation):
         print("\n")
         print("******** Les mostramos las distintas opciones que contiene la primera iteración *******")
         print("1. Demodulacion ask")
-        print("1. Demodulacion fsk")
-        print("1. Demodulacion psk")
-        print("4. Volver")
+        print("2. Demodulacion ook")
+        print("3. Demodulacion fsk")
+        print("4. Demodulacion psk")
+        print("5. Volver")
         print("\n")
 
         choice = input("Ingrese opcion a realizar: ")
@@ -257,19 +269,29 @@ def digitalDemodulation(modulation):
             print("Opcion 1")
             print("Aplicando ruido")
             modulation.ask_function4, modulation.noise = modulation.addNoise(modulation.ask_function3)
-            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+            graphic.generateGraphics12("Agregando ruido a señal modulada_ask", modulation.ask_time2, modulation.ask_function3, modulation.ask_function4, modulation.noise)
+            modulation.demoulationASK(modulation)
 
         elif choice == "2":
             print("Opcion 2")
             print("Aplicando ruido")
-            modulation.fsk_function4, modulation.noise = modulation.addNoise(modulation.fsk_function3)
-            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+            modulation.ook_function4, modulation.noise = modulation.addNoise(modulation.ook_function3)
+            graphic.generateGraphics12("Agregando ruido a señal modulada_ook", modulation.ook_time2, modulation.ook_function3, modulation.ook_function4, modulation.noise)
+            modulation.demoulationOOK(modulation)
 
         elif choice == "3":
             print("Opcion 3")
             print("Aplicando ruido")
+            modulation.fsk_function4, modulation.noise = modulation.addNoise(modulation.fsk_function3)
+            graphic.generateGraphics12("Agregando ruido a señal modulada_fsk", modulation.fsk_time2, modulation.fsk_function3, modulation.fsk_function4, modulation.noise)
+            bitArray = modulation.DemulatorFsk(modulation)
+
+        elif choice == "4":
+            print("Opcion 4")
+            print("Aplicando ruido")
             modulation.psk_function4, modulation.noise = modulation.addNoise(modulation.psk_function3)
-            graphic.generateGraphics12(modulation,"Agregando ruido a señal modulada_ask")
+            graphic.generateGraphics12("Agregando ruido a señal modulada_psk", modulation.psk_time2, modulation.psk_function3, modulation.psk_function4, modulation.noise)
+            bitArray = modulation.DemulatorPsk(modulation)
 
         else:
             choice = "-1"
@@ -277,6 +299,8 @@ def digitalDemodulation(modulation):
             print(" Volviendo al menu anterior")
             print("\n")
             return modulation
+
+
 
 
 if __name__ == '__main__':

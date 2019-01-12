@@ -222,6 +222,13 @@ class Graphic:
         plt.savefig(os.getcwd() + "/Salida/" + title + "_" + str(low_cutoff) + "_" + str(order) +".png")
         plt.show()
 
+    """
+        Entrada: Entra los dos cosenos y el resultado obtenido al realizar la modulacion, el tiempo de cada 
+        uno de ellos y el titulo que le colcocaremos al grafico.
+        Procedimiento: Se encarga de graficar cada uno de los cosenos y ademas del recultado obtenido, por ultimo
+        guarda cada uno de los graficos en la carpeta que tenemos de salida.
+        Salida: -
+    """
 
     def generateGraphics4(self, cos, cos2, result, time, title):
         print("\n")
@@ -249,6 +256,16 @@ class Graphic:
         plt.savefig(os.getcwd() + "/Salida/_" + "Grafico_Tiempo_Modulada_" + title + ".png")
         plt.show()
 
+
+    """
+        Entrada: Entra los dos cosenos y el resultado obtenido al realizar la modulacion, la frecuencia de
+        muestreo que contiene y el titulo que contendra dicho grafico.
+        Procedimiento: Se encarga de graficar cada una de las tranformadas de foruier de los cosenos y el 
+        resultado que se obtuvo para poder comparar cada uno de estos resultados. Luego, por ultimo se
+        encarga de guarda cada uno de estos graficos en la caprtea de salida que tenemos.
+        Salida: -
+    """
+
     def generateGraphics5 (self, cos, cos2, result, freqSampling,title):
         print("\n")
         print("Realizando el grafico de conjunto numero 5")
@@ -274,6 +291,20 @@ class Graphic:
         self.frequencyGraphic(result, freqSampling, "Señal modulada", 4, 3)
         plt.savefig(os.getcwd() + "/Salida/" + title + ".png")
         plt.show()
+
+
+    """
+        Entrada: ENtra la modulacion que contiene cada una de las variables que estamos utilizando, ademas
+        del audio que estamos utilkizando y el tituklo que se le colocara al grafico.
+        Procedimiento: Se encarga de hacer 4 graficos dentro de 1, donde tenemos que realiza la grafico que
+        contiene al audio en su normalidad, la transformada de foruier que se obtiene del resultado y luego
+        le aplicamos el filtro para poder graficarlo de igual manera, para poder apreciar como se vio reflejada
+        la modulacion dentro de esos graficos y por tulimo realizamos la antitranformada para poder apreciar
+        si tenemos que nos devuelve el mismo audio que el original que se encuentra en una primera instacncia
+        dentro del grafico. Para por utlimo gurdar cada uno de estos graficos en la carpeta que tenemos de salida
+        de lso graficos.
+        Salida: -
+    """
 
     def generateGraphics6 (self, modulation, audio, title):
         print("\n")
@@ -305,6 +336,16 @@ class Graphic:
         plt.show()
 
 
+    """
+        Entrada: ENtra la modulacion que contiene cada una de las variables que estamos utilizando, ademas
+        del audio que estamos utilkizando y el tituklo que se le colocara al grafico.
+        Procedimiento: Se encarga de realizar dos graficos en 1. Se encarga de graficar cada la señal 
+        portadora y la modualdora, para luego guardar cada uno de estos grafivos en la caprtea que 
+        tenemos de salida de los gafricos.
+        Salida: -
+    """
+
+
     def generateGraphics7 (self, modulation,title):
         print("\n")
         print("Realizando el grafico de conjunto numero 7")
@@ -327,6 +368,15 @@ class Graphic:
         self.makeGraphic("Modulacion FM", "Tiempo", modulation.time, "Señal portadora", modulation.function3, 5, 5)
         plt.show()
 
+    """
+        Entrada: ENtra la modulacion que contiene cada una de las variables que estamos utilizando, ademas
+        del audio que estamos utilkizando y el tituklo que se le colocara al grafico.
+        Procedimiento: Se encarga de realizar dos graficos en 1.Ademas, se encarga de graficar cada la señal portadora y la modualdora pero dentro del dominio
+        de su tranformada de fourier para poder comprar cada uno de los reuasltados obtenidos, para 
+        luego guardar cada uno de estos grafivos en la caprtea que tenemos de salida de los gafricos.
+        Salida: -
+    """
+
     def generateGraphics8 (self, modulation, title):
         print("\n")
         print("Realizando el grafico de conjunto numero 8")
@@ -347,6 +397,17 @@ class Graphic:
         plt.show()
         trans2 = self.frequencyGraphic(modulation.function3, modulation.freqSampling, "Modulacion FM", 4, 3)
         plt.show()
+
+    """
+        Entrada: Entra el nuevo data que obtenidmos y el carrier, ademas del resultado obtenido y por ultimo
+        tenemos que ingtresamos le titulo que le colcaremos al grafico.
+        Procedimiento: Se encarga de realizar dos graficos en 1. donde tenemos que graficamos cada uno de los
+        graficos para poder apreciar los resultados que obtuvimos, para luego guardar cada uno de estos
+        pero cortando sus datos, con el fin de apreciar aun de mejor forma los resultados y poder interpretar
+        los resultados obtenidos de una mejor forma, debido a que vamos a tener una mejor apreciacion de los
+        datos que contempla los graficos.
+        Salida: -
+    """
 
     def generateGraphics9 (self, newData,timeCarrier,result,title):
         print("\n")
@@ -383,6 +444,17 @@ class Graphic:
         self.makeGraphic("Modulacion FM", "Tiempo[s]", timeCarrier, "Amplitud[Bd]", result, 5, 5)
         plt.show()
 
+    """
+        Entrada: Entra el audio original, la frecuencia que contiene, el resultado obtenido luego de realizar 
+        el analisis correspondiente y por utlimo tnemos que ingresamos le titulo que le colcoaremos al graficos
+        que vamos a realizar.
+        Procedimiento: Se encarga de realizar dos graficos en 1, Ademas, tenemos que grafica cada uno de los datos
+        en el ambito de sus tranformadas de foruier para poder apreciar de mejor forma los resutlados que obtuvimos.
+        Para luego pasar a guardar cada uno de los graficos que se realizaron en el archivo donde tenemos la salida
+        de cada unon de los graficos que se generan.
+        Salida: -
+    """
+
     def generateGraphics10 (self, originalAudio,frecuencia,result,title):
         print("\n")
         print("Realizando el grafico de conjunto numero 10")
@@ -404,6 +476,17 @@ class Graphic:
         trans2 = self.frequencyGraphic(result, originalAudio.sampling_rate, "Modulacion FM", 4, 3)
         plt.show()
 
+
+    """
+        Entrada: Entra el titulo que le colocaremos al grafico a realizar,ademas de cada uno de los cosenos 
+        que vamos a utilizat, la modulacion ask y el tiempo de esta y por ultimo tambien tebemos el tiempo
+        que se encarga de poder graficar junto al coseno.
+        Procedimiento: Se encarga de realizar tres graficos en 1. Donde ademas, tenemos que grafica cada una 
+        de las señales que aprticipan en la modulacion digital ask, con el fin de apreciar cada uno de sus
+        resultados. Para luego para a guardar cada uno de estos valores en la carptea donde tenemos las salida
+        de cada uno de los graficos que son generados por le programa.
+        Salida: -
+    """
 
     def generateGraphics11 (self, title, cos1, cos2, askModulation,timeCos, timeModulation):
         print("\n")
@@ -428,28 +511,41 @@ class Graphic:
         self.makeGraphic("Señal Modulada", "Tiempo", timeModulation, "Amplitud", askModulation, 7, 7)
         plt.show()
 
-    def generateGraphics12 (self, modulation, title):
+    """
+        Entrada: Entra el titulo que le colocaremos al grafico a realizar, ademas del tiempo de las señales 
+        y cada uno de los datas de las funciones y ambien el ruido que colocamos a cada una de las funciones, 
+        con el fin de poder simulador el ruido del medio donde vamos a transmitir en un futuro.
+        Procedimiento: Se encarga de realizar tres graficos en 1. Donde tenemos que grafica la señal normal, es decir
+        sin ruido, luego grafica el ruido que tnenemos que genetramos que es el ruido blanco gaussiano, ademas
+        despyues de graficar la señal con el ruido includio. Donde por utlimo , tenemos que guarda cada uno de los
+        graficos de forma indicual en la carpeta que tenemos donde guardamos las salidas de cada una de las funciones
+        que tenemos implementadas que generan los disintos graifocs que itulizamos para analizare cada una de
+        las modulaciones que realizamos.
+        Salida: -
+    """
+
+    def generateGraphics12 (self,title,  time , function_1, function_2, noise):
         print("\n")
         print("Realizando el grafico de conjunto numero 4")
         print("El cual contiene los grafico de tiempo de cada una de las señales ha analizar")
         print("\n")
         plt.figure(1)
         plt.subplot(311)
-        self.makeGraphic("Señal Moduladora","Tiempo",modulation.ask_time2,"Amplitud",modulation.ask_function3,5,5)
+        self.makeGraphic("Señal sin ruido","Tiempo",time ,"Amplitud",function_1,5,5)
         plt.subplot(312)
-        self.makeGraphic("Señal Portadora","Tiempo",modulation.ask_time2,"Amplitud",modulation.noise,3,3)
+        self.makeGraphic("Ruido","Tiempo",time ,"Amplitud",noise,3,3)
         plt.subplot(313)
-        self.makeGraphic("Señal Modulada","Tiempo",modulation.ask_time2,"Amplitud",modulation.ask_function4,7,7)
+        self.makeGraphic("Señal con rudio","Tiempo",time ,"Amplitud",function_2,7,7)
         plt.tight_layout()
         plt.savefig(os.getcwd() + "/Salida/_" + title +".png")
         plt.show()
-        # Realizando graficos individuales
-        #self.makeGraphic("Señal Moduladora","Tiempo",modulation.ask_time1,"Amplitud",modulation.ask_function1,5,5)
-        #plt.show()
-        #self.makeGraphic("Señal Portadora","Tiempo",modulation.ask_time1,"Amplitud",modulation.noise,3,3)
-        #plt.show()
-        #self.makeGraphic("Señal Modulada","Tiempo",modulation.ask_time2,"Amplitud",modulation.ask_function4,7,7)
-        #plt.show()
+        # # Realizando graficos individuales
+        self.makeGraphic("Señal sin ruido","Tiempo",time ,"Amplitud",function_1,5,5)
+        plt.show()
+        self.makeGraphic("Ruido","Tiempo",time ,"Amplitud",noise,3,3)
+        plt.show()
+        self.makeGraphic("Señal con rudio","Tiempo",time ,"Amplitud",function_2,7,7)
+        plt.show()
 
 
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -498,6 +594,18 @@ class Graphic:
 
         self.SingleGraphics(originalAudio, originalAudio.filter.low_cutoff, originalAudio.filter.high_cutoff, originalAudio.filter.order)
 
-
-
     # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # - NAME: graphicCorr
+    # - DESCRIPTION: Genera el grafico de un correlacionador
+    # - PARAMS: Titulo del gráfico, frecuencia del correlacionador y el array de datos del correlacionador
+    # - OUT: Void
+
+    def graphicCorr(self, title, rate, data):
+        time = np.arange(len(data)) / rate * 1000
+        plt.title(title, fontsize=12, color='blue')
+        plt.xlabel('Time (ms)', color='red')
+        plt.ylabel('Amplitude (dB)', color='orange')
+        plt.plot(time, data)
+        plt.show()
+

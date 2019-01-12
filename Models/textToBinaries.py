@@ -1,46 +1,68 @@
-from cmd import Cmd
 
+class TextoBinario:
 
-class TextoBinarioApp(Cmd):
-    def __init__(mi):
-        super().__init__()
-        mi.codigo = 'utf8'
+    codigo = ''
 
-    def do_codigo(mi, argumento):
-        """Fija el código (ascii, utf8, etc.) que se usa para codificar/decodificar."""
-        codigo = argumento.strip()
-        try:
-            bytearray('', codigo)
-        except LookupError:
-            print('**Código desconocido.')
-        else:
-            mi.codigo = codigo
+    """
+    Entrada: -
+    Procedimiento: Crea el objeto
+    Salida: -
+    """
 
-    def do_codificar(mi, argumento):
+    def __init__(self):
+        self.codigo = 'utf8'
+
+    """
+    Entrada: Entra el objeto a utilizar y la letra a convertir a binario
+    Procedimiento: Realiza la conversion de la letra a binario, que contiene 8 bits
+    Salida: Entrega el arreglo de bit donde contiene la letra ingresada en binarios
+    """
+
+    def do_codificar(self,mi, argumento):
         """Codifica un texto en binario."""
         try:
             octetos = bytearray(argumento, mi.codigo)
         except:
             print(f'**No se puede codificar en {mi.codigo}.')
         else:
-            print(' '.join(f'{x:b}'.rjust(8, '0') for x in octetos))
+            #print(' '.join(f'{x:b}'.rjust(8, '0') for x in octetos))
+            #print(octetos)
+            c = []
+            d = []
+            for x in octetos:
+                print(x)
+                a = ''.join(f'{x:b}'.rjust(8,'0') )
+                print(a)
+                for x1 in a:
+                    c.append(x1)
+            print(c)
 
-    def do_decodificar(mi, argumento):
+            for elemento in c:
+                if elemento == '0':
+                    d.append(0)
+                else:
+                    d.append(1)
+            #print(d)
+            return d
+
+    """
+    Entrada: Entra el objeto a utilizar y una cadena de bit.
+    Procedimiento: Convierte esa cadena de bits en la letra que corresponde.
+    Salida: Entrega la letra corresondiente a la cadena de bits ingresada.
+    """
+
+    def do_decodificar(self, mi, argumento):
         """Decodifica un texto en binario."""
         try:
+            print(argumento)
             octetos = bytearray(int(x, 2) for x in argumento.split())
+            print(octetos)
         except:
             print('**No es una cadena binaria.')
             return None
         try:
+            print("estamos aca")
             print(octetos.decode(encoding=mi.codigo))
+            return octetos.decode(encoding=mi.codigo)
         except:
             print(f'**No es una cadena codificada en {mi.codigo}')
-
-    def do_salir(mi, arg):
-        """Salir del programa."""
-        return True
-
-
-app = TextoBinarioApp()
-app.cmdloop()
