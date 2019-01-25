@@ -16,6 +16,11 @@ from scipy import signal
 from cmd import Cmd
 import matplotlib.pyplot as plt
 
+import numpy as np
+from scipy import signal as sp
+import matplotlib.pylab as plt
+
+
 class Modulation:
 
     ## - ATTRIBUTES - ##
@@ -453,9 +458,16 @@ class Modulation:
 
     def create_syn(self,amplitud,fc,t) :
 
-        syn = float(amplitud) * np.cos(2 * np.pi * fc / 2 * t)  # Función que representa los bist 0, con una frecuencia1 dada
-        #print(syn)
-        return syn
+        #t1 = t[0 : int(len(t)/2)]
+        #t2 = t[int(len(t)/2) : len(t)]
+        syn1 = float(amplitud) * np.cos(2 * np.pi * fc * t)  # Función que representa los bist 0, con una frecuencia1 dada
+        syn2 = float(amplitud) * np.cos(2 * np.pi * fc * 1.5 * t)
+        y = []
+        y.extend(syn1)
+        y.extend(syn2)
+        plt.plot(y)
+        plt.show()
+        return y
 
     # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     # - NAME: fskModulationm
@@ -471,7 +483,14 @@ class Modulation:
         text1 = input("Ingrese el texto a binarizar")
         a = text.do_codificar(text,text1) #Función que transforma texto en binario
         #print(a)
+
         x = a
+        plt.title("Funcion escalon", fontsize=12, color='blue')
+        plt.xlabel('Sample', color='red')
+        plt.ylabel('Amplitude (dB)', color='orange')
+        plt.grid()
+        plt.plot(x)
+        plt.show()
 
 
         #frecuencia = input("Ingrese la frecuencia a utilizar: ")
@@ -487,33 +506,50 @@ class Modulation:
 
         c1 = float(amplitud) * np.cos(2 * np.pi * fc/2 * t) #Función que representa los bist 0, con una frecuencia1 dada
         c2 = float(amplitud) * np.cos(2 * np.pi * fc * t)   #Función que representa los bist 1, con una frecuencia2 dada
-        syn = self.create_syn(amplitud, 18000, t)
-        y = []
+        y = self.create_syn(amplitud, 15000, t)
+        ySyn = np.array(y)
 
-        for i in range(0, 64):
-            y.extend(syn)
+        """
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print(y)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        """
+
+        y1 = []
 
         #print("EL largo es: " + str(y))
 
         for b in x:
             if b:
                 y.extend(c1)
+                y1.extend(c1)
             else:
                 y.extend(c2)
+                y1.extend(c2)
 
+        #print("EL largo es: " + str(y))
+
+        #for i in range(0, 64):
+          #  y.extend(syn)
 
         #print("EL largo es: " + str(y))
 
-
-        for i in range(0, 64):
-            y.extend(syn)
-
-
-        #print("EL largo es: " + str(y))
+        plt.plot(y1)
+        plt.show()
 
         y = np.array(y)
+        y1 = np.array(y1)
         t = np.array(t)
-        x = linspace(0, 1/tb, int(len(t)) * (len(x) + 128) )
+        x = linspace(0, 1/tb, int(len(t)) * (len(x) + 2))
 
         print(y)
 
@@ -521,14 +557,34 @@ class Modulation:
         # Realizando el audio de salida
         name = "audio"
         archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_fsk.wav", int(fs), y)
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_fsk_1.wav", int(fs), y1)
 
         #Realizando el grafico
         graphic = Graphic()
         graphic.generateGraphics11("Modulacion fsk", c1, c2, y, t, x)
 
+        plt.figure(1)
+        plt.subplot(411)
+        plt.title("Funcion escalon", fontsize=12, color='blue')
+        plt.xlabel('Sample', color='red')
+        plt.ylabel('Amplitude (dB)', color='orange')
+        plt.grid()
+        plt.plot(a)
+        plt.subplot(412)
+        graphic.makeGraphic("Señal Portadora 1","Tiempo",t,"Amplitud",c1,3,3)
+        plt.subplot(413)
+        graphic.makeGraphic("Señal Portadora 0","Tiempo",t,"Amplitud",c2,7,7)
+        plt.subplot(414)
+        graphic.makeGraphic("Señal Modulada","Tiempo",x,"Amplitud",y,7,7)
+        plt.tight_layout()
+        plt.savefig(os.getcwd() + "/Salida/_GraficoPortadoras.png")
+        plt.show()
+
+
+
         modulation.fsk_function1 = c1
         modulation.fsk_function2 = c2
-        modulation.syn = syn
+        modulation.syn = ySyn
         modulation.fsk_function3 = y
         modulation.fsk_time1 = t
         modulation.fsk_time2 = x
@@ -582,6 +638,7 @@ class Modulation:
         syn = self.create_syn(amplitud, 1000, t)
 
         y = []
+        y1 = []
 
         for i in range(0,64):
             y.extend(syn)
@@ -589,8 +646,10 @@ class Modulation:
         for b in x:
             if b:
                 y.extend(c1)
+                y1.extend(c1)
             else:
                 y.extend(c2)
+                y1.extend(c2)
 
         for i in range(0,64):
             y.extend(syn)
@@ -603,6 +662,7 @@ class Modulation:
         # Realizando el audio de salida
         name = "audio"
         archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_psk.wav",int(fs), y)
+        archive.saveWav(os.getcwd() + "/Audios/AudiosModulados/" + name + "_psk_1.wav",int(fs), y1)
 
         #Realizando el grafico
         graphic = Graphic()
@@ -639,12 +699,32 @@ class Modulation:
         corr1 = signal.fftconvolve(fsk_signal, c2, 'same')
         corr2 = signal.fftconvolve(fsk_signal, c3, 'same')
 
+        plt.figure(1)
+        plt.subplot(311)
+        plt.plot(corr0)
+        plt.subplot(312)
+        plt.plot(corr1)
+        plt.subplot(313)
+        plt.plot(corr2)
+        plt.tight_layout()
+        plt.show()
+
         t1 = time.time()
 
         #Filtro para los correlacionadores
         corr0 = modulation.windows_rms(corr0, 101)
         corr1 = modulation.windows_rms(corr1, 101)
         corr2 = modulation.windows_rms(corr2, 101)
+
+        plt.figure(1)
+        plt.subplot(311)
+        plt.plot(corr0)
+        plt.subplot(312)
+        plt.plot(corr1)
+        plt.subplot(313)
+        plt.plot(corr2)
+        plt.tight_layout()
+        plt.show()
 
         #corr0 = np.abs(corr0)
         #corr1 = np.abs(corr1)
@@ -656,7 +736,7 @@ class Modulation:
         #Posiciones donde termina le tiempo de bits para determinar el tipo de bits
         #print("Valor 1 es: " + str(int((modulation.fsk_fs * modulation.fsk_tb) / 2)))
         #print("Valor 2 es: " + str(int(modulation.fsk_fs * modulation.fsk_tb)))
-        bit_position = arange(int ((modulation.fsk_fs * modulation.fsk_tb) / 2), len(fsk_signal), int((modulation.fsk_fs * modulation.fsk_tb))).astype(int)
+        #bit_position = arange(int((modulation.fsk_fs * modulation.fsk_tb) / 2) , len(fsk_signal), int((modulation.fsk_fs * modulation.fsk_tb))).astype(int)
 
         """
         aux1 = 0
@@ -664,46 +744,63 @@ class Modulation:
         for aux in bit_position:
             print("La diferencia es: " + str(aux - aux1) + "\n")
 
-            if (aux - aux1) != 58:
+            if (aux - aux1) != 55:
                 print("\n")
                 print("\n")
-                print("Aca esta la caga cm jajajajajajajajajajajajajajjaajaj \n")
+                print("Aca esta la caga  jajajajajajajajajajajajajajjaajaj \n")
                 print("\n")
                 print("\n")
 
             aux1 = aux
 
         """
-        print("EL largo del bit_position es: " + str(len(bit_position)))
+
 
         bit_array = []
         cont = 0
         numsyn = 0
         num = 0
+
+        title = 'Correlator'
+        title1 = 'Correlator señal 1'
+        title2 = 'Correlator señal 2'
+        title3 = 'Correlator sync'
+
+        #graphic.graphicCorr(title1, corr0)
+        #graphic.graphicCorr(title2, corr1)
+        #graphic.graphicCorr(title3, corr2)
+        #plt.show()
+
+        graphic.graphicCorrAll(title,title1,title2,title3,corr0,corr1,corr2)
+
+        t0 = np.argmax(corr2)
+        print(np.argmax(corr2))
+        print(" TO :  " + str(t0))
+
+        muestrasPorBits = int(modulation.fsk_fs * modulation.fsk_tb)
+
+        bit_position = arange(t0+muestrasPorBits/2, len(fsk_signal), muestrasPorBits ).astype(int)
+        print("EL largo del bit_position es: " + str(len(bit_position)))
+
         for position in bit_position:
             #print("Vuelta: " + str(cont) + " - Datos : 1: " + str(corr0[position]) + " 2: " + str(corr1[position]) + " 3: " + str(corr2[position]) + "\n")
-            if corr2[position] < corr1[position] or corr2[position] < corr0[position]:
+            #if corr2[position] < corr1[position] or corr2[position] < corr0[position]:
 
                 #print("1: " + str(corr0[position]) + " 2: " + str(corr1[position]))
-                if corr0[position] < corr1[position]:
-                    print("Agrege un 1  -  Vamos en el numero:  " + str(num))
-                    num = num + 1
-                    bit_array.append(1)
-                else:
-                    print("Agrege un 0  -  Vamos en el numero:  " + str(num))
-                    num = num + 1
-                    bit_array.append(0)
+            if corr0[position] < corr1[position]:
+                print("Agrege un 1  -  Vamos en el numero:  " + str(num))
+                num = num + 1
+                bit_array.append(1)
             else:
-                print(" Estamos sincronizando numero: " + str(numsyn))
-                numsyn = numsyn + 1
-            cont = cont + 1
+                print("Agrege un 0  -  Vamos en el numero:  " + str(num))
+                num = num + 1
+                bit_array.append(0)
+            #else:
+                #print(" Estamos sincronizando numero: " + str(numsyn))
+                #numsyn = numsyn + 1
+            #cont = cont + 1
 
-        title1 = 'Correlator 0'
-        title2 = 'Correlator 1'
-        title3 = 'Correlator 2'
-        graphic.graphicCorr(title1, 44100, corr0)
-        graphic.graphicCorr(title2, 44100, corr1)
-        graphic.graphicCorr(title3, 44100, corr2)
+
 
         print(bit_array)
         print("EL largo es: " + str(len(bit_array)))
@@ -778,7 +875,7 @@ class Modulation:
 
         bit_position = arange( int((modulation.psk_fs * modulation.psk_tb) / 2), len(psk_signal), int(modulation.psk_fs * modulation.psk_tb)).astype(int)
 
-        #print(bit_position)
+        print(bit_position)
 
         bit_array = []
         cont = 0
@@ -863,7 +960,7 @@ class Modulation:
 
     def addNoise(self,signal):
 
-        noise = random.normal(0.0, 0.1, len(signal))
+        noise = random.normal(0.1, 0.5, len(signal))
         signal = signal + noise
         return np.array(signal), np.array(noise)
 

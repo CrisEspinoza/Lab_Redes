@@ -495,9 +495,9 @@ class Graphic:
         print("\n")
         plt.figure(1)
         plt.subplot(311)
-        self.makeGraphic("Señal Moduladora","Tiempo",timeCos,"Amplitud",cos1,5,5)
+        self.makeGraphic("Señal Portadora 1","Tiempo",timeCos,"Amplitud",cos1,5,5)
         plt.subplot(312)
-        self.makeGraphic("Señal Portadora","Tiempo",timeCos,"Amplitud",cos2,3,3)
+        self.makeGraphic("Señal Portadora 0","Tiempo",timeCos,"Amplitud",cos2,3,3)
         plt.subplot(313)
         self.makeGraphic("Señal Modulada","Tiempo",timeModulation,"Amplitud",askModulation,7,7)
         plt.tight_layout()
@@ -601,11 +601,34 @@ class Graphic:
     # - PARAMS: Titulo del gráfico, frecuencia del correlacionador y el array de datos del correlacionador
     # - OUT: Void
 
-    def graphicCorr(self, title, rate, data):
-        time = np.arange(len(data)) / rate * 1000
+    def graphicCorr(self, title, data):
         plt.title(title, fontsize=12, color='blue')
-        plt.xlabel('Time (ms)', color='red')
+        plt.xlabel('Sample', color='red')
         plt.ylabel('Amplitude (dB)', color='orange')
-        plt.plot(time, data)
+        plt.grid()
+        plt.plot(data)
+        #plt.show()
+
+    def graphicCorrAll(self, title, title1, title2, title3, corr0, corr1, corr2):
+        plt.figure(1)
+        plt.subplot(311)
+        self.graphicCorr(title1, corr0)
+        plt.subplot(312)
+        self.graphicCorr(title2, corr1)
+        plt.subplot(313)
+        self.graphicCorr(title3, corr2)
+        plt.tight_layout()
+        plt.savefig(os.getcwd() + "/Salida/_" + title + ".png")
         plt.show()
+
+        # # Realizando graficos individuales
+        self.graphicCorr(title1, corr0)
+        plt.show()
+        self.graphicCorr(title2, corr1)
+        plt.show()
+        self.graphicCorr(title3, corr2)
+        plt.show()
+
+
+
 
